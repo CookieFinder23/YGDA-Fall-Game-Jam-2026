@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cmdawnjsijanw"]
+
+[ext_resource type="Script" uid="uid://b7iwenf3pfgt5" path="res://globals/scene_switcher.gd" id="1_lpaq5"]
+
+[node name="SceneSwitcher" type="CanvasLayer" unique_id=959903579]
+script = ExtResource("1_lpaq5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1414455549]
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
