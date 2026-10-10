@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://t3hntmvrnwyg"]
+
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="1_u23vv"]
+[ext_resource type="Script" uid="uid://3unbj7i0qu5p" path="res://level_object/enemy/base_boss.gd" id="1_w0jwt"]
+
+[node name="BaseBoss" type="Node2D" unique_id=1699236756]
+script = ExtResource("1_w0jwt")
+
+[node name="BaseEnemy" parent="." unique_id=2077614294 instance=ExtResource("1_u23vv")]
+
+[connection signal="damaged" from="BaseEnemy" to="." method="_on_base_enemy_damaged"]

@@ -6,8 +6,12 @@ var ring_num = 2:
 		ring_num = clamp(new_value, 0, GameState.RING_AMOUNT - 1)
 ## position along ring in radians
 var ring_pos = 0
+const FAST_RING_MULT = 2
 
 func move(dist: float):
-	ring_pos += dist / ((GameState.RING_BASE + GameState.RING_SLOPE * ring_num) / GameState.RING_SLOPE)
+	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * ring_num) / GameState.RING_SLOPE)
+	if ring_num == GameState.fast_ring:
+		dist *= FAST_RING_MULT
+	ring_pos += dist
 	if ring_pos > 2 * PI:
 		ring_pos -= 2 * PI

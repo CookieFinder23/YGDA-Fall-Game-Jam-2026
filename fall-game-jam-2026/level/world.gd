@@ -1,6 +1,7 @@
 extends Node2D
 const FODDER = preload("uid://ocsoo5vljovt")
 const BURNER = preload("uid://dhxu81fp4yvqo")
+const BOSS_1 = preload("uid://3tbia1bfkjgc")
 
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
@@ -10,8 +11,8 @@ func get_ring_radius(ring_num: int) -> int:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
-	for i in range(5):
-		var fodder = BURNER.instantiate()
+	for i in range(1):
+		var fodder = BOSS_1.instantiate()
 		var orb = fodder.find_child("OrbitingObject")
 		orb.ring_num = randi_range(0, 2)
 		orb.ring_pos = randf_range(0, 2 * PI)
@@ -37,7 +38,7 @@ func _physics_process(_delta: float) -> void:
 		position_orbiting_object(child)
 	if $Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Player/Hitbox.get_overlapping_areas()[0].get_parent()
-		bounce($Player, base_enemy, 3)
+		bounce($Player, base_enemy, 2)
 		
 	# handle collisions between two enemies
 	for child in get_children():
@@ -51,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 		var collided_with = overlap[0].get_parent()
 		if is_instance_of(collided_with, Player):
 			continue
-		bounce(base_enemy, collided_with, 3)
+		bounce(base_enemy, collided_with, 2)
 
 ## prereq: nodes have variables: direction, speed, speed_mult, bounce
 func bounce(obj1: Node, obj2: Node, speed_mult: float):

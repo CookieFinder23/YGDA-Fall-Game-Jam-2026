@@ -3,11 +3,13 @@ class_name Enemy
 var can_collide = true
 @export var speed: float = 0.5
 @export var direction: int = 1
-
+signal damaged
 @export var health: int = 1:
 	set(new_value):
 		if health == new_value:
 			return
+		if new_value < health:
+			damaged.emit()
 		health = new_value
 		if health <= 0:
 			get_parent().queue_free()

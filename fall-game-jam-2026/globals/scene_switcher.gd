@@ -12,6 +12,7 @@ func switch(scene) -> void:
 	get_tree().paused = true
 	await fade(1.0)
 	get_tree().change_scene_to_file(scene)
+	GameState.reset()
 	get_tree().paused = false
 	await get_tree().create_timer(BLACK_SECONDS).timeout
 	await fade(0.0)

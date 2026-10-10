@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://ocsoo5vljovt"]
 
-[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/placeholder/32x32placeholder.png" id="1_a3ycs"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_50514"]
 
 [node name="Fodder" type="Sprite2D" unique_id=494127020]
-texture = ExtResource("1_a3ycs")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_50514")]
 health = 3
