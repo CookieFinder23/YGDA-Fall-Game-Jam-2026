@@ -5,4 +5,4 @@
 [node name="Fodder" type="Sprite2D" unique_id=494127020]
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_50514")]
-health = 3
+speed = 1.0

@@ -15,11 +15,13 @@ signal damaged
 			var to_kill = get_parent()
 			if is_instance_of(to_kill, BaseBoss):
 				to_kill = to_kill.get_parent()
+				GameState.fast_ring = -1
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 			to_kill.queue_free()
 
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0
+
 
 func _physics_process(delta: float) -> void:
 	var movement = speed * speed_mult * direction * delta

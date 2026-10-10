@@ -7,7 +7,7 @@
 script = ExtResource("1_7mwbe")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_7jy18")]
-health = 3
+speed = 1.0
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1497164728]
 wait_time = 3.0

@@ -7,8 +7,8 @@ var ring_num = 2:
 var between_ring_progress: float = 0.0
 ## position along ring in radians
 var ring_pos = 0
-const FAST_RING_MULT = 2
-const MOVE_BETWEEN_RING_SPEED = 20
+const FAST_RING_MULT = 3
+const MOVE_BETWEEN_RING_SPEED = 10
 
 func move(dist: float):
 	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * ring_num) / GameState.RING_SLOPE)

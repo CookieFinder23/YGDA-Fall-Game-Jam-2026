@@ -109,24 +109,39 @@ func _on_summon_cooldown_timeout() -> void:
 	$SummonCooldown.wait_time -= 0.2
 	if $SummonCooldown.wait_time < MIN_SUMMON_CD_TIME:
 		$SummonCooldown.wait_time = MIN_SUMMON_CD_TIME
-	var target_spawn_rad = ($Orbiting/Player/OrbitingObject.rotation + deg_to_rad(randf_range(170, 190))) % (2.0 * PI)
-	var min_ring_diffs = {
-		0: 9,
-		1: 9,
-		2: 9
-	}
-	var min_ring_diff = 9
-	for child in $Orbiting.get_children():
-		var orb = child.find_child("OrbitingObject")
-		var child_rad = orb.rotation
-		var diff_1 = abs(target_spawn_rad - child_rad)
-		var diff_2 = abs(target_spawn_rad - child_rad - 2 * PI)
-		var diff = min(diff_1, diff_2)
-		if diff < min_ring_diffs[orb.ring_num]:
-			min_ring_diffs[orb.ring_num] = diff
-			if diff < min_ring_diff:
-				min_ring_diff = diff
-		#for ring in 
+	for i in range(50):
+		var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(randf_range(170, 190))), (2.0 * PI))
+		var max_ring_diffs = {
+			0: 0,
+			1: 0,
+			2: 0
+		}
 		
-		#for diff in ring_diff
-	# unfinished
+		var max_ring_diff = 0
+		for child in $Orbiting.get_children():
+			var orb = child.find_child("OrbitingObject")
+			var child_rad = orb.ring_pos
+			var diff_1 = abs(spawn_rad - child_rad)
+			var diff_2 = abs(spawn_rad - child_rad - 2 * PI)
+			var diff = min(diff_1, diff_2)
+			if diff > max_ring_diffs[orb.ring_num]:
+				max_ring_diffs[orb.ring_num] = diff
+				if diff > max_ring_diff:
+					max_ring_diff = diff
+		if max_ring_diff < 0.75:
+			continue
+		var viable = []
+		for ring in max_ring_diffs:
+			if max_ring_diffs[ring] == max_ring_diff:
+				viable.append(ring)
+		var spawn_ring = viable.pick_random()
+		var enemy = [FODDER, BURNER, SPITTER].pick_random()
+		var to_spawn = enemy.instantiate()
+		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
+		to_spawn_orb.ring_num = spawn_ring
+		to_spawn_orb.ring_pos = spawn_rad
+		if randi_range(0, 1):
+			to_spawn.find_child("BaseEnemy").direction *= -1
+		to_spawn.find_child("BaseEnemy").speed *= randf_range(0.8, 1.2)
+		$Orbiting.add_child(to_spawn)
+		return

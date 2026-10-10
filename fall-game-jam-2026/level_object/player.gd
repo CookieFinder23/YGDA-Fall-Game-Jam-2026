@@ -15,7 +15,7 @@ var health: int = 5:
 const SPEED: float = 2.0
 ## 1 = radians increasing, -1 = radians decreasing
 var direction: int = 1
-var speed_mult: float = 1
+var speed_mult: float = 1.5
 
 func _ready() -> void:
 	GameState.player = self
