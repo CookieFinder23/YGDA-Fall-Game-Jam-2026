@@ -1,5 +1,6 @@
 extends Node2D
 const FODDER = preload("uid://ocsoo5vljovt")
+const BURNER = preload("uid://dhxu81fp4yvqo")
 
 const center = Vector2(480, 270) # canvas is 960 by 540
 var player_vars = 0
@@ -10,8 +11,8 @@ func get_ring_radius(ring_num: int) -> int:
 	return 90 + 80 * ring_num
 
 func _ready() -> void:
-	for i in range(20):
-		var fodder = FODDER.instantiate()
+	for i in range(2):
+		var fodder = BURNER.instantiate()
 		var orb = fodder.find_child("OrbitingObject")
 		orb.ring_num = randi_range(0, 2)
 		orb.ring_pos = randf_range(0, 2 * PI)
@@ -37,7 +38,6 @@ func _physics_process(_delta: float) -> void:
 		position_orbiting_object(child)
 	if $Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Player/Hitbox.get_overlapping_areas()[0].get_parent()
-		base_enemy.health -= 1
 		bounce($Player, base_enemy, 3)
 		
 	# handle collisions between two enemies
@@ -61,6 +61,10 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	recent_collisions.append([obj1, obj2])
 	obj1.can_collide = false
 	obj2.can_collide = false
+	if is_instance_of(obj1, Player):
+		obj2.health -= 1
+	elif is_instance_of(obj2, Player):
+		obj1.health -= 1
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
 	var obj1_speed = obj1_base_speed * obj1.speed_mult
 	var obj2_base_speed = obj2.SPEED if "SPEED" in obj2 else obj2.speed
@@ -87,3 +91,6 @@ func position_orbiting_object(obj: Node) -> void:
 	if orbiting_object:
 		obj.global_position = center + Vector2(get_ring_radius(orbiting_object.ring_num)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num)*sin(orbiting_object.ring_pos))
 		obj.look_at(center)
+		obj.rotation += deg_to_rad(90)
+		if (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1:
+			obj.rotation += deg_to_rad(180)
