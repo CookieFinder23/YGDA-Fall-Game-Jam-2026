@@ -7,5 +7,6 @@
 script = ExtResource("1_w0jwt")
 
 [node name="BaseEnemy" parent="." unique_id=2077614294 instance=ExtResource("1_u23vv")]
+random_rotate = true
 
 [connection signal="damaged" from="BaseEnemy" to="." method="_on_base_enemy_damaged"]

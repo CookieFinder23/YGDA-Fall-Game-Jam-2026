@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://duh0b4jpm3s56"]
 
+[ext_resource type="Texture2D" uid="uid://cd2y5qxqji7af" path="res://assets/art/rocket.PNG" id="1_2haed"]
 [ext_resource type="Script" uid="uid://cnxxuul21b7f2" path="res://level_object/player.gd" id="2_033we"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="3_vghlg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(64, 64)
+size = Vector2(64, 115)
 
 [node name="Player" type="Sprite2D" unique_id=520527748]
+texture = ExtResource("1_2haed")
 script = ExtResource("2_033we")
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("3_vghlg")]
@@ -15,6 +17,7 @@ script = ExtResource("2_033we")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1948015438]
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_0es7p")
 debug_color = Color(0, 0.6, 0.19215687, 0.41960785)
 

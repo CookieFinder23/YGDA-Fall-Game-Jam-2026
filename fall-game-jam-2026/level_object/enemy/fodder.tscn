@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://ocsoo5vljovt"]
 
+[ext_resource type="Texture2D" uid="uid://cluh2nk8vdqpd" path="res://assets/art/Asteroid.png" id="1_a3ycs"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_50514"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
+size = Vector2(64, 90)
+
 [node name="Fodder" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_a3ycs")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_50514")]
 speed = 1.0
+hitbox = SubResource("RectangleShape2D_8pm76")
+random_rotate = true

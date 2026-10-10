@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://duh0b4jpm3s56" path="res://level_object/player.tscn" id="1_07nfa"]
 [ext_resource type="Script" uid="uid://dg875oa72qesx" path="res://level/world.gd" id="1_sw3g3"]
-[ext_resource type="PackedScene" uid="uid://3tbia1bfkjgc" path="res://level_object/enemy/boss_1.tscn" id="3_nadbi"]
 [ext_resource type="PackedScene" uid="uid://clddrd1vt1me" path="res://ui/hud/hud.tscn" id="3_tjjer"]
+[ext_resource type="Texture2D" uid="uid://dy4fs3mhbnyyb" path="res://assets/art/Medium ring.PNG" id="5_hx6qw"]
+[ext_resource type="Texture2D" uid="uid://dwux0fcj6mrr0" path="res://assets/art/Small ring.PNG" id="6_riu67"]
+[ext_resource type="Texture2D" uid="uid://mvyiee3d1hg" path="res://assets/art/Large ring .PNG" id="7_riu67"]
 
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
@@ -12,11 +14,24 @@ script = ExtResource("1_sw3g3")
 
 [node name="Player" parent="Orbiting" unique_id=520527748 instance=ExtResource("1_07nfa")]
 
-[node name="Boss1" parent="Orbiting" unique_id=494127020 instance=ExtResource("3_nadbi")]
-
 [node name="HUD" parent="." unique_id=1303472108 instance=ExtResource("3_tjjer")]
 
 [node name="SummonCooldown" type="Timer" parent="." unique_id=1668595494]
+wait_time = 2.0
 autostart = true
+
+[node name="Rings" type="Node" parent="." unique_id=1275480986]
+
+[node name="MediumRing" type="Sprite2D" parent="." unique_id=2063627867]
+position = Vector2(960, 540)
+texture = ExtResource("5_hx6qw")
+
+[node name="SmallRing" type="Sprite2D" parent="." unique_id=1546752173]
+position = Vector2(960, 540)
+texture = ExtResource("6_riu67")
+
+[node name="LargeRing" type="Sprite2D" parent="." unique_id=2110409841]
+position = Vector2(960, 540)
+texture = ExtResource("7_riu67")
 
 [connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]

@@ -3,8 +3,6 @@ const FODDER = preload("uid://ocsoo5vljovt")
 const BURNER = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
-const MIN_SUMMON_CD_TIME = 3.0
-const MAX_SUMMON_CD_TIME = 5.0
 
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
@@ -14,14 +12,16 @@ func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
-	for i in range(1):
-		var fodder = SPITTER.instantiate()
-		var orb = fodder.find_child("OrbitingObject")
-		orb.ring_num = randi_range(0, 2)
-		orb.ring_pos = randf_range(0, 2 * PI)
-		if randi_range(0, 1):
-			fodder.find_child("BaseEnemy").direction *= -1
-		$Orbiting.add_child(fodder)
+	var boss = BOSS_1.instantiate()
+	var orb = boss.find_child("OrbitingObject")
+	orb.ring_num = randi_range(0, 2)
+	orb.ring_pos = randf_range(0, 2 * PI)
+	if randi_range(0, 1):
+		boss.find_child("BaseEnemy").direction *= -1
+	$Orbiting.add_child(boss)
+	for i in range(5):
+		await get_tree().physics_frame
+		summon()
 
 func clean_recent_collisions() -> void:
 	var to_remove: Array[int] = []
@@ -98,41 +98,50 @@ func position_orbiting_object(obj: Node) -> void:
 	orbiting_object = obj.find_child("OrbitingObject")
 	if orbiting_object:
 		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*sin(orbiting_object.ring_pos))
-		obj.look_at(GameState.CENTER)
-		obj.rotation += deg_to_rad(90)
 		if is_instance_of(obj, Projectile):
 			return
-		obj.flip_h = (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1
+		if is_instance_of(obj, Player):
+			obj.flip_v = obj.direction == 1
+			obj.look_at(GameState.CENTER)
+			obj.rotation += deg_to_rad(180)
+			return
+		var base_enemy = obj.find_child("BaseEnemy")
+		if not base_enemy.random_rotate:
+			obj.look_at(GameState.CENTER)
+			obj.rotation += deg_to_rad(90)
+			obj.flip_h = base_enemy.direction == -1
 
-
-func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time -= 0.2
-	if $SummonCooldown.wait_time < MIN_SUMMON_CD_TIME:
-		$SummonCooldown.wait_time = MIN_SUMMON_CD_TIME
+func summon() -> void:
+	if len($Orbiting.get_children()) > 20:
+		return
 	for i in range(50):
 		var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(randf_range(170, 190))), (2.0 * PI))
-		var max_ring_diffs = {
-			0: 0,
-			1: 0,
-			2: 0
+		var min_ring_diffs = {
+			0: 9,
+			1: 9,
+			2: 9
 		}
 		
-		var max_ring_diff = 0
 		for child in $Orbiting.get_children():
 			var orb = child.find_child("OrbitingObject")
 			var child_rad = orb.ring_pos
-			var diff_1 = abs(spawn_rad - child_rad)
-			var diff_2 = abs(spawn_rad - child_rad - 2 * PI)
-			var diff = min(diff_1, diff_2)
-			if diff > max_ring_diffs[orb.ring_num]:
-				max_ring_diffs[orb.ring_num] = diff
-				if diff > max_ring_diff:
-					max_ring_diff = diff
+			var diff = abs(spawn_rad - child_rad)
+			if diff > PI:
+				diff -= 2 * PI
+			diff = abs(diff)
+			if diff < min_ring_diffs[orb.ring_num]:
+				min_ring_diffs[orb.ring_num] = diff
+		min_ring_diffs[0] -= 4
+		min_ring_diffs[1] -= 2
+		var max_ring_diff = 0
+		for ring in min_ring_diffs:
+			if min_ring_diffs[ring] > max_ring_diff:
+				max_ring_diff = min_ring_diffs[ring]
 		if max_ring_diff < 0.75:
 			continue
 		var viable = []
-		for ring in max_ring_diffs:
-			if max_ring_diffs[ring] == max_ring_diff:
+		for ring in min_ring_diffs:
+			if min_ring_diffs[ring] == max_ring_diff:
 				viable.append(ring)
 		var spawn_ring = viable.pick_random()
 		var enemy = [FODDER, BURNER, SPITTER].pick_random()
@@ -145,3 +154,6 @@ func _on_summon_cooldown_timeout() -> void:
 		to_spawn.find_child("BaseEnemy").speed *= randf_range(0.8, 1.2)
 		$Orbiting.add_child(to_spawn)
 		return
+
+func _on_summon_cooldown_timeout() -> void:
+	summon()

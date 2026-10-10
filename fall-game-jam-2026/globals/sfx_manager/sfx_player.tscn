@@ -11,13 +11,15 @@
 script = ExtResource("2_xmiic")
 stream = ExtResource("3_4xqb4")
 bus = "SFX"
+volume = -20.0
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
 [sub_resource type="Resource" id="Resource_o2cuk"]
 script = ExtResource("2_xmiic")
 stream = ExtResource("4_o2cuk")
 bus = "SFX"
-volume = -30.0
+volume = -45.0
+pitch = 0.8
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
 [sub_resource type="Resource" id="Resource_aso10"]

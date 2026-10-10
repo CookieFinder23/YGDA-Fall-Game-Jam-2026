@@ -5,7 +5,8 @@ class_name Projectile
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	area.get_parent().health -= 1
-
+	queue_free()
+	
 func _physics_process(delta: float) -> void:
 	$OrbitingObject.move(delta * direction * speed)
 

@@ -2,9 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/enemy/base_boss.tscn" id="1_b430w"]
 [ext_resource type="Script" uid="uid://dvtpjefhsd4gt" path="res://level_object/enemy/boss_1.gd" id="1_e8rfb"]
+[ext_resource type="Texture2D" uid="uid://c57i8sfjibg51" path="res://assets/art/Blue planet.jpg" id="1_m5i3i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5i3i"]
+size = Vector2(60, 64)
 
 [node name="Boss1" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_m5i3i")
 script = ExtResource("1_e8rfb")
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("1_b430w")]
-health = 10
+health = 20
+hitbox = SubResource("RectangleShape2D_m5i3i")

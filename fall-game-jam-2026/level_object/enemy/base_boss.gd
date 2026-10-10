@@ -2,9 +2,12 @@ extends Node2D
 class_name BaseBoss
 @export var health: int = 3
 @export var speed: float = 0.5
+@export var hitbox: RectangleShape2D
 
 func _ready() -> void:
 	$BaseEnemy.health = health
+	$BaseEnemy.hitbox = hitbox
+	$BaseEnemy/Hitbox/CollisionShape2D.shape = hitbox
 
 func _on_base_enemy_damaged() -> void:
 	if $BaseEnemy/OrbitingObject.ring_num == 0:
