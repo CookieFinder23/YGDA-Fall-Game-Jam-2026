@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://clddrd1vt1me"]
+
+[ext_resource type="Script" uid="uid://chdm8ysjb6rtu" path="res://ui/hud/hud.gd" id="1_xmswo"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nadbi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lx6e4"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4tbtn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_riu67"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hx6qw"]
+
+[node name="hud" type="Control" unique_id=1303472108]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -966.0
+offset_top = -527.0
+offset_right = -966.0
+offset_bottom = -527.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmswo")
+
+[node name="Level" type="TextureRect" parent="." unique_id=1366096636]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 420.0
+offset_bottom = 1080.0
+texture = SubResource("PlaceholderTexture2D_nadbi")
+
+[node name="Ui" type="TextureRect" parent="." unique_id=487245666]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1500.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("PlaceholderTexture2D_lx6e4")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=63105942]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 396.0
+offset_right = 1094.0
+offset_bottom = 652.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = SubResource("PlaceholderTexture2D_4tbtn")
+texture_over = SubResource("PlaceholderTexture2D_riu67")
+texture_progress = SubResource("PlaceholderTexture2D_hx6qw")
+tint_under = Color(0.44852012, 0.3624978, 0.30077145, 1)
+tint_progress = Color(0.91692173, 0, 0.24495691, 1)
