@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://duh0b4jpm3s56"]
 
-[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/32x32placeholder.png" id="1_2haed"]
+[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/placeholder/32x32placeholder.png" id="1_2haed"]
 [ext_resource type="Script" uid="uid://cnxxuul21b7f2" path="res://level_object/player.gd" id="2_033we"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="3_vghlg"]
 

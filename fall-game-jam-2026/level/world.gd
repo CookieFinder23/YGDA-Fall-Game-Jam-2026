@@ -11,7 +11,7 @@ func get_ring_radius(ring_num: int) -> int:
 	return 90 + 80 * ring_num
 
 func _ready() -> void:
-	for i in range(2):
+	for i in range(5):
 		var fodder = BURNER.instantiate()
 		var orb = fodder.find_child("OrbitingObject")
 		orb.ring_num = randi_range(0, 2)
