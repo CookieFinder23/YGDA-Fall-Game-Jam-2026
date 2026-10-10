@@ -58,6 +58,7 @@ func _physics_process(_delta: float) -> void:
 func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	if [obj1, obj2] in recent_collisions or [obj2, obj1] in recent_collisions:
 		return
+	SFX.play(SFX.Id.BOUNCE)
 	recent_collisions.append([obj1, obj2])
 	obj1.can_collide = false
 	obj2.can_collide = false

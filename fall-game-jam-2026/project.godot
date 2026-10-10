@@ -15,10 +15,15 @@ run/main_scene="uid://p6gawtf5lukb"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dk3g6la50jm0u"
+
 [autoload]
 
 GameState="*uid://bp54xcmaf8yms"
 SceneSwitcher="*uid://cmdawnjsijanw"
+SFX="*uid://d1mff478o3ug3"
 
 [display]
 
