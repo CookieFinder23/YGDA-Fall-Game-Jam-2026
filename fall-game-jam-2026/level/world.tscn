@@ -22,3 +22,9 @@ script = ExtResource("1_sw3g3")
 [node name="BlankEnemy6" parent="." unique_id=1092494471 instance=ExtResource("3_tjjer")]
 
 [node name="BlankEnemy7" parent="." unique_id=1127273948 instance=ExtResource("3_tjjer")]
+
+[node name="BlankEnemy8" parent="." unique_id=352338770 instance=ExtResource("3_tjjer")]
+
+[node name="BlankEnemy9" parent="." unique_id=700986119 instance=ExtResource("3_tjjer")]
+
+[node name="BlankEnemy10" parent="." unique_id=350291984 instance=ExtResource("3_tjjer")]

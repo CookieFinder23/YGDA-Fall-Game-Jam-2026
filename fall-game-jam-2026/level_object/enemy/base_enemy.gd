@@ -1,6 +1,6 @@
 extends Node2D
 class_name Enemy
-const COLLISION_COOLDOWN_DIST = 0.5
+const COLLISION_COOLDOWN_DIST = 0.1
 var collision_cooldown_dist_timer = -1
 @export var speed: float = 0.1
 @export var direction: int = 1
@@ -18,7 +18,8 @@ var speed_mult: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	var movement = speed * speed_mult * direction * delta
-	collision_cooldown_dist_timer -= abs(movement)
+	if not $Hitbox.has_overlapping_areas():
+		collision_cooldown_dist_timer -= abs(movement)
 	$OrbitingObject.move(movement)
 	# if confused about this line read https://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
 	speed_mult = lerp(speed_mult, 1.0, 1 - pow(BOUNCE_SMOOTH, delta))

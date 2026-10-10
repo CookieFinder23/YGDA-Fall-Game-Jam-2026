@@ -7,7 +7,7 @@ var ring_num = 2:
 ## position along ring in radians
 var ring_pos = 0
 ## radian gain on ring per second
-const MAX_RING_NUM = 3
+const MAX_RING_NUM = 2
 
 func move(dist: float):
 	ring_pos += dist
