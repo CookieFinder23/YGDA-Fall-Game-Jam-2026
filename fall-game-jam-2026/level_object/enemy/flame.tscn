@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://dr2hi55fm05q0"]
 
-[ext_resource type="Texture2D" uid="uid://vhnilkc3qhha" path="res://assets/art/placeholder/flame.png" id="1_pwnlx"]
+[ext_resource type="Script" uid="uid://d3qrfnhyuhe60" path="res://level_object/enemy/flame.gd" id="1_ys4qk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(16, 32)
+size = Vector2(16, 160)
 
 [node name="Flame" type="Area2D" unique_id=122777426]
 collision_layer = 0
+script = ExtResource("1_ys4qk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274871368]
 shape = SubResource("RectangleShape2D_0es7p")
+debug_color = Color(1, 0.5019608, 0.101960786, 0.41960785)
 
 [node name="Flame" type="Sprite2D" parent="." unique_id=421124766]
-modulate = Color(1, 0.20392157, 0, 1)
-texture = ExtResource("1_pwnlx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

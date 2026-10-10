@@ -17,4 +17,4 @@ func _on_credits_visibility_changed() -> void:
 
 func _on_back_button_pressed() -> void:
 	var tween : Tween = get_tree().create_tween()
-	tween.tween_property($Credits, "position", Vector2(0,540), 1.0)
+	tween.tween_property($Credits, "position", Vector2(0,1080), 1.0)

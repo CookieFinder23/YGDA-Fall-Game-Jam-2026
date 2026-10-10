@@ -2,13 +2,12 @@ extends Node2D
 const FODDER = preload("uid://ocsoo5vljovt")
 const BURNER = preload("uid://dhxu81fp4yvqo")
 
-const center = Vector2(480, 270) # canvas is 960 by 540
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 
 func get_ring_radius(ring_num: int) -> int:
-	return 90 + 80 * ring_num
+	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
 	for i in range(5):
@@ -89,8 +88,7 @@ func position_orbiting_object(obj: Node) -> void:
 	var orbiting_object: OrbitingObject
 	orbiting_object = obj.find_child("OrbitingObject")
 	if orbiting_object:
-		obj.global_position = center + Vector2(get_ring_radius(orbiting_object.ring_num)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num)*sin(orbiting_object.ring_pos))
-		obj.look_at(center)
+		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num)*sin(orbiting_object.ring_pos))
+		obj.look_at(GameState.CENTER)
 		obj.rotation += deg_to_rad(90)
-		if (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1:
-			obj.rotation += deg_to_rad(180)
+		obj.flip_h = (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1

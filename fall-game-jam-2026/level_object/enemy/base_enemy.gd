@@ -1,7 +1,7 @@
 extends Node2D
 class_name Enemy
 var can_collide = true
-@export var speed: float = 0.1
+@export var speed: float = 0.5
 @export var direction: int = 1
 
 @export var health: int = 1:

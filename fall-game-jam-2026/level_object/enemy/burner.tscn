@@ -1,21 +1,13 @@
 [gd_scene format=3 uid="uid://dhxu81fp4yvqo"]
 
-[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/placeholder/32x32placeholder.png" id="1_gqymk"]
 [ext_resource type="Script" uid="uid://dt43oslvo0c0h" path="res://level_object/enemy/burner.gd" id="2_8pm76"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_gqymk"]
 [ext_resource type="PackedScene" uid="uid://dr2hi55fm05q0" path="res://level_object/enemy/flame.tscn" id="3_8pm76"]
 
 [node name="Burner" type="Sprite2D" unique_id=494127020]
-texture = ExtResource("1_gqymk")
 script = ExtResource("2_8pm76")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_gqymk")]
-speed = 0.25
 health = 3
 
 [node name="Flame" parent="." unique_id=122777426 instance=ExtResource("3_8pm76")]
-position = Vector2(0, -56)
-
-[node name="Flame2" parent="." unique_id=228353977 instance=ExtResource("3_8pm76")]
-position = Vector2(0, 56)
-rotation = 3.1415927

@@ -8,9 +8,10 @@ var health: int = 5:
 		if new_health == health or not $IFrames.is_stopped():
 			return
 		health = new_health
+		print(new_health)
 		$IFrames.start()
 ## radian change per second
-const SPEED: float = 1.5
+const SPEED: float = 2.0
 ## 1 = radians increasing, -1 = radians decreasing
 var direction: int = 1
 var speed_mult: float = 1
