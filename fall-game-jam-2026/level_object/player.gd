@@ -1,10 +1,12 @@
 extends Sprite2D
 
-## radian gain per second
+## radian change per second
 const SPEED = 0.5
+## 1 = radians increasing, -1 = radians decreasing
+var direction = 1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$OrbitingObject.ring_pos += SPEED * delta
+	$OrbitingObject.ring_pos += SPEED * direction * delta
 	if $OrbitingObject.ring_pos > 2 * PI:
 		$OrbitingObject.ring_pos -= 2 * PI
 		
