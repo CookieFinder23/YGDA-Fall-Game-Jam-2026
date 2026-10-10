@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbtwd501taadk"]
+
+[ext_resource type="Script" uid="uid://be0ew8kxlciq2" path="res://level_object/orbiting_object.gd" id="1_bk0tj"]
+
+[node name="OrbitingObject" type="Node" unique_id=1257513429]
+script = ExtResource("1_bk0tj")
