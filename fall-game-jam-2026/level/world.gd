@@ -35,10 +35,15 @@ func clean_recent_collisions() -> void:
 	for index in to_remove:
 		recent_collisions.pop_at(index)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	var boss_found = false
 	clean_recent_collisions()
 	for child in $Orbiting.get_children():
+		if not boss_found and child.find_child("BaseBoss"):
+			boss_found = true
 		position_orbiting_object(child)
+	if not boss_found:
+		GameState.fast_ring = -1
 	if $Orbiting/Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Orbiting/Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		bounce($Orbiting/Player, base_enemy, 2)
@@ -112,7 +117,7 @@ func position_orbiting_object(obj: Node) -> void:
 			obj.flip_h = base_enemy.direction == -1
 
 func summon() -> void:
-	if len($Orbiting.get_children()) > 20:
+	if len($Orbiting.get_children()) > 10:
 		return
 	for i in range(50):
 		var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(randf_range(170, 190))), (2.0 * PI))
@@ -156,4 +161,5 @@ func summon() -> void:
 		return
 
 func _on_summon_cooldown_timeout() -> void:
+	$SummonCooldown.wait_time = max((len($Orbiting.get_children()) / 2.0) - max(GameState.difficulty_ramp / 10.0, 1), 0.25)
 	summon()

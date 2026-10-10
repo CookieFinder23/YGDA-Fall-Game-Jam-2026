@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c57i8sfjibg51"
-path="res://.godot/imported/Blue planet.jpg-605555719dbaeaf4bb7bdda1941819ff.ctex"
+uid="uid://djg5yxbqppnif"
+path="res://.godot/imported/Blue planet.png-6fdfc5bc176c61879bbdd0dae89e3b28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Blue planet.jpg"
-dest_files=["res://.godot/imported/Blue planet.jpg-605555719dbaeaf4bb7bdda1941819ff.ctex"]
+source_file="res://assets/art/Blue planet.png"
+dest_files=["res://.godot/imported/Blue planet.png-6fdfc5bc176c61879bbdd0dae89e3b28.ctex"]
 
 [params]
 
