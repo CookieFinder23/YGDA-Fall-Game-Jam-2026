@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dr2hi55fm05q0"]
+
+[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/32x32placeholder.png" id="1_pwnlx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
+size = Vector2(16, 32)
+
+[node name="Flame" type="Area2D" unique_id=122777426]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274871368]
+shape = SubResource("RectangleShape2D_0es7p")
+
+[node name="Flame" type="Sprite2D" parent="." unique_id=421124766]
+modulate = Color(1, 1, 0.36862746, 1)
+texture = ExtResource("1_pwnlx")

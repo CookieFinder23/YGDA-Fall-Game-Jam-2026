@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dhxu81fp4yvqo"]
+
+[ext_resource type="Texture2D" uid="uid://dwu6hjeuy2ecw" path="res://assets/art/32x32placeholder.png" id="1_gqymk"]
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_gqymk"]
+
+[node name="Burner" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_gqymk")
+
+[node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_gqymk")]
+speed = 0.25
+health = 3

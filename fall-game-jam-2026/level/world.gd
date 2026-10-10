@@ -1,47 +1,65 @@
 extends Node2D
+const FODDER = preload("uid://ocsoo5vljovt")
 
 const center = Vector2(480, 270) # canvas is 960 by 540
 var player_vars = 0
+var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 
 func get_ring_radius(ring_num: int) -> int:
 	return 90 + 80 * ring_num
 
 func _ready() -> void:
-	for child in get_children():
-		var orb = child.find_child("OrbitingObject")
+	for i in range(20):
+		var fodder = FODDER.instantiate()
+		var orb = fodder.find_child("OrbitingObject")
 		orb.ring_num = randi_range(0, 2)
 		orb.ring_pos = randf_range(0, 2 * PI)
+		if randi_range(0, 1):
+			fodder.find_child("BaseEnemy").direction *= -1
+		add_child(fodder)
+
+func clean_recent_collisions() -> void:
+	var to_remove: Array[int] = []
+	var i = 0
+	for coll in recent_collisions:
+		if not coll[0] or not coll[1] or coll[0].can_collide or coll[1].can_collide:
+			to_remove.append(i)
+		i += 1
+	# bc removing from the start will shift indexes down by one
+	to_remove.reverse()
+	for index in to_remove:
+		recent_collisions.pop_at(index)
+
 func _physics_process(_delta: float) -> void:
+	clean_recent_collisions()
 	for child in get_children():
 		position_orbiting_object(child)
-	if $Player.collision_cooldown_dist_timer < 0 and $Player/Hitbox.has_overlapping_areas():
-		$Player.collision_cooldown_dist_timer = $Player.COLLISION_COOLDOWN_DIST
+	if  $Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		base_enemy.health -= 1
 		bounce($Player, base_enemy, 3)
 		
 	# handle collisions between two enemies
-	var already_collided: Array = []
 	for child in get_children():
 		if is_instance_of(child, Player):
 			continue
-		var hitbox = child.find_child("Hitbox")
-		var base_enemy = hitbox.get_parent()
-		if hitbox in already_collided or base_enemy.collision_cooldown_dist_timer > 0:
+		var base_enemy = child.find_child("BaseEnemy")
+		var hitbox = base_enemy.find_child("Hitbox")
+		var overlap = hitbox.get_overlapping_areas()
+		if not overlap:
 			continue
-		if hitbox.has_overlapping_areas():
-			already_collided.append(hitbox)
-			# only need to mark one part of the collision as already collided to prevent the exact collision between the two happening again
-			# using an array of length 2 containing both and checking if the collision exactly matches may be better, but lazy
-			var collided_with = hitbox.get_overlapping_areas()[0].get_parent()
-			if is_instance_of(collided_with, Player):
-				continue
-			base_enemy.collision_cooldown_dist_timer = base_enemy.COLLISION_COOLDOWN_DIST
-			collided_with.collision_cooldown_dist_timer = collided_with.COLLISION_COOLDOWN_DIST
-			bounce(child.get_node("BaseEnemy"), collided_with, 3)
+		var collided_with = overlap[0].get_parent()
+		if is_instance_of(collided_with, Player):
+			continue
+		bounce(base_enemy, collided_with, 3)
 
 ## prereq: nodes have variables: direction, speed, speed_mult, bounce
 func bounce(obj1: Node, obj2: Node, speed_mult: float):
+	if [obj1, obj2] in recent_collisions or [obj2, obj1] in recent_collisions:
+		return
+	recent_collisions.append([obj1, obj2])
+	obj1.can_collide = false
+	obj2.can_collide = false
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
 	var obj1_speed = obj1_base_speed * obj1.speed_mult
 	var obj2_base_speed = obj2.SPEED if "SPEED" in obj2 else obj2.speed

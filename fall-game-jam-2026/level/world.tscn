@@ -2,29 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://duh0b4jpm3s56" path="res://level_object/player.tscn" id="1_07nfa"]
 [ext_resource type="Script" uid="uid://dg875oa72qesx" path="res://level/world.gd" id="1_sw3g3"]
-[ext_resource type="PackedScene" uid="uid://ocsoo5vljovt" path="res://level_object/enemy/blank_enemy.tscn" id="3_tjjer"]
 
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
 
 [node name="Player" parent="." unique_id=520527748 instance=ExtResource("1_07nfa")]
-
-[node name="BlankEnemy" parent="." unique_id=494127020 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy2" parent="." unique_id=2106956846 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy3" parent="." unique_id=1835212179 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy4" parent="." unique_id=446948944 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy5" parent="." unique_id=262124805 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy6" parent="." unique_id=1092494471 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy7" parent="." unique_id=1127273948 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy8" parent="." unique_id=352338770 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy9" parent="." unique_id=700986119 instance=ExtResource("3_tjjer")]
-
-[node name="BlankEnemy10" parent="." unique_id=350291984 instance=ExtResource("3_tjjer")]
