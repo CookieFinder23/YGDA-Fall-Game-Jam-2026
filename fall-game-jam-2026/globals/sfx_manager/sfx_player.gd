@@ -28,6 +28,7 @@ extends Node
 ## List of all sounds. Add a new id here when you add a new sound.
 enum Id {
 	BOUNCE,
+	TAKE_DAMAGE,
 }
 
 const PRINT_DEBUG_MESSAGES: bool = false

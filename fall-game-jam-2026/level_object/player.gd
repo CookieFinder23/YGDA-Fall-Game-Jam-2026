@@ -3,11 +3,13 @@ class_name Player
 
 const BOUNCE_SMOOTH = 0.01
 var can_collide = true
+const MAX_HEALTH = 5
 var health: int = 5:
 	set(new_health):
 		if new_health == health or not $IFrames.is_stopped():
 			return
 		health = new_health
+		SFX.play(SFX.Id.TAKE_DAMAGE)
 		$IFrames.start()
 ## radian change per second
 const SPEED: float = 2.0

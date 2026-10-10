@@ -2,16 +2,24 @@
 
 [ext_resource type="Script" uid="uid://cd5gt2p478i7c" path="res://globals/sfx_manager/sfx_player.gd" id="1_xnm38"]
 [ext_resource type="Script" uid="uid://ct3oa8u2xvesl" path="res://globals/sfx_manager/id_settings.gd" id="2_xmiic"]
-[ext_resource type="AudioStream" uid="uid://be2qgjptemw13" path="res://assets/audio/bounce.mp3" id="3_4xqb4"]
+[ext_resource type="AudioStream" uid="uid://du5om25tdn5gv" path="res://assets/audio/player_bounce.mp3" id="3_4xqb4"]
+[ext_resource type="AudioStream" uid="uid://bxsoqmwqavv3j" path="res://assets/audio/take_damage.wav" id="4_4xqb4"]
 
 [sub_resource type="Resource" id="Resource_xmiic"]
 script = ExtResource("2_xmiic")
 stream = ExtResource("3_4xqb4")
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
+[sub_resource type="Resource" id="Resource_o2cuk"]
+script = ExtResource("2_xmiic")
+stream = ExtResource("4_4xqb4")
+bus = "SFX"
+metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
+
 [node name="SfxPlayer" type="Node" unique_id=1790965844]
 process_mode = 3
 script = ExtResource("1_xnm38")
 id_to_setting = Dictionary[int, ExtResource("2_xmiic")]({
-0: SubResource("Resource_xmiic")
+0: SubResource("Resource_xmiic"),
+1: SubResource("Resource_o2cuk")
 })
