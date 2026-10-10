@@ -10,6 +10,6 @@ var ring_pos = 0
 const MAX_RING_NUM = 2
 
 func move(dist: float):
-	ring_pos += dist
+	ring_pos += dist / ((90 + 80 * ring_num) / 80)
 	if ring_pos > 2 * PI:
 		ring_pos -= 2 * PI
