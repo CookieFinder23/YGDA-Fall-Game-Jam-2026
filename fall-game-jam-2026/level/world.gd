@@ -3,6 +3,7 @@ const FODDER = preload("uid://ocsoo5vljovt")
 
 const center = Vector2(480, 270) # canvas is 960 by 540
 var player_vars = 0
+# an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 
 func get_ring_radius(ring_num: int) -> int:
@@ -25,7 +26,7 @@ func clean_recent_collisions() -> void:
 		if not coll[0] or not coll[1] or coll[0].can_collide or coll[1].can_collide:
 			to_remove.append(i)
 		i += 1
-	# bc removing from the start will shift indexes down by one
+	# reverse bc removing from the start will shift indexes down by one
 	to_remove.reverse()
 	for index in to_remove:
 		recent_collisions.pop_at(index)
@@ -34,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 	clean_recent_collisions()
 	for child in get_children():
 		position_orbiting_object(child)
-	if  $Player/Hitbox.has_overlapping_areas():
+	if $Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		base_enemy.health -= 1
 		bounce($Player, base_enemy, 3)
