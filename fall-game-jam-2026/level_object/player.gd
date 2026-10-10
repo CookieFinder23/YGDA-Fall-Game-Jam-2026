@@ -15,4 +15,3 @@ func _input(event: InputEvent) -> void:
 		$OrbitingObject.ring_num += 1
 	elif event.is_action_pressed("down"):
 		$OrbitingObject.ring_num -= 1
-		

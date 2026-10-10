@@ -1,5 +1,5 @@
 extends Node
-
+class_name OrbitingObject
 ## 1 indexed. ring 1 is innermost; ring 4 is outermost. automatically clamps to legal value
 var ring_num = 3:
 	set(new_value):
