@@ -18,7 +18,7 @@ func _ready() -> void:
 		orb.ring_pos = randf_range(0, 2 * PI)
 		if randi_range(0, 1):
 			fodder.find_child("BaseEnemy").direction *= -1
-		add_child(fodder)
+		$Orbiting.add_child(fodder)
 
 func clean_recent_collisions() -> void:
 	var to_remove: Array[int] = []
@@ -34,14 +34,14 @@ func clean_recent_collisions() -> void:
 
 func _physics_process(_delta: float) -> void:
 	clean_recent_collisions()
-	for child in get_children():
+	for child in $Orbiting.get_children():
 		position_orbiting_object(child)
-	if $Player/Hitbox.has_overlapping_areas():
-		var base_enemy: Node = $Player/Hitbox.get_overlapping_areas()[0].get_parent()
-		bounce($Player, base_enemy, 2)
+	if $Orbiting/Player/Hitbox.has_overlapping_areas():
+		var base_enemy: Node = $Orbiting/Player/Hitbox.get_overlapping_areas()[0].get_parent()
+		bounce($Orbiting/Player, base_enemy, 2)
 		
 	# handle collisions between two enemies
-	for child in get_children():
+	for child in $Orbiting.get_children():
 		if is_instance_of(child, Player):
 			continue
 		var base_enemy = child.find_child("BaseEnemy")

@@ -7,6 +7,8 @@
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
 
-[node name="Player" parent="." unique_id=520527748 instance=ExtResource("1_07nfa")]
+[node name="Orbiting" type="Node" parent="." unique_id=1580261663]
 
-[node name="hud" parent="." unique_id=1303472108 instance=ExtResource("3_tjjer")]
+[node name="Player" parent="Orbiting" unique_id=520527748 instance=ExtResource("1_07nfa")]
+
+[node name="HUD" parent="." unique_id=1303472108 instance=ExtResource("3_tjjer")]
