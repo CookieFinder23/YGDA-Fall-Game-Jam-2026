@@ -2,6 +2,9 @@ extends Node2D
 const FODDER = preload("uid://ocsoo5vljovt")
 const BURNER = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
+const SPITTER = preload("uid://c6vs4d5loklld")
+const MIN_SUMMON_CD_TIME = 3.0
+const MAX_SUMMON_CD_TIME = 5.0
 
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
@@ -12,7 +15,7 @@ func get_ring_radius(ring_num: float) -> float:
 
 func _ready() -> void:
 	for i in range(1):
-		var fodder = BOSS_1.instantiate()
+		var fodder = SPITTER.instantiate()
 		var orb = fodder.find_child("OrbitingObject")
 		orb.ring_num = randi_range(0, 2)
 		orb.ring_pos = randf_range(0, 2 * PI)
@@ -42,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 		
 	# handle collisions between two enemies
 	for child in $Orbiting.get_children():
-		if is_instance_of(child, Player):
+		if is_instance_of(child, Player) or is_instance_of(child, Projectile):
 			continue
 		var base_enemy = child.find_child("BaseEnemy")
 		var hitbox = base_enemy.find_child("Hitbox")
@@ -58,14 +61,18 @@ func _physics_process(_delta: float) -> void:
 func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	if [obj1, obj2] in recent_collisions or [obj2, obj1] in recent_collisions:
 		return
-	SFX.play(SFX.Id.BOUNCE)
+	
 	recent_collisions.append([obj1, obj2])
 	obj1.can_collide = false
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
 		obj2.health -= 1
+		SFX.play(SFX.Id.PLAYER_BOUNCE)
 	elif is_instance_of(obj2, Player):
 		obj1.health -= 1
+		SFX.play(SFX.Id.PLAYER_BOUNCE)
+	else:
+		SFX.play(SFX.Id.ENEMY_BOUNCE)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
 	var obj1_speed = obj1_base_speed * obj1.speed_mult
 	var obj2_base_speed = obj2.SPEED if "SPEED" in obj2 else obj2.speed
@@ -93,4 +100,33 @@ func position_orbiting_object(obj: Node) -> void:
 		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*sin(orbiting_object.ring_pos))
 		obj.look_at(GameState.CENTER)
 		obj.rotation += deg_to_rad(90)
+		if is_instance_of(obj, Projectile):
+			return
 		obj.flip_h = (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1
+
+
+func _on_summon_cooldown_timeout() -> void:
+	$SummonCooldown.wait_time -= 0.2
+	if $SummonCooldown.wait_time < MIN_SUMMON_CD_TIME:
+		$SummonCooldown.wait_time = MIN_SUMMON_CD_TIME
+	var target_spawn_rad = ($Orbiting/Player/OrbitingObject.rotation + deg_to_rad(randf_range(170, 190))) % (2.0 * PI)
+	var min_ring_diffs = {
+		0: 9,
+		1: 9,
+		2: 9
+	}
+	var min_ring_diff = 9
+	for child in $Orbiting.get_children():
+		var orb = child.find_child("OrbitingObject")
+		var child_rad = orb.rotation
+		var diff_1 = abs(target_spawn_rad - child_rad)
+		var diff_2 = abs(target_spawn_rad - child_rad - 2 * PI)
+		var diff = min(diff_1, diff_2)
+		if diff < min_ring_diffs[orb.ring_num]:
+			min_ring_diffs[orb.ring_num] = diff
+			if diff < min_ring_diff:
+				min_ring_diff = diff
+		#for ring in 
+		
+		#for diff in ring_diff
+	# unfinished

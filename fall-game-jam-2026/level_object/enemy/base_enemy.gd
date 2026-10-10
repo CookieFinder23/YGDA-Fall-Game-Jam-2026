@@ -15,6 +15,7 @@ signal damaged
 			var to_kill = get_parent()
 			if is_instance_of(to_kill, BaseBoss):
 				to_kill = to_kill.get_parent()
+				SFX.play(SFX.Id.BOSS_DEFEAT)
 			to_kill.queue_free()
 
 const BOUNCE_SMOOTH = 0.01

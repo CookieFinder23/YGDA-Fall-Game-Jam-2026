@@ -27,8 +27,10 @@ extends Node
 # Optionally, append a comment (##) after each id to describe where it is used
 ## List of all sounds. Add a new id here when you add a new sound.
 enum Id {
-	BOUNCE,
+	PLAYER_BOUNCE,
+	ENEMY_BOUNCE,
 	TAKE_DAMAGE,
+	BOSS_DEFEAT,
 }
 
 const PRINT_DEBUG_MESSAGES: bool = false

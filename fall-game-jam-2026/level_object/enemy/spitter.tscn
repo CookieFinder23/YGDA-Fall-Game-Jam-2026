@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://c6vs4d5loklld"]
 
-[ext_resource type="Script" uid="uid://dt43oslvo0c0h" path="res://level_object/enemy/burner.gd" id="1_bccn4"]
+[ext_resource type="Script" uid="uid://dg0sjd71iaem" path="res://level_object/enemy/spitter.gd" id="1_7mwbe"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_7jy18"]
 
 [node name="Spitter" type="Sprite2D" unique_id=494127020]
-script = ExtResource("1_bccn4")
+script = ExtResource("1_7mwbe")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_7jy18")]
 health = 3
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1497164728]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

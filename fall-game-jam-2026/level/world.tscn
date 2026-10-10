@@ -12,3 +12,9 @@ script = ExtResource("1_sw3g3")
 [node name="Player" parent="Orbiting" unique_id=520527748 instance=ExtResource("1_07nfa")]
 
 [node name="HUD" parent="." unique_id=1303472108 instance=ExtResource("3_tjjer")]
+
+[node name="SummonCooldown" type="Timer" parent="." unique_id=1668595494]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]
