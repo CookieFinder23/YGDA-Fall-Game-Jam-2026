@@ -46,4 +46,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("PlaceholderTexture2D_0es7p")
 
+[node name="Credits" type="Panel" parent="." unique_id=1283357619]
+layout_mode = 0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 1078.0
+
+[node name="TextEdit" type="TextEdit" parent="Credits" unique_id=825067141]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 163.0
+offset_right = 958.0
+offset_bottom = 327.0
+theme_override_font_sizes/font_size = 24
+text = "Team sake
+Programming: Ari, Kelly, Kyle
+Art: Audrey, Eva, Kelly, S
+Music: Sara"
+
+[node name="BackButton" type="Button" parent="Credits" unique_id=137102216]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 335.0
+offset_right = 569.0
+offset_bottom = 403.0
+text = "BACK"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
