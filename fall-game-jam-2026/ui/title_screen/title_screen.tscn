@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://p6gawtf5lukb"]
 
-[ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen.gd" id="1_7xhpk"]
+[ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen/title_screen.gd" id="1_4kwlo"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0es7p"]
 size = Vector2(300, 100)
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7xhpk")
+script = ExtResource("1_4kwlo")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1056960102]
 
