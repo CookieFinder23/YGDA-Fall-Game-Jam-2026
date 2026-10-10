@@ -16,3 +16,4 @@ func position_orbiting_object(obj) -> void:
 	var vars = obj.find_child("OrbitingObject")
 	if vars:
 		obj.global_position = center + Vector2(rings[vars.ring_num]*cos(vars.ring_pos), rings[vars.ring_num]*sin(vars.ring_pos))
+		obj.global_rotation = obj.global_position.direction_to(center).normalized().angle()
