@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c34kvcjryav0p"]
+
+[ext_resource type="Script" uid="uid://br2pu7wo3xmkg" path="res://level_object/enemy/bullet.gd" id="1_ern7g"]
+[ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="2_ern7g"]
+
+[node name="Bullet" type="Sprite2D" unique_id=494127020]
+script = ExtResource("1_ern7g")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1163606613]
+collision_layer = 0
+
+[node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("2_ern7g")]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
