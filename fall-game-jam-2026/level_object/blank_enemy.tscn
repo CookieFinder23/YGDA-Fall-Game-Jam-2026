@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://ocsoo5vljovt"]
-
-[ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="1_6y4tf"]
-
-[node name="BlankEnemy" type="Sprite2D" unique_id=494127020]
-
-[node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("1_6y4tf")]
