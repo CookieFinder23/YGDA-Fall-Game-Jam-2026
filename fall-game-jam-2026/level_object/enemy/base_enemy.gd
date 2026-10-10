@@ -12,7 +12,7 @@ signal damaged
 			damaged.emit()
 		health = new_value
 		if health <= 0:
-			get_parent().queue_free()
+			get_parent().get_parent().queue_free()
 
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0

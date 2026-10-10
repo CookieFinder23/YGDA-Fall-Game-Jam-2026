@@ -1,5 +1,5 @@
 extends Node2D
-@export var health: int = 10
+@export var health: int = 3
 @export var speed: float = 0.5
 
 func _ready() -> void:
