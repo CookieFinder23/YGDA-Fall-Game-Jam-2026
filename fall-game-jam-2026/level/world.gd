@@ -7,7 +7,7 @@ var player_vars = 0
 
 func _process(delta: float) -> void:
 	for child in $Player.get_children():
-		if (child.name == "OrbitingObject"):
-			var player_vars = child
+		if (child.get_name() == "OrbitingObject"):
+			player_vars = child
 	#canvas is 960 by 540
 	$Player.global_position = center + Vector2(rings[player_vars.ring_num]*cos(player_vars.ring_pos), rings[player_vars.ring_num]*sin(player_vars.ring_pos))
