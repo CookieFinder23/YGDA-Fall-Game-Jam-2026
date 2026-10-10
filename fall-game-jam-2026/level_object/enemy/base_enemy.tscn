@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://kn6oepseaj3g"]
+
+[ext_resource type="Texture2D" uid="uid://cqdtb6ubvqbl0" path="res://icon.svg" id="1_trhcf"]
+[ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="2_6hac5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
+size = Vector2(128, 128)
+
+[node name="BaseEnemy" type="Sprite2D" unique_id=737591388]
+texture = ExtResource("1_trhcf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2102928038]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=868771195]
+shape = SubResource("RectangleShape2D_0es7p")
+
+[node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("2_6hac5")]
