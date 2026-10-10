@@ -15,8 +15,7 @@ const SPEED: float = 2.0
 var direction: int = 1
 var speed_mult: float = 1
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var movement = SPEED * speed_mult * direction * delta
 	$OrbitingObject.move(movement)
 	if not $Hitbox.has_overlapping_areas():
@@ -26,10 +25,12 @@ func _process(delta: float) -> void:
 	speed_mult = lerp(speed_mult, 1.0, 1 - pow(BOUNCE_SMOOTH, delta))
 
 func _input(event: InputEvent) -> void:
-	var old_ring_num = $OrbitingObject.ring_num
-	if event.is_action_pressed("up"):
-		$OrbitingObject.ring_num += 1
-	elif event.is_action_pressed("down"):
-		$OrbitingObject.ring_num -= 1
-	if old_ring_num != $OrbitingObject.ring_num:
+	if $OrbitingObject.between_ring_progress:
+		return
+	if event.is_action_pressed("up") and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
+		$OrbitingObject.between_ring_progress += 0.01
 		can_collide = true
+	elif event.is_action_pressed("down") and $OrbitingObject.ring_num > 0:
+		$OrbitingObject.between_ring_progress -= 0.01
+		can_collide = true
+		

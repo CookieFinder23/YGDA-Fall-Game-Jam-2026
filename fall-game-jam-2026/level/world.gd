@@ -7,7 +7,7 @@ var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 
-func get_ring_radius(ring_num: int) -> int:
+func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
@@ -89,7 +89,7 @@ func position_orbiting_object(obj: Node) -> void:
 	var orbiting_object: OrbitingObject
 	orbiting_object = obj.find_child("OrbitingObject")
 	if orbiting_object:
-		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num)*sin(orbiting_object.ring_pos))
+		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*sin(orbiting_object.ring_pos))
 		obj.look_at(GameState.CENTER)
 		obj.rotation += deg_to_rad(90)
 		obj.flip_h = (obj if is_instance_of(obj, Player) else obj.find_child("BaseEnemy")).direction == -1

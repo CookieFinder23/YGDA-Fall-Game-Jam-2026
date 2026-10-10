@@ -12,7 +12,10 @@ signal damaged
 			damaged.emit()
 		health = new_value
 		if health <= 0:
-			get_parent().get_parent().queue_free()
+			var to_kill = get_parent()
+			if is_instance_of(to_kill, BaseBoss):
+				to_kill = to_kill.get_parent()
+			to_kill.queue_free()
 
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0

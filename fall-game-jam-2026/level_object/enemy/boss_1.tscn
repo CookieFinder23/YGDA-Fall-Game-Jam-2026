@@ -7,3 +7,4 @@
 script = ExtResource("1_e8rfb")
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("1_b430w")]
+health = 10
