@@ -1,6 +1,6 @@
 extends Sprite2D
 
-## radian change  per second
+## radian change per second
 const SPEED = 0.5
 ## 1 = radians increasing, -1 = radians decreasing
 var direction = 1
