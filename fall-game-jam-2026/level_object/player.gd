@@ -15,6 +15,9 @@ const SPEED: float = 2.0
 var direction: int = 1
 var speed_mult: float = 1
 
+func _ready() -> void:
+	GameState.player = self
+
 func _physics_process(delta: float) -> void:
 	var movement = SPEED * speed_mult * direction * delta
 	$OrbitingObject.move(movement)
