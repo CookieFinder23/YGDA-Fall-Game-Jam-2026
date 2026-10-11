@@ -1,6 +1,6 @@
 extends Node2D
-const FODDER = preload("uid://ocsoo5vljovt")
-const BURNER = preload("uid://dhxu81fp4yvqo")
+const ASTEROID = preload("uid://ocsoo5vljovt")
+const SATELLITE = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
 
@@ -155,7 +155,7 @@ func summon() -> void:
 			if min_ring_diffs[ring] == max_ring_diff:
 				viable.append(ring)
 		var spawn_ring = viable.pick_random()
-		var enemy = [FODDER, BURNER, SPITTER].pick_random()
+		var enemy = [ASTEROID, SATELLITE, SPITTER].pick_random()
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 		to_spawn_orb.ring_num = spawn_ring
