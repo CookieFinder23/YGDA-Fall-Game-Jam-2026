@@ -11,8 +11,12 @@ signal damaged
 		if health == new_value:
 			return
 		if new_value < health:
+			health = new_value
 			damaged.emit()
-		health = new_value
+		else:
+			health = new_value
+		
+		
 		if health <= 0:
 			var to_kill = get_parent()
 			if is_instance_of(to_kill, BaseBoss):
@@ -22,6 +26,9 @@ signal damaged
 				GameState.bosses_killed += 1
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 				GameState.boss = null
+			if is_instance_of(to_kill, Healer):
+				GameState.player.health += 1
+				GameState.active_healer = false
 			to_kill.queue_free()
 @export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01

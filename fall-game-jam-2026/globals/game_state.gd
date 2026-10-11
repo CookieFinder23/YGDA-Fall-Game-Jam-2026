@@ -10,7 +10,7 @@ var player: Player
 var boss: Node
 var bosses_killed: int
 var engine_time_scale_vel: float = 0.0
-
+var active_healer: bool = false
 func _ready() -> void:
 	reset()
 
@@ -19,6 +19,7 @@ func reset() -> void:
 	difficulty_ramp = 0.0
 	bosses_killed = 0
 	Engine.time_scale = 1.0
+	active_healer = false
 	
 func _process(delta: float) -> void:
 	difficulty_ramp += delta

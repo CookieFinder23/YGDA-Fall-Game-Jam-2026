@@ -10,12 +10,14 @@ var health: int = 5:
 			return
 		if new_health <= 0:
 			SceneSwitcher.switch("res://ui/title_screen/title_screen.tscn")
+		var damaged = new_health < health
 		health = new_health
-		Engine.time_scale = 0.5
-		speed_mult = 0.8
-		get_parent().get_parent().screenshake = 10
-		SFX.play(SFX.Id.TAKE_DAMAGE)
-		$IFrames.start()
+		if damaged:
+			Engine.time_scale = 0.5
+			speed_mult = 0.8
+			get_parent().get_parent().screenshake = 10
+			SFX.play(SFX.Id.TAKE_DAMAGE)
+			$IFrames.start()
 		
 ## radian change per second
 const SPEED: float = 2.0
