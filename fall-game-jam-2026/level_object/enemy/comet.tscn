@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b6aygywfpi7pl"]
+
+[ext_resource type="Texture2D" uid="uid://cluh2nk8vdqpd" path="res://assets/art/Asteroid.png" id="1_3mqly"]
+[ext_resource type="Script" uid="uid://xurg7j6lgxru" path="res://level_object/enemy/comet.gd" id="2_bqtu1"]
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_emj4h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
+size = Vector2(64, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emj4h"]
+
+[node name="Comet" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_3mqly")
+script = ExtResource("2_bqtu1")
+
+[node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_emj4h")]
+hitbox = SubResource("RectangleShape2D_8pm76")
+
+[node name="Line2D" type="Polygon2D" parent="." unique_id=2119694195]
+show_behind_parent = true
+antialiased = true
+vertex_colors = PackedColorArray(0.92941177, 0.3372549, 0.34509805, 1, 0.92941177, 0.3372549, 0.34509805, 1, 0.94509804, 0.69803923, 0.4745098, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=226735726]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=875536601]
+shape = SubResource("RectangleShape2D_emj4h")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

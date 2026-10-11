@@ -4,6 +4,7 @@ const SATELLITE = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
 const HEALER = preload("uid://bgjivfvi4ka43")
+const COMET = preload("uid://b6aygywfpi7pl")
 
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
@@ -169,8 +170,8 @@ func summon() -> void:
 			if min_ring_diffs[ring] == max_ring_diff:
 				viable.append(ring)
 		var spawn_ring = viable.pick_random()
-		var enemy = [ASTEROID, SATELLITE, SPITTER].pick_random()
-		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 0) == 0 and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
+		var enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
 			enemy = HEALER
 			$HealerCooldown.start()
 		var to_spawn = enemy.instantiate()
