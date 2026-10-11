@@ -3,7 +3,7 @@ const ASTEROID = preload("uid://ocsoo5vljovt")
 const SATELLITE = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
-
+const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
@@ -35,8 +35,16 @@ func clean_recent_collisions() -> void:
 	for index in to_remove:
 		recent_collisions.pop_at(index)
 
+func modulate_rings() -> void:
+	var default = Color(1, 1, 1)
+	$SmallRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 0 else default
+	$MediumRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 1 else default
+	$LargeRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 2 else default
+	
+
 func _physics_process(_delta: float) -> void:
 	var boss_found = false
+	modulate_rings()
 	clean_recent_collisions()
 	for child in $Orbiting.get_children():
 		if not boss_found and child.find_child("BaseBoss"):
@@ -123,8 +131,6 @@ func ring_coords_to_pos(ring_num: float, ring_pos: float):
 	return GameState.CENTER + Vector2(get_ring_radius(ring_num)*cos(ring_pos), get_ring_radius(ring_num)*sin(ring_pos))
 
 func summon() -> void:
-	if len($Orbiting.get_children()) > 10:
-		return
 	for i in range(50):
 		var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(randf_range(170, 190))), (2.0 * PI))
 		var min_ring_diffs = {
@@ -142,8 +148,8 @@ func summon() -> void:
 			diff = abs(diff)
 			if diff < min_ring_diffs[orb.ring_num]:
 				min_ring_diffs[orb.ring_num] = diff
-		min_ring_diffs[0] -= 4
-		min_ring_diffs[1] -= 2
+		min_ring_diffs[0] -= 2
+		min_ring_diffs[1] -= 1
 		var max_ring_diff = 0
 		for ring in min_ring_diffs:
 			if min_ring_diffs[ring] > max_ring_diff:

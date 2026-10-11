@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if $OrbitingObject.between_ring_progress:
 		return
-	if event.is_action_pressed("up") and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
+	if (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
 		$OrbitingObject.between_ring_progress += 0.01
 		can_collide = true
-	elif event.is_action_pressed("down") and $OrbitingObject.ring_num > 0:
+	elif (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) and $OrbitingObject.ring_num > 0:
 		$OrbitingObject.between_ring_progress -= 0.01
 		can_collide = true
 		

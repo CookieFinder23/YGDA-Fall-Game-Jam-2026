@@ -14,7 +14,7 @@ func _on_cooldown_timeout() -> void:
 	bullet.flip_h = $BaseEnemy.direction == -1
 	var bullet_orb: OrbitingObject = bullet.find_child("OrbitingObject")
 	var my_orb: OrbitingObject = $BaseEnemy/OrbitingObject
-	bullet_orb.ring_pos = my_orb.ring_pos
+	bullet_orb.ring_pos = my_orb.ring_pos + 0.1
 	bullet_orb.ring_num = my_orb.ring_num
 	get_parent().add_child(bullet)
 	reset_timer()

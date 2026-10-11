@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if spawn_progress < 1:
-		spawn_progress += delta
+		spawn_progress += delta * 4
 		$Hitbox/CollisionShape2D.disabled = true
 		return
 	$Hitbox/CollisionShape2D.disabled = false
