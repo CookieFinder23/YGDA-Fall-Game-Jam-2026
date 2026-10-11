@@ -4,9 +4,8 @@ var target_y: float = 0
 
 func _ready() -> void:
 	position.x = -360
+	position.y = 600 #for like a cool start up thingy but can change to 0 if it looks bad
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position.x += 2
 	if(position.x > 360):
