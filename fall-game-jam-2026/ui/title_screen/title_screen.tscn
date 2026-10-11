@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p6gawtf5lukb"]
 
 [ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen/title_screen.gd" id="1_4kwlo"]
-[ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="2_ffat2"]
+[ext_resource type="Texture2D" uid="uid://d1q0ix1anu2na" path="res://assets/art/titlescreen.png" id="2_72buf"]
 [ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="3_72buf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0es7p"]
@@ -23,7 +23,7 @@ script = ExtResource("1_4kwlo")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1056960102]
 position = Vector2(960, 540)
-texture = ExtResource("2_ffat2")
+texture = ExtResource("2_72buf")
 
 [node name="StartButton" type="TextureButton" parent="." unique_id=1294178730]
 layout_mode = 1
@@ -32,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -220.0
-offset_right = 300.0
-offset_bottom = -20.0
+offset_left = -672.0
+offset_top = -133.0
+offset_right = -72.0
+offset_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("PlaceholderTexture2D_0es7p")
@@ -47,10 +47,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = 100.0
-offset_right = 300.0
-offset_bottom = 300.0
+offset_left = -672.0
+offset_top = 166.0
+offset_right = -72.0
+offset_bottom = 366.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("PlaceholderTexture2D_0es7p")
@@ -87,5 +87,5 @@ label_settings = SubResource("LabelSettings_0es7p")
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
