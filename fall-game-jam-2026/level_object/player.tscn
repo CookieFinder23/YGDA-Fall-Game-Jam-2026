@@ -39,6 +39,11 @@ region = Rect2(0, 1295, 129, 185)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pk45q"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_2haed")
@@ -82,10 +87,8 @@ size = Vector2(64, 115)
 
 [node name="Player" type="AnimatedSprite2D" unique_id=792711730]
 sprite_frames = SubResource("SpriteFrames_pk45q")
-animation = &"hit"
+animation = &"death"
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
 flip_h = true
 script = ExtResource("2_033we")
 

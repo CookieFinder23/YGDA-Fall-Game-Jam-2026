@@ -2,9 +2,15 @@ extends Sprite2D
 class_name ElectricityBall
 @export var boss: Node
 @export var rad_offset: float = 1.0
-func _physics_process(_delta: float) -> void:
+
+var true_rad_offset: float = 0.0
+
+
+
+func _physics_process(delta: float) -> void:
+	true_rad_offset = lerp(true_rad_offset, rad_offset, 1 - pow(0.1, delta))
 	var orb = boss.find_child("OrbitingObject")
-	var dist = rad_offset
+	var dist = true_rad_offset
 	$OrbitingObject.ring_num = orb.ring_num
 	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * (orb.ring_num + orb.between_ring_progress)) / GameState.RING_SLOPE)
 	dist *= 2

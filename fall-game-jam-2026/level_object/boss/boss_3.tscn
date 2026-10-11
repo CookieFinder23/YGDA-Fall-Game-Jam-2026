@@ -8,6 +8,7 @@
 size = Vector2(110, 110)
 
 [node name="Boss3" type="Sprite2D" unique_id=494127020]
+z_index = 1
 texture = ExtResource("1_1gwyr")
 script = ExtResource("2_1gwyr")
 
