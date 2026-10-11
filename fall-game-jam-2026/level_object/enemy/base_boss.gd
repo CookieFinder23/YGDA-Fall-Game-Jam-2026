@@ -8,6 +8,7 @@ func _ready() -> void:
 	$BaseEnemy.health = health
 	$BaseEnemy.hitbox = hitbox
 	$BaseEnemy/Hitbox/CollisionShape2D.shape = hitbox
+	GameState.boss = get_parent()
 
 func _on_base_enemy_damaged() -> void:
 	if $BaseEnemy/OrbitingObject.ring_num == 0:

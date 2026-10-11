@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://civlmsf5rw7jw"
-path="res://.godot/imported/Satellite but transparent.png-93a768c3b7f771c297986aa0ce229a2b.ctex"
+uid="uid://0us4lwwk66va"
+path="res://.godot/imported/satellite_beam.png-b63819b34ee2abe4f4b4328399537044.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Satellite but transparent.png"
-dest_files=["res://.godot/imported/Satellite but transparent.png-93a768c3b7f771c297986aa0ce229a2b.ctex"]
+source_file="res://assets/art/satellite_beam.png"
+dest_files=["res://.godot/imported/satellite_beam.png-b63819b34ee2abe4f4b4328399537044.ctex"]
 
 [params]
 

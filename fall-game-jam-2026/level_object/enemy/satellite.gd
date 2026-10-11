@@ -1,5 +1,5 @@
-extends Sprite2D
-
+extends Node2D
+class_name Satellite
 var beam_dir = 1
 func _ready() -> void:
 	if $BaseEnemy/OrbitingObject.ring_num == 0:
@@ -9,4 +9,6 @@ func _ready() -> void:
 	elif randi_range(0, 1):
 		beam_dir = -1
 	$SatelliteBeam.position.y = 112 * beam_dir
-	$SatelliteBeam/Sprite2D.flip_v = beam_dir == -1
+	$SatelliteBeam/AnimatedSprite2D.flip_v = beam_dir == 1
+	$Sprite2D.flip_v = beam_dir == 1
+	$Sprite2D.position.y = 20 * beam_dir

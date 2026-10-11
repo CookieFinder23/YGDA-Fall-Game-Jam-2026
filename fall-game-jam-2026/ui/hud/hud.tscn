@@ -2,16 +2,21 @@
 
 [ext_resource type="Script" uid="uid://chdm8ysjb6rtu" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="PackedScene" uid="uid://dvarorggar2ib" path="res://ui/hud/health_bar.tscn" id="2_4d6w6"]
+[ext_resource type="Texture2D" uid="uid://sck514dd2wtr" path="res://assets/art/red_planet.png" id="3_e0nub"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nadbi"]
+[sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
+font_size = 32
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lx6e4"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4tbtn"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_riu67"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hx6qw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0es7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e0nub")
+}],
+"loop": 1,
+"name": &"Boss1",
+"speed": 5.0
+}]
 
 [node name="hud" type="Control" unique_id=1303472108]
 layout_mode = 3
@@ -22,34 +27,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xmswo")
 
-[node name="Level" type="TextureRect" parent="." unique_id=1366096636]
-layout_mode = 1
-anchors_preset = -1
-offset_right = 420.0
-offset_bottom = 1080.0
-texture = SubResource("PlaceholderTexture2D_nadbi")
-
-[node name="Ui" type="TextureRect" parent="." unique_id=487245666]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 1500.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = SubResource("PlaceholderTexture2D_lx6e4")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=63105942]
-layout_mode = 0
-offset_left = 896.0
-offset_top = 476.0
-offset_right = 1024.0
-offset_bottom = 604.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_under = SubResource("PlaceholderTexture2D_4tbtn")
-texture_over = SubResource("PlaceholderTexture2D_riu67")
-texture_progress = SubResource("PlaceholderTexture2D_hx6qw")
-tint_under = Color(0.44852012, 0.3624978, 0.30077145, 1)
-tint_progress = Color(0.91692173, 0, 0.24495691, 1)
-
 [node name="HealthBar" parent="." unique_id=436221617 instance=ExtResource("2_4d6w6")]
 position = Vector2(206, 244)
+
+[node name="BossHealth" type="Label" parent="." unique_id=1256404677]
+layout_mode = 0
+offset_left = 1704.0
+offset_top = 3.0
+offset_right = 1913.0
+offset_bottom = 48.0
+text = "Boss Health:"
+label_settings = SubResource("LabelSettings_0es7p")
+
+[node name="BossKilled" type="Label" parent="." unique_id=1819971160]
+layout_mode = 0
+offset_top = 481.0
+offset_right = 209.0
+offset_bottom = 526.0
+text = "Bosses killed:"
+label_settings = SubResource("LabelSettings_0es7p")
+
+[node name="CurrentBoss" type="Label" parent="." unique_id=173684482]
+layout_mode = 0
+offset_left = 1668.0
+offset_top = 471.0
+offset_right = 1877.0
+offset_bottom = 516.0
+text = "Current boss:"
+label_settings = SubResource("LabelSettings_0es7p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1394958830]
+position = Vector2(1760, 576)
+sprite_frames = SubResource("SpriteFrames_0es7p")
+animation = &"Boss1"

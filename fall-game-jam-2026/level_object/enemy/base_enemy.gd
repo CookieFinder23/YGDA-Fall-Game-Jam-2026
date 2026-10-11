@@ -19,7 +19,9 @@ signal damaged
 				to_kill = to_kill.get_parent()
 				GameState.fast_ring = -1
 				GameState.difficulty_ramp = 0
+				GameState.bosses_killed += 1
 				SFX.play(SFX.Id.BOSS_DEFEAT)
+				GameState.boss = null
 			to_kill.queue_free()
 @export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01

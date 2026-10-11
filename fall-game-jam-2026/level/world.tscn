@@ -11,9 +11,69 @@
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
 
-[node name="Bg" type="Sprite2D" parent="." unique_id=1930805497]
+[node name="Background" type="Node" parent="." unique_id=627647091]
+
+[node name="Bg" type="Sprite2D" parent="Background" unique_id=1930805497]
 position = Vector2(960, 540)
 texture = ExtResource("7_gsqr6")
+
+[node name="Bg2" type="Sprite2D" parent="Background" unique_id=1379605360]
+position = Vector2(2880, 540)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+
+[node name="Bg3" type="Sprite2D" parent="Background" unique_id=56839432]
+position = Vector2(-960, 540)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+
+[node name="Bg4" type="Sprite2D" parent="Background" unique_id=798699444]
+position = Vector2(960, -540)
+texture = ExtResource("7_gsqr6")
+flip_v = true
+
+[node name="Bg5" type="Sprite2D" parent="Background" unique_id=1754738305]
+position = Vector2(2880, -540)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+flip_v = true
+
+[node name="Bg6" type="Sprite2D" parent="Background" unique_id=1516745663]
+position = Vector2(-960, -540)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+flip_v = true
+
+[node name="Bg7" type="Sprite2D" parent="Background" unique_id=380017582]
+position = Vector2(960, 1620)
+texture = ExtResource("7_gsqr6")
+flip_v = true
+
+[node name="Bg8" type="Sprite2D" parent="Background" unique_id=991783471]
+position = Vector2(2880, 1620)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+flip_v = true
+
+[node name="Bg9" type="Sprite2D" parent="Background" unique_id=1166698556]
+position = Vector2(-960, 1620)
+texture = ExtResource("7_gsqr6")
+flip_h = true
+flip_v = true
+
+[node name="Rings" type="Node" parent="." unique_id=1275480986]
+
+[node name="MediumRing" type="Sprite2D" parent="Rings" unique_id=2063627867]
+position = Vector2(960, 540)
+texture = ExtResource("5_hx6qw")
+
+[node name="SmallRing" type="Sprite2D" parent="Rings" unique_id=1546752173]
+position = Vector2(960, 540)
+texture = ExtResource("6_riu67")
+
+[node name="LargeRing" type="Sprite2D" parent="Rings" unique_id=2110409841]
+position = Vector2(960, 540)
+texture = ExtResource("7_riu67")
 
 [node name="Orbiting" type="Node" parent="." unique_id=1580261663]
 
@@ -23,22 +83,17 @@ texture = ExtResource("7_gsqr6")
 wait_time = 2.0
 autostart = true
 
-[node name="Rings" type="Node" parent="." unique_id=1275480986]
-
-[node name="MediumRing" type="Sprite2D" parent="." unique_id=2063627867]
-position = Vector2(960, 540)
-texture = ExtResource("5_hx6qw")
-
-[node name="SmallRing" type="Sprite2D" parent="." unique_id=1546752173]
-position = Vector2(960, 540)
-texture = ExtResource("6_riu67")
-
-[node name="LargeRing" type="Sprite2D" parent="." unique_id=2110409841]
-position = Vector2(960, 540)
-texture = ExtResource("7_riu67")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1201013288]
+position = Vector2(960, 540)
+position_smoothing_enabled = true
+
+[node name="ScreenshakeCooldown" type="Timer" parent="." unique_id=1095858706]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]
+[connection signal="timeout" from="ScreenshakeCooldown" to="." method="_on_screenshake_cooldown_timeout"]

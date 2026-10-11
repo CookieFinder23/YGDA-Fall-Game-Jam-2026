@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name Projectile
 @export var direction = 1
-@export var speed = 2.5
+@export var speed = 2
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	area.get_parent().health -= 1

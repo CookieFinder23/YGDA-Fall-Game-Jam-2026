@@ -7,7 +7,7 @@ const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
-
+var screenshake = 0
 func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
@@ -19,9 +19,6 @@ func _ready() -> void:
 	if randi_range(0, 1):
 		boss.find_child("BaseEnemy").direction *= -1
 	$Orbiting.add_child(boss)
-	for i in range(5):
-		await get_tree().physics_frame
-		summon()
 
 func clean_recent_collisions() -> void:
 	var to_remove: Array[int] = []
@@ -37,9 +34,9 @@ func clean_recent_collisions() -> void:
 
 func modulate_rings() -> void:
 	var default = Color(1, 1, 1)
-	$SmallRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 0 else default
-	$MediumRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 1 else default
-	$LargeRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 2 else default
+	$Rings/SmallRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 0 else default
+	$Rings/MediumRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 1 else default
+	$Rings/LargeRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 2 else default
 	
 
 func _physics_process(_delta: float) -> void:
@@ -105,6 +102,12 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	var new_speed = max(obj1_base_speed, obj2_base_speed) * speed_mult
 	obj1.speed_mult = new_speed / obj1_base_speed
 	obj2.speed_mult = new_speed / obj2_base_speed
+	if is_instance_of(obj1, Player):
+		obj1.speed_mult *= 1.5
+		screenshake = obj1.speed_mult * 3
+	elif is_instance_of(obj2, Player):
+		obj2.speed_mult *= 1.5
+		screenshake = obj2.speed_mult * 3
 	
 func position_orbiting_object(obj: Node) -> void:
 	var orbiting_object: OrbitingObject
@@ -124,8 +127,11 @@ func position_orbiting_object(obj: Node) -> void:
 			return
 		if not base_enemy.random_rotate:
 			obj.look_at(GameState.CENTER)
-			obj.rotation += deg_to_rad(90)
-			obj.flip_h = base_enemy.direction == -1
+			if is_instance_of(obj, Satellite):
+				obj.rotation += deg_to_rad(90)
+			else:
+				obj.rotation += deg_to_rad(90)
+				obj.flip_h = base_enemy.direction == -1
 
 func ring_coords_to_pos(ring_num: float, ring_pos: float):
 	return GameState.CENTER + Vector2(get_ring_radius(ring_num)*cos(ring_pos), get_ring_radius(ring_num)*sin(ring_pos))
@@ -148,8 +154,8 @@ func summon() -> void:
 			diff = abs(diff)
 			if diff < min_ring_diffs[orb.ring_num]:
 				min_ring_diffs[orb.ring_num] = diff
-		min_ring_diffs[0] -= 2
-		min_ring_diffs[1] -= 1
+		min_ring_diffs[0] -= 1
+		min_ring_diffs[1] -= 0.5
 		var max_ring_diff = 0
 		for ring in min_ring_diffs:
 			if min_ring_diffs[ring] > max_ring_diff:
@@ -173,5 +179,11 @@ func summon() -> void:
 		return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max((len($Orbiting.get_children()) / 2.0) - max(GameState.difficulty_ramp / 10.0, 1), 0.25)
+	$SummonCooldown.wait_time = max((len($Orbiting.get_children()) / 2.0) - max(GameState.difficulty_ramp / 15.0, 1), 0.25) + randf_range(0.25, 0.75)
 	summon()
+
+func _on_screenshake_cooldown_timeout() -> void:
+	$Camera2D.offset = Vector2(randf_range(screenshake * -1, screenshake), randf_range(screenshake * -1, screenshake))
+	screenshake /= 2.0
+	if screenshake < 0.1:
+		screenshake = 0

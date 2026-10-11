@@ -1,21 +1,27 @@
 extends Sprite2D
 class_name Player
 
-const BOUNCE_SMOOTH = 0.01
+const BOUNCE_SMOOTH = 0.1
 var can_collide = true
 const MAX_HEALTH = 5
 var health: int = 5:
 	set(new_health):
 		if new_health == health or not $IFrames.is_stopped():
 			return
+		if new_health <= 0:
+			SceneSwitcher.switch("res://ui/title_screen/title_screen.tscn")
 		health = new_health
+		Engine.time_scale = 0.5
+		speed_mult = 0.8
+		get_parent().get_parent().screenshake = 10
 		SFX.play(SFX.Id.TAKE_DAMAGE)
 		$IFrames.start()
+		
 ## radian change per second
 const SPEED: float = 2.0
 ## 1 = radians increasing, -1 = radians decreasing
 var direction: int = 1
-var speed_mult: float = 1.5
+var speed_mult: float = 1
 
 func _ready() -> void:
 	GameState.player = self
