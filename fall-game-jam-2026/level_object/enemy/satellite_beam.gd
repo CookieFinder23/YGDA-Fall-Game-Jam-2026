@@ -8,7 +8,19 @@ func _on_area_entered(area: Area2D) -> void:
 	area.get_parent().health -= 1
 
 func _process(_delta: float) -> void:
-	$CollisionShape2D.shape.size.y = 160 - $AnimatedSprite2D.frame * 30
-	$CollisionShape2D.position.y = (160 - $CollisionShape2D.shape.size.y) / -2.0
-	if not $AnimatedSprite2D.flip_v:
+	var new_size = 0
+	match $AnimatedSprite2D.frame:
+		0:
+			new_size = 0
+		1:
+			new_size = 40
+		2:
+			new_size = 70
+		3:
+			new_size = 100
+		4:
+			new_size = 125
+	$CollisionShape2D.shape.size.y = new_size
+	$CollisionShape2D.position.y = (160 - $CollisionShape2D.shape.size.y) / 2.0
+	if $AnimatedSprite2D.flip_v:
 		$CollisionShape2D.position.y *= -1

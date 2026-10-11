@@ -176,6 +176,7 @@ func summon() -> void:
 		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
 			enemy = HEALER
 			$HealerCooldown.start()
+		enemy = SATELLITE
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 		to_spawn_orb.ring_num = spawn_ring

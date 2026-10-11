@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0us4lwwk66va"
-path="res://.godot/imported/satellite_beam.png-b63819b34ee2abe4f4b4328399537044.ctex"
+uid="uid://ctxc40aetgide"
+path="res://.godot/imported/Satelie attack.png-d0b9d69e23e54dbe09b1aaebda08c0d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/satellite_beam.png"
-dest_files=["res://.godot/imported/satellite_beam.png-b63819b34ee2abe4f4b4328399537044.ctex"]
+source_file="res://assets/art/Satelie attack.png"
+dest_files=["res://.godot/imported/Satelie attack.png-d0b9d69e23e54dbe09b1aaebda08c0d6.ctex"]
 
 [params]
 
