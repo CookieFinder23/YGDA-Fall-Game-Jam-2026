@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dvarorggar2ib"]
 
 [ext_resource type="Texture2D" uid="uid://b5dfj2u6wq76s" path="res://assets/art/rocket_healthbar_alpha.png" id="1_ahff1"]
+[ext_resource type="Script" uid="uid://bt23yhf632rph" path="res://ui/hud/health_bar.gd" id="1_drmcp"]
 [ext_resource type="Texture2D" uid="uid://popxkmfeauk1" path="res://assets/art/rocket_healthbar_wave.png" id="2_6wigd"]
 [ext_resource type="Script" uid="uid://ci3nxnk8kf0ss" path="res://ui/hud/health_bar_wave.gd" id="3_6wigd"]
 [ext_resource type="Texture2D" uid="uid://707880ra6bst" path="res://assets/art/rocket_healthbar_outline.png" id="3_drmcp"]
 
-[node name="HealthBar" type="Sprite2D" unique_id=625642492]
+[node name="HealthBar" type="Node2D" unique_id=436221617]
+script = ExtResource("1_drmcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=340327277]
 texture = ExtResource("1_ahff1")
@@ -15,8 +17,8 @@ clip_children = 1
 texture = ExtResource("1_ahff1")
 
 [node name="HealthBarWave" type="Sprite2D" parent="HealthBarWaveAlpha" unique_id=1873009871]
-position = Vector2(-0.24999964, 65.08871)
-scale = Vector2(0.9965326, 0.7351682)
+position = Vector2(-0.24999966, 405.2133)
+scale = Vector2(1, 0.8692889)
 texture = ExtResource("2_6wigd")
 script = ExtResource("3_6wigd")
 

@@ -1,7 +1,7 @@
 extends Sprite2D
 
 func _ready() -> void:
-	position = Vector2(-360, 0)
+	position.x = -360
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
