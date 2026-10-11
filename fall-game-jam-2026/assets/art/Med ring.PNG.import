@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy4fs3mhbnyyb"
-path="res://.godot/imported/Medium ring.PNG-c19d50973b38d79f07071da27814dc67.ctex"
+uid="uid://b6cwir2q0l2av"
+path="res://.godot/imported/Med ring.PNG-2308ef07ae62c74317035a0f9147537c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Medium ring.PNG"
-dest_files=["res://.godot/imported/Medium ring.PNG-c19d50973b38d79f07071da27814dc67.ctex"]
+source_file="res://assets/art/Med ring.PNG"
+dest_files=["res://.godot/imported/Med ring.PNG-2308ef07ae62c74317035a0f9147537c.ctex"]
 
 [params]
 

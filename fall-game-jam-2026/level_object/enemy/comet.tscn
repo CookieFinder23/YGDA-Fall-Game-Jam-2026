@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://b6aygywfpi7pl"]
 
-[ext_resource type="Texture2D" uid="uid://cluh2nk8vdqpd" path="res://assets/art/Asteroid.png" id="1_3mqly"]
+[ext_resource type="Texture2D" uid="uid://boprn8ido4iih" path="res://assets/art/blue_planet.png" id="1_emj4h"]
 [ext_resource type="Script" uid="uid://xurg7j6lgxru" path="res://level_object/enemy/comet.gd" id="2_bqtu1"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_emj4h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
-size = Vector2(64, 90)
+size = Vector2(60, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emj4h"]
 
 [node name="Comet" type="Sprite2D" unique_id=494127020]
-texture = ExtResource("1_3mqly")
+texture = ExtResource("1_emj4h")
 script = ExtResource("2_bqtu1")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_emj4h")]
 hitbox = SubResource("RectangleShape2D_8pm76")
+random_rotate = true
 
 [node name="Line2D" type="Polygon2D" parent="." unique_id=2119694195]
 show_behind_parent = true

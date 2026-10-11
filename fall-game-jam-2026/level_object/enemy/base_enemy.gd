@@ -59,5 +59,5 @@ func _physics_process(delta: float) -> void:
 		var parent = get_parent()
 		if is_instance_of(parent, BaseBoss):
 			parent = parent.get_parent()
-		parent.rotation += movement * 1.5
+		parent.rotation += delta * direction
 	

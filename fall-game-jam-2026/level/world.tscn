@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://duh0b4jpm3s56" path="res://level_object/player.tscn" id="1_07nfa"]
 [ext_resource type="Script" uid="uid://dg875oa72qesx" path="res://level/world.gd" id="1_sw3g3"]
+[ext_resource type="Texture2D" uid="uid://b6cwir2q0l2av" path="res://assets/art/Med ring.PNG" id="3_riu67"]
 [ext_resource type="PackedScene" uid="uid://clddrd1vt1me" path="res://ui/hud/hud.tscn" id="3_tjjer"]
-[ext_resource type="Texture2D" uid="uid://dy4fs3mhbnyyb" path="res://assets/art/Medium ring.PNG" id="5_hx6qw"]
-[ext_resource type="Texture2D" uid="uid://dwux0fcj6mrr0" path="res://assets/art/Small ring.PNG" id="6_riu67"]
+[ext_resource type="Texture2D" uid="uid://cla58ylnpobkf" path="res://assets/art/Big ring.PNG" id="5_gsqr6"]
+[ext_resource type="Texture2D" uid="uid://c1hv1yrpbvi71" path="res://assets/art/Small ring.PNG" id="6_riu67"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
-[ext_resource type="Texture2D" uid="uid://mvyiee3d1hg" path="res://assets/art/Large ring .PNG" id="7_riu67"]
 
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
@@ -65,7 +65,7 @@ flip_v = true
 
 [node name="MediumRing" type="Sprite2D" parent="Rings" unique_id=2063627867]
 position = Vector2(960, 540)
-texture = ExtResource("5_hx6qw")
+texture = ExtResource("3_riu67")
 
 [node name="SmallRing" type="Sprite2D" parent="Rings" unique_id=1546752173]
 position = Vector2(960, 540)
@@ -73,7 +73,7 @@ texture = ExtResource("6_riu67")
 
 [node name="LargeRing" type="Sprite2D" parent="Rings" unique_id=2110409841]
 position = Vector2(960, 540)
-texture = ExtResource("7_riu67")
+texture = ExtResource("5_gsqr6")
 
 [node name="Orbiting" type="Node" parent="." unique_id=1580261663]
 

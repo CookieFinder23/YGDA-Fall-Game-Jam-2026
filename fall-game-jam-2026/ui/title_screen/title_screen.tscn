@@ -2,9 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen/title_screen.gd" id="1_4kwlo"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="2_ffat2"]
+[ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="3_72buf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0es7p"]
 size = Vector2(600, 200)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
+line_spacing = 10.0
+font = ExtResource("3_72buf")
+font_size = 34
 
 [node name="TitleScreen" type="Control" unique_id=917576008]
 layout_mode = 3
@@ -55,28 +61,31 @@ offset_top = 1080.0
 offset_right = 1920.0
 offset_bottom = 2120.0
 
-[node name="TextEdit" type="TextEdit" parent="Credits" unique_id=825067141]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 163.0
-offset_right = 958.0
-offset_bottom = 327.0
-theme_override_font_sizes/font_size = 24
-text = "Team sake
-Programming: Ari, Kelly, Kyle, Eva
-Art: Audrey, Eva, Kelly, S
-Music: Sara"
-
 [node name="BackButton" type="Button" parent="Credits" unique_id=137102216]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 335.0
-offset_right = 569.0
-offset_bottom = 403.0
-text = "BACK"
+offset_left = 250.0
+offset_top = 490.0
+offset_right = 416.0
+offset_bottom = 558.0
+theme_override_fonts/font = ExtResource("3_72buf")
+text = "Back"
+
+[node name="Label" type="Label" parent="Credits" unique_id=474658897]
+layout_mode = 0
+offset_top = 164.0
+offset_right = 960.0
+offset_bottom = 328.0
+text = "Team Sake
+Programming: CookieFinder23, drinkmelonwater, Kyle, Eva
+Art: InfinitePrograms, Eva, drinkmelonwater, S
+Music: Sara
+
+Assets:
+SFX Manager: Theophylaktos"
+label_settings = SubResource("LabelSettings_0es7p")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
