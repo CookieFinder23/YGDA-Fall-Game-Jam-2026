@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://clddrd1vt1me"]
 
 [ext_resource type="Script" uid="uid://chdm8ysjb6rtu" path="res://ui/hud/hud.gd" id="1_xmswo"]
+[ext_resource type="PackedScene" uid="uid://dvarorggar2ib" path="res://ui/hud/health_bar.tscn" id="2_4d6w6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nadbi"]
 
@@ -49,3 +50,6 @@ texture_over = SubResource("PlaceholderTexture2D_riu67")
 texture_progress = SubResource("PlaceholderTexture2D_hx6qw")
 tint_under = Color(0.44852012, 0.3624978, 0.30077145, 1)
 tint_progress = Color(0.91692173, 0, 0.24495691, 1)
+
+[node name="HealthBar" parent="." unique_id=436221617 instance=ExtResource("2_4d6w6")]
+position = Vector2(206, 244)

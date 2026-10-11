@@ -1,28 +1,47 @@
 [gd_scene format=3 uid="uid://dvarorggar2ib"]
 
-[ext_resource type="Texture2D" uid="uid://b5dfj2u6wq76s" path="res://assets/art/rocket_healthbar_alpha.png" id="1_ahff1"]
 [ext_resource type="Script" uid="uid://bt23yhf632rph" path="res://ui/hud/health_bar.gd" id="1_drmcp"]
-[ext_resource type="Texture2D" uid="uid://popxkmfeauk1" path="res://assets/art/rocket_healthbar_wave.png" id="2_6wigd"]
+[ext_resource type="Texture2D" uid="uid://dnurbech3bbxx" path="res://assets/art/healthbar/rocket_healthbar_alpha_white.png" id="2_jeyp6"]
 [ext_resource type="Script" uid="uid://ci3nxnk8kf0ss" path="res://ui/hud/health_bar_wave.gd" id="3_6wigd"]
-[ext_resource type="Texture2D" uid="uid://707880ra6bst" path="res://assets/art/rocket_healthbar_outline.png" id="3_drmcp"]
+[ext_resource type="Texture2D" uid="uid://5hx063pto5up" path="res://assets/art/healthbar/rocket_healthbar_wave_white.png" id="3_y8agl"]
+[ext_resource type="Texture2D" uid="uid://g02q8uf2ro1r" path="res://assets/art/healthbar/rocket_healthbar_wave_outline_white.png" id="5_atn30"]
+[ext_resource type="Texture2D" uid="uid://0akiq2covsyd" path="res://assets/art/healthbar/rocket_healthbar_outline_white.png" id="5_drmcp"]
 
 [node name="HealthBar" type="Node2D" unique_id=436221617]
 script = ExtResource("1_drmcp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=340327277]
-texture = ExtResource("1_ahff1")
+[node name="HealthBarInsides" type="Sprite2D" parent="." unique_id=340327277]
+modulate = Color(0.33164132, 0.35822138, 0.7935001, 1)
+texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarWaveAlpha" type="Sprite2D" parent="." unique_id=1888545031]
 clip_children = 1
-texture = ExtResource("1_ahff1")
+texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarWave" type="Sprite2D" parent="HealthBarWaveAlpha" unique_id=1873009871]
-position = Vector2(-0.24999966, 405.2133)
+self_modulate = Color(0.80784315, 0.6509804, 0.36078432, 1)
+position = Vector2(-62, 281)
 scale = Vector2(1, 0.8692889)
-texture = ExtResource("2_6wigd")
+texture = ExtResource("3_y8agl")
 script = ExtResource("3_6wigd")
 
-[node name="HealthBarOutline" type="Sprite2D" parent="." unique_id=737123128]
-texture = ExtResource("3_drmcp")
+[node name="HealthBarWaveOutline" type="Sprite2D" parent="HealthBarWaveAlpha/HealthBarWave" unique_id=1251363470]
+self_modulate = Color(0.7372549, 0.5529412, 0.21960784, 1)
+position = Vector2(0, -2)
+texture = ExtResource("5_atn30")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1489497019]
+[node name="HealthBarWave2" type="Sprite2D" parent="HealthBarWaveAlpha/HealthBarWave" unique_id=205673720]
+self_modulate = Color(0.9490196, 0.8156863, 0.38431373, 1)
+position = Vector2(149.99997, -8.052551)
+scale = Vector2(0.99999976, 0.86928874)
+texture = ExtResource("3_y8agl")
+
+[node name="HealthBarWave3" type="Sprite2D" parent="HealthBarWaveAlpha/HealthBarWave" unique_id=170667032]
+self_modulate = Color(0.9764706, 0.9137255, 0.5568628, 1)
+position = Vector2(7, 27.608826)
+scale = Vector2(0.99999976, 0.86928874)
+texture = ExtResource("3_y8agl")
+
+[node name="HealthBarOutline" type="Sprite2D" parent="." unique_id=737123128]
+modulate = Color(0.14117648, 0.11372549, 0.28235295, 1)
+texture = ExtResource("5_drmcp")

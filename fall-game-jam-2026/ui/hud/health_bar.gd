@@ -1,5 +1,8 @@
 extends Node2D
 
+func _process(delta: float) -> void:
+	set_health(GameState.player.health)
+
 func set_health(health: int):
 	if health > 5:
 		health = 5

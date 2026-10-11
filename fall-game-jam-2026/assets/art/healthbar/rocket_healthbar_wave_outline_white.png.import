@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dfj2u6wq76s"
-path="res://.godot/imported/rocket_healthbar_alpha.png-900d2a93b474dc1717772edfebbf07b5.ctex"
+uid="uid://g02q8uf2ro1r"
+path="res://.godot/imported/rocket_healthbar_wave_outline_white.png-79c495bf41893d57d835e53b24ff1619.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/rocket_healthbar_alpha.png"
-dest_files=["res://.godot/imported/rocket_healthbar_alpha.png-900d2a93b474dc1717772edfebbf07b5.ctex"]
+source_file="res://assets/art/healthbar/rocket_healthbar_wave_outline_white.png"
+dest_files=["res://.godot/imported/rocket_healthbar_wave_outline_white.png-79c495bf41893d57d835e53b24ff1619.ctex"]
 
 [params]
 
