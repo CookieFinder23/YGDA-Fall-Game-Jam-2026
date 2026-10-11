@@ -6,6 +6,7 @@ const SPITTER = preload("uid://c6vs4d5loklld")
 const HEALER = preload("uid://bgjivfvi4ka43")
 const COMET = preload("uid://b6aygywfpi7pl")
 const BOSS_2 = preload("uid://bvesx0w72475a")
+const BOSS_3 = preload("uid://bcc8fl3p6k20b")
 
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
@@ -17,7 +18,7 @@ func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
-	var boss = BOSS_2.instantiate()
+	var boss = BOSS_3.instantiate()
 	var orb = boss.find_child("OrbitingObject")
 	orb.ring_num = randi_range(0, 2)
 	orb.ring_pos = randf_range(0, 2 * PI)
@@ -61,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 		
 	# handle collisions between two enemies
 	for child in $Orbiting.get_children():
-		if is_instance_of(child, Player) or is_instance_of(child, Projectile):
+		if is_instance_of(child, Player) or is_instance_of(child, Projectile) or is_instance_of(child, ElectricityBall):
 			continue
 		var base_enemy = child.find_child("BaseEnemy")
 		var hitbox = base_enemy.find_child("Hitbox")
@@ -122,7 +123,7 @@ func position_orbiting_object(obj: Node) -> void:
 		if base_enemy:
 			ring_num_increase += (10.0 / max(base_enemy.spawn_progress * 10, 0.1) )- 1
 		obj.global_position = ring_coords_to_pos(orbiting_object.ring_num + orbiting_object.between_ring_progress + ring_num_increase, orbiting_object.ring_pos)
-		if is_instance_of(obj, Projectile):
+		if is_instance_of(obj, Projectile) or is_instance_of(obj, ElectricityBall):
 			return
 		if is_instance_of(obj, Player):
 			obj.flip_v = obj.direction == 1
