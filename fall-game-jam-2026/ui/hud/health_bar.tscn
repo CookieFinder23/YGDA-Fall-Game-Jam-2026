@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dvarorggar2ib"]
 
 [ext_resource type="Script" uid="uid://bt23yhf632rph" path="res://ui/hud/health_bar.gd" id="1_drmcp"]
-[ext_resource type="Texture2D" uid="uid://dnurbech3bbxx" path="res://assets/art/healthbar/rocket_healthbar_alpha_white.png" id="2_jeyp6"]
+[ext_resource type="Texture2D" uid="uid://dnurbech3bbxx" path="res://assets/art/gui/healthbar/rocket_healthbar_alpha_white.png" id="2_jeyp6"]
 [ext_resource type="Script" uid="uid://ci3nxnk8kf0ss" path="res://ui/hud/health_bar_wave.gd" id="3_6wigd"]
-[ext_resource type="Texture2D" uid="uid://5hx063pto5up" path="res://assets/art/healthbar/rocket_healthbar_wave_white.png" id="3_y8agl"]
-[ext_resource type="Texture2D" uid="uid://g02q8uf2ro1r" path="res://assets/art/healthbar/rocket_healthbar_wave_outline_white.png" id="5_atn30"]
-[ext_resource type="Texture2D" uid="uid://dxw3pbn3ncnop" path="res://assets/art/healthbar/rocket_healthbar_shadows_b.png" id="6_y8agl"]
-[ext_resource type="Texture2D" uid="uid://db22e2jvp88wo" path="res://assets/art/healthbar/rocket_healthbar_outline_white_thicker_b.png" id="7_y8agl"]
+[ext_resource type="Texture2D" uid="uid://5hx063pto5up" path="res://assets/art/gui/healthbar/rocket_healthbar_wave_white.png" id="3_y8agl"]
+[ext_resource type="Texture2D" uid="uid://g02q8uf2ro1r" path="res://assets/art/gui/healthbar/rocket_healthbar_wave_outline_white.png" id="5_atn30"]
+[ext_resource type="Texture2D" uid="uid://dxw3pbn3ncnop" path="res://assets/art/gui/healthbar/rocket_healthbar_shadows_b.png" id="6_y8agl"]
+[ext_resource type="Texture2D" uid="uid://db22e2jvp88wo" path="res://assets/art/gui/healthbar/rocket_healthbar_outline_white_thicker_b.png" id="7_y8agl"]
 
 [node name="HealthBar" type="Node2D" unique_id=436221617]
 script = ExtResource("1_drmcp")
@@ -48,7 +48,7 @@ clip_children = 1
 texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarShading" type="Sprite2D" parent="HealthBarWaveAlpha2" unique_id=305378535]
-modulate = Color(0, 0, 0, 0.4)
+modulate = Color(0, 0.013666653, 0.41, 0.39215687)
 texture = ExtResource("6_y8agl")
 
 [node name="HealthBarOutline" type="Sprite2D" parent="." unique_id=737123128]
