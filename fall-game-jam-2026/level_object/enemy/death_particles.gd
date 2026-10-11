@@ -1,8 +1,4 @@
 extends CPUParticles2D
 
-
-
-
-func _on_ready() -> void:
-	print("hi")
+func _ready() -> void:
 	self.emitting = true

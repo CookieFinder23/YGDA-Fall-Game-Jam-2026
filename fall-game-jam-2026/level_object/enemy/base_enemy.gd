@@ -30,6 +30,7 @@ signal damaged
 			if is_instance_of(to_kill, Healer):
 				GameState.player.health += 1
 				GameState.active_healer = false
+				SFX.play(SFX.Id.HEAL)
 			var particles = PARTICLES.instantiate()
 			particles.global_position = global_position
 			to_kill.get_parent().get_parent().add_child(particles)
