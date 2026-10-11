@@ -5,6 +5,7 @@ const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
 const HEALER = preload("uid://bgjivfvi4ka43")
 const COMET = preload("uid://b6aygywfpi7pl")
+const BOSS_2 = preload("uid://bvesx0w72475a")
 
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
@@ -16,7 +17,7 @@ func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
 func _ready() -> void:
-	var boss = BOSS_1.instantiate()
+	var boss = BOSS_2.instantiate()
 	var orb = boss.find_child("OrbitingObject")
 	orb.ring_num = randi_range(0, 2)
 	orb.ring_pos = randf_range(0, 2 * PI)

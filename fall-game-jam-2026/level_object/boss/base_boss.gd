@@ -3,10 +3,11 @@ class_name BaseBoss
 @export var health: int = 3
 @export var speed: float = 0.5
 @export var hitbox: RectangleShape2D
-
+@export var random_rotate: bool
 func _ready() -> void:
 	$BaseEnemy.health = health
 	$BaseEnemy.hitbox = hitbox
+	$BaseEnemy.random_rotate = random_rotate
 	$BaseEnemy/Hitbox/CollisionShape2D.shape = hitbox
 	GameState.boss = get_parent()
 

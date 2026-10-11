@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_xqfjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
-size = Vector2(64, 90)
+size = Vector2(64, 64)
 
 [node name="Healer" type="Sprite2D" unique_id=494127020]
 texture = ExtResource("1_cqmo1")

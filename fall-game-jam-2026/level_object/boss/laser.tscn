@@ -19,7 +19,8 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1222004067]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(0, 0, 960, 0)
+width = 32.0
 texture = SubResource("CanvasTexture_n8yl0")
 texture_mode = 1
 
