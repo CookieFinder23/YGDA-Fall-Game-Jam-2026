@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var bob = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,19 +8,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	set_health(4)
+	set_health(bob)
 	pass
 	
-	
-func set_heath(health: int):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("up"):
+		bob += 1
+	if event.is_action_pressed("down"):
+		bob -= 1
+
+func set_health(health: int):
 	if health > 5:
 		health = 5
 	if health < 0:
 		health = 0
 	if health == 5:
-		$HealthBarWaveAlpha/HealthBarWave.position.y = 0
+		$HealthBarWaveAlpha/HealthBarWave.target_y = 0
 	elif health == 0:
-		$HealthBarWaveAlpha/HealthBarWave.position.y = 600
+		$HealthBarWaveAlpha/HealthBarWave.target_y = 600
 	else:
-		$HealthBarWaveAlpha/HealthBarWave.position.y = health * 63 + 90
+		$HealthBarWaveAlpha/HealthBarWave.target_y = 430 - health * 68
 	
