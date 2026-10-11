@@ -18,6 +18,10 @@ func move(dist: float):
 	ring_pos += dist
 	if ring_pos > 2 * PI:
 		ring_pos -= 2 * PI
+		
+func flash():
+	if is_instance_of(self, Sprite2D):
+		CanvasModulate
 
 func _physics_process(delta: float) -> void:
 	if between_ring_progress > 0 and between_ring_progress < 1.0:

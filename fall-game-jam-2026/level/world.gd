@@ -52,6 +52,10 @@ func _physics_process(_delta: float) -> void:
 		if not boss_found and child.find_child("BaseBoss"):
 			boss_found = true
 		position_orbiting_object(child)
+		if child is Sprite2D or child is AnimatedSprite2D:
+			child.modulate.v = 1
+		if child.get_parent() is Sprite2D or child.get_parent() is AnimatedSprite2D:
+			child.get_parent().modulate.v = 1
 	if not boss_found:
 		GameState.fast_ring = -1
 	if $Orbiting/Player/Hitbox.has_overlapping_areas():
@@ -82,8 +86,16 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
 		obj2.health -= 1
+		if obj2.get_parent() is Sprite2D or obj2.get_parent() is AnimatedSprite2D:
+			obj2.get_parent().modulate.v = 100000
+		if obj2.get_parent().get_parent() is Sprite2D or obj2.get_parent().get_parent() is AnimatedSprite2D:
+			obj2.get_parent().get_parent().modulate.v = 100000
 	elif is_instance_of(obj2, Player):
 		obj1.health -= 1
+		if obj1.get_parent() is Sprite2D or obj1.get_parent() is AnimatedSprite2D:
+			obj1.get_parent().modulate.v = 100000
+		if obj1.get_parent().get_parent() is Sprite2D or obj1.get_parent().get_parent() is AnimatedSprite2D:
+			obj1.get_parent().get_parent().modulate.v = 100000
 	else:
 		SFX.play(SFX.Id.ENEMY_BOUNCE)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
