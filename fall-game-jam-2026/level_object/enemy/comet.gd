@@ -24,8 +24,8 @@ func _physics_process(_delta: float) -> void:
 	if pop_i != -1:
 		for i in range(pop_i + 1):
 			points.remove_at(0)
-	var top = Vector2.from_angle(rotation + deg_to_rad(90)) * 32
-	var bottom = Vector2.from_angle(rotation + deg_to_rad(-90)) * 32
+	var top = global_position.direction_to(GameState.CENTER) * 25
+	var bottom = global_position.direction_to(GameState.CENTER) * -25
 	var shape_points = [top, bottom, points[0] - global_position]
 	$Line2D.polygon = shape_points
 	

@@ -8,6 +8,7 @@ const COMET = preload("uid://b6aygywfpi7pl")
 
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
+var rotate_offset = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
@@ -43,6 +44,7 @@ func modulate_rings() -> void:
 	
 
 func _physics_process(_delta: float) -> void:
+	
 	var boss_found = false
 	modulate_rings()
 	clean_recent_collisions()
