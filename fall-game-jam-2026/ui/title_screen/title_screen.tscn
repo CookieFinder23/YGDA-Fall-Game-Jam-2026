@@ -8,6 +8,7 @@
 size = Vector2(600, 200)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
+line_spacing = 10.0
 font = ExtResource("3_72buf")
 font_size = 34
 
@@ -63,9 +64,9 @@ offset_bottom = 2120.0
 [node name="BackButton" type="Button" parent="Credits" unique_id=137102216]
 layout_mode = 0
 offset_left = 250.0
-offset_top = 475.0
+offset_top = 490.0
 offset_right = 416.0
-offset_bottom = 543.0
+offset_bottom = 558.0
 theme_override_fonts/font = ExtResource("3_72buf")
 text = "Back"
 
