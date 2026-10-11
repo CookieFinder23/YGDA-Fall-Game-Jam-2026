@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgjivfvi4ka43"]
 
-[ext_resource type="Texture2D" uid="uid://dj2au84ln6833" path="res://assets/art/healer.png" id="1_cqmo1"]
+[ext_resource type="Texture2D" uid="uid://dj2au84ln6833" path="res://assets/art/enemies/healer.png" id="1_cqmo1"]
 [ext_resource type="Script" uid="uid://fbms6mp5wb7v" path="res://level_object/enemy/healer.gd" id="2_rc8a1"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_xqfjl"]
 

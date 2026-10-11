@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://cd5gt2p478i7c" path="res://globals/sfx_manager/sfx_player.gd" id="1_xnm38"]
 [ext_resource type="Script" uid="uid://ct3oa8u2xvesl" path="res://globals/sfx_manager/id_settings.gd" id="2_xmiic"]
-[ext_resource type="AudioStream" uid="uid://du5om25tdn5gv" path="res://assets/audio/player_bounce.mp3" id="3_4xqb4"]
+[ext_resource type="AudioStream" uid="uid://du5om25tdn5gv" path="res://assets/audio/enemy_kill.mp3" id="3_4xqb4"]
 [ext_resource type="AudioStream" uid="uid://bxsoqmwqavv3j" path="res://assets/audio/take_damage.wav" id="4_4xqb4"]
 [ext_resource type="AudioStream" uid="uid://bbmddk4cjspq5" path="res://assets/audio/enemy_bounce.mp3" id="4_o2cuk"]
-[ext_resource type="AudioStream" uid="uid://bxsmle3enmlax" path="res://assets/audio/boss_defeat.mp3" id="5_o2cuk"]
+[ext_resource type="AudioStream" uid="uid://bxsmle3enmlax" path="res://assets/audio/boss_kill.mp3" id="5_o2cuk"]
 [ext_resource type="AudioStream" uid="uid://dxgsmjxoaaov7" path="res://assets/audio/heal.mp3" id="7_u7dhd"]
+[ext_resource type="AudioStream" uid="uid://dytm6wgb818k7" path="res://assets/audio/enemy_damage.wav" id="8_fwjlu"]
 
 [sub_resource type="Resource" id="Resource_xmiic"]
 script = ExtResource("2_xmiic")
-stream = ExtResource("3_4xqb4")
+stream = ExtResource("8_fwjlu")
 bus = "SFX"
-volume = -20.0
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
 [sub_resource type="Resource" id="Resource_o2cuk"]
@@ -41,6 +41,13 @@ stream = ExtResource("7_u7dhd")
 bus = "SFX"
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
+[sub_resource type="Resource" id="Resource_u7dhd"]
+script = ExtResource("2_xmiic")
+stream = ExtResource("3_4xqb4")
+bus = "SFX"
+volume = -20.0
+metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
+
 [node name="SfxPlayer" type="Node" unique_id=1790965844]
 process_mode = 3
 script = ExtResource("1_xnm38")
@@ -49,5 +56,6 @@ id_to_setting = Dictionary[int, ExtResource("2_xmiic")]({
 1: SubResource("Resource_o2cuk"),
 2: SubResource("Resource_aso10"),
 3: SubResource("Resource_b7itq"),
-4: SubResource("Resource_w0jwt")
+4: SubResource("Resource_w0jwt"),
+5: SubResource("Resource_u7dhd")
 })

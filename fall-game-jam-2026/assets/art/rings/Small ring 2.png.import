@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boprn8ido4iih"
-path="res://.godot/imported/blue_planet.png-6fc8769b31c46c88367e686985f2454d.ctex"
+uid="uid://bw1gbn6pt4d06"
+path="res://.godot/imported/Small ring 2.png-5dcf141088f67a636dd939c63f18cf21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/blue_planet.png"
-dest_files=["res://.godot/imported/blue_planet.png-6fc8769b31c46c88367e686985f2454d.ctex"]
+source_file="res://assets/art/rings/Small ring 2.png"
+dest_files=["res://.godot/imported/Small ring 2.png-5dcf141088f67a636dd939c63f18cf21.ctex"]
 
 [params]
 
