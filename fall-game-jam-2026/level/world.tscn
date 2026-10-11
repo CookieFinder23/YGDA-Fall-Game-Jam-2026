@@ -2,11 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://duh0b4jpm3s56" path="res://level_object/player.tscn" id="1_07nfa"]
 [ext_resource type="Script" uid="uid://dg875oa72qesx" path="res://level/world.gd" id="1_sw3g3"]
-[ext_resource type="Texture2D" uid="uid://b6cwir2q0l2av" path="res://assets/art/Med ring.PNG" id="3_riu67"]
+[ext_resource type="Texture2D" uid="uid://b6cwir2q0l2av" path="res://assets/art/rings/Med ring.PNG" id="3_riu67"]
 [ext_resource type="PackedScene" uid="uid://clddrd1vt1me" path="res://ui/hud/hud.tscn" id="3_tjjer"]
-[ext_resource type="Texture2D" uid="uid://cla58ylnpobkf" path="res://assets/art/Big ring.PNG" id="5_gsqr6"]
-[ext_resource type="Texture2D" uid="uid://c1hv1yrpbvi71" path="res://assets/art/Small ring.PNG" id="6_riu67"]
+[ext_resource type="Texture2D" uid="uid://bw1gbn6pt4d06" path="res://assets/art/rings/Small ring 2.png" id="4_gsqr6"]
+[ext_resource type="Texture2D" uid="uid://cla58ylnpobkf" path="res://assets/art/rings/Big ring.PNG" id="5_gsqr6"]
+[ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsqr6"]
+size = Vector2(80, 80)
 
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
@@ -63,13 +67,13 @@ flip_v = true
 
 [node name="Rings" type="Node" parent="." unique_id=1275480986]
 
+[node name="SmallRing" type="Sprite2D" parent="Rings" unique_id=1546752173]
+position = Vector2(960, 540)
+texture = ExtResource("4_gsqr6")
+
 [node name="MediumRing" type="Sprite2D" parent="Rings" unique_id=2063627867]
 position = Vector2(960, 540)
 texture = ExtResource("3_riu67")
-
-[node name="SmallRing" type="Sprite2D" parent="Rings" unique_id=1546752173]
-position = Vector2(960, 540)
-texture = ExtResource("6_riu67")
 
 [node name="LargeRing" type="Sprite2D" parent="Rings" unique_id=2110409841]
 position = Vector2(960, 540)
@@ -83,10 +87,6 @@ texture = ExtResource("5_gsqr6")
 wait_time = 2.0
 autostart = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
-
-[node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1201013288]
 position = Vector2(960, 540)
 position_smoothing_enabled = true
@@ -99,6 +99,23 @@ autostart = true
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="Sun" type="Sprite2D" parent="." unique_id=1756660856]
+z_index = 99
+position = Vector2(960, 540)
+texture = ExtResource("7_drvcl")
+
+[node name="Area2D" type="Area2D" parent="Sun" unique_id=256540708]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sun/Area2D" unique_id=1597586684]
+shape = SubResource("RectangleShape2D_gsqr6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
+
+[node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
 
 [connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]
 [connection signal="timeout" from="ScreenshakeCooldown" to="." method="_on_screenshake_cooldown_timeout"]

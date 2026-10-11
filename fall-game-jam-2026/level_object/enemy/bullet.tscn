@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c34kvcjryav0p"]
 
 [ext_resource type="Script" uid="uid://br2pu7wo3xmkg" path="res://level_object/enemy/bullet.gd" id="1_ern7g"]
-[ext_resource type="Texture2D" uid="uid://boprn8ido4iih" path="res://assets/art/blue_planet.png" id="1_sxr5g"]
+[ext_resource type="Texture2D" uid="uid://boprn8ido4iih" path="res://assets/art/enemies/blue_planet.png" id="1_sxr5g"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="2_ern7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfb56tphcmtt8"
-path="res://.godot/imported/placeholder_shoot_telegraph.png-fd0af9d3458be88afc3af5ba36c5e383.ctex"
+path="res://.godot/imported/placeholder_shoot_telegraph.png-548c7e01a2ab32111d35683f89c3ac0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/placeholder_shoot_telegraph.png"
-dest_files=["res://.godot/imported/placeholder_shoot_telegraph.png-fd0af9d3458be88afc3af5ba36c5e383.ctex"]
+source_file="res://assets/art/enemies/placeholder_shoot_telegraph.png"
+dest_files=["res://.godot/imported/placeholder_shoot_telegraph.png-548c7e01a2ab32111d35683f89c3ac0f.ctex"]
 
 [params]
 

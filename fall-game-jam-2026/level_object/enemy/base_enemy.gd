@@ -11,8 +11,10 @@ signal damaged
 	set(new_value):
 		if health == new_value:
 			return
+		var took_damage = false
 		if new_value < health:
 			health = new_value
+			took_damage = true
 			damaged.emit()
 		else:
 			health = new_value
@@ -27,14 +29,18 @@ signal damaged
 				GameState.bosses_killed += 1
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 				GameState.boss = null
-			if is_instance_of(to_kill, Healer):
+			elif is_instance_of(to_kill, Healer):
 				GameState.player.health += 1
 				GameState.active_healer = false
 				SFX.play(SFX.Id.HEAL)
+			else:
+				SFX.play(SFX.Id.ENEMY_KILL)
 			var particles = PARTICLES.instantiate()
 			particles.global_position = global_position
 			to_kill.get_parent().get_parent().add_child(particles)
 			to_kill.queue_free()
+		elif took_damage:
+			SFX.play(SFX.Id.ENEMY_DAMAGE)
 @export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0

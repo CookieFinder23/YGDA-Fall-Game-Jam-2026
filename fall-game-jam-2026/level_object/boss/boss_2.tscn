@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvesx0w72475a"]
+
+[ext_resource type="Texture2D" uid="uid://exc8g4fsr5ho" path="res://assets/art/bosses/Boss 2.PNG" id="1_xj0hi"]
+[ext_resource type="Script" uid="uid://cclxu730dm2kp" path="res://level_object/boss/boss_2.gd" id="2_bm6ua"]
+[ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/base_boss.tscn" id="3_ppn55"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5i3i"]
+size = Vector2(120, 120)
+
+[node name="Boss2" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_xj0hi")
+script = ExtResource("2_bm6ua")
+
+[node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_ppn55")]
+health = 15
+hitbox = SubResource("RectangleShape2D_m5i3i")

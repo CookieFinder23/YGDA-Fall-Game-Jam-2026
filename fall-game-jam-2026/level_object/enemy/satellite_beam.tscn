@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dr2hi55fm05q0"]
 
 [ext_resource type="Script" uid="uid://d3qrfnhyuhe60" path="res://level_object/enemy/satellite_beam.gd" id="1_6n02u"]
-[ext_resource type="Texture2D" uid="uid://ctxc40aetgide" path="res://assets/art/Satelie attack.png" id="2_p2m6s"]
+[ext_resource type="Texture2D" uid="uid://ctxc40aetgide" path="res://assets/art/enemies/Satelie attack.png" id="2_p2m6s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
 size = Vector2(16, 160)

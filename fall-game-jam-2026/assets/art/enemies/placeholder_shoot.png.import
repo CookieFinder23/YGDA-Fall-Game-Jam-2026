@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgap0xud4o4y4"
-path="res://.godot/imported/satellite_rotate_crop_transparent.png-a0b72a62a13deb0a06ddbb331e7dcffe.ctex"
+uid="uid://cmaknweq7uawi"
+path="res://.godot/imported/placeholder_shoot.png-8507658d0e85933851774ad80808551b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/satellite_rotate_crop_transparent.png"
-dest_files=["res://.godot/imported/satellite_rotate_crop_transparent.png-a0b72a62a13deb0a06ddbb331e7dcffe.ctex"]
+source_file="res://assets/art/enemies/placeholder_shoot.png"
+dest_files=["res://.godot/imported/placeholder_shoot.png-8507658d0e85933851774ad80808551b.ctex"]
 
 [params]
 

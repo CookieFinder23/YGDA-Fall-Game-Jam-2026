@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj2au84ln6833"
-path="res://.godot/imported/healer.png-1c7aa81d7555ac5201d2be7d27773467.ctex"
+uid="uid://cluh2nk8vdqpd"
+path="res://.godot/imported/Asteroid.png-915ffa5b7dd6ea891280678e32402044.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/healer.png"
-dest_files=["res://.godot/imported/healer.png-1c7aa81d7555ac5201d2be7d27773467.ctex"]
+source_file="res://assets/art/enemies/Asteroid.png"
+dest_files=["res://.godot/imported/Asteroid.png-915ffa5b7dd6ea891280678e32402044.ctex"]
 
 [params]
 

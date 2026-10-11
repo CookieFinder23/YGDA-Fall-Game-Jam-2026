@@ -82,10 +82,8 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
 		obj2.health -= 1
-		SFX.play(SFX.Id.PLAYER_BOUNCE)
 	elif is_instance_of(obj2, Player):
 		obj1.health -= 1
-		SFX.play(SFX.Id.PLAYER_BOUNCE)
 	else:
 		SFX.play(SFX.Id.ENEMY_BOUNCE)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
@@ -176,7 +174,6 @@ func summon() -> void:
 		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
 			enemy = HEALER
 			$HealerCooldown.start()
-		enemy = SATELLITE
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 		to_spawn_orb.ring_num = spawn_ring

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dunhpf0nmor2y"]
+
+[ext_resource type="Script" uid="uid://cj2se7a8h3oax" path="res://level_object/boss/laser.gd" id="1_blcow"]
+[ext_resource type="Texture2D" uid="uid://cqdtb6ubvqbl0" path="res://icon.svg" id="2_uhsnc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n8yl0"]
+diffuse_texture = ExtResource("2_uhsnc")
+texture_repeat = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhsnc"]
+
+[node name="Laser" type="Node2D" unique_id=1453316292]
+script = ExtResource("1_blcow")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2053694275]
+target_position = Vector2(960, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1222004067]
+points = PackedVector2Array(0, 0, 0, 0)
+texture = SubResource("CanvasTexture_n8yl0")
+texture_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1175843618]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=726925558]
+shape = SubResource("RectangleShape2D_uhsnc")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

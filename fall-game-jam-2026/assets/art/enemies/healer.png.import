@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1hv1yrpbvi71"
-path="res://.godot/imported/Small ring.PNG-31a5b38026a62378320a1ca170022409.ctex"
+uid="uid://dj2au84ln6833"
+path="res://.godot/imported/healer.png-87ce212ac919b8f5b2b091d0db462989.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Small ring.PNG"
-dest_files=["res://.godot/imported/Small ring.PNG-31a5b38026a62378320a1ca170022409.ctex"]
+source_file="res://assets/art/enemies/healer.png"
+dest_files=["res://.godot/imported/healer.png-87ce212ac919b8f5b2b091d0db462989.ctex"]
 
 [params]
 
