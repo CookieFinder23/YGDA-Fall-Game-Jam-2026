@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnpvoj5h7k6k1"]
+
+[ext_resource type="Texture2D" uid="uid://cfb56tphcmtt8" path="res://assets/art/enemies/placeholder_shoot_telegraph.png" id="1_4alnh"]
+[ext_resource type="Script" uid="uid://jn6gegstq7kv" path="res://level_object/boss/electricity_ball.gd" id="2_4alnh"]
+[ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="3_esr5r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4alnh"]
+size = Vector2(64, 64)
+
+[node name="ElectricityBall" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_4alnh")
+script = ExtResource("2_4alnh")
+
+[node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("3_esr5r")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=576093747]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1878933524]
+shape = SubResource("RectangleShape2D_4alnh")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

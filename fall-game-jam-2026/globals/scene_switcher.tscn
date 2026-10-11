@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7iwenf3pfgt5" path="res://globals/scene_switcher.gd" id="1_lpaq5"]
 
 [node name="SceneSwitcher" type="CanvasLayer" unique_id=959903579]
+layer = 99
 script = ExtResource("1_lpaq5")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1414455549]

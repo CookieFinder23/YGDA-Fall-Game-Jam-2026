@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 class_name Player
 
 const BOUNCE_SMOOTH = 0.1
@@ -17,6 +17,7 @@ var health: int = 5:
 			speed_mult = 0.8
 			get_parent().get_parent().screenshake = 10
 			SFX.play(SFX.Id.TAKE_DAMAGE)
+			play("hit")
 			$IFrames.start()
 		
 ## radian change per second
@@ -47,3 +48,8 @@ func _input(event: InputEvent) -> void:
 		$OrbitingObject.between_ring_progress -= 0.01
 		can_collide = true
 		
+
+
+func _on_animation_finished() -> void:
+	if animation == "hit":
+		play("default")

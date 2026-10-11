@@ -2,13 +2,93 @@
 
 [ext_resource type="Texture2D" uid="uid://cd2y5qxqji7af" path="res://assets/art/rocket.PNG" id="1_2haed"]
 [ext_resource type="Script" uid="uid://cnxxuul21b7f2" path="res://level_object/player.gd" id="2_033we"]
+[ext_resource type="Texture2D" uid="uid://cmv5g03oy50kt" path="res://assets/art/Rocket gettinghit animation .png" id="2_vghlg"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="3_vghlg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_033we"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 0, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vghlg"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 185, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg3vv"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 370, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpyy4"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 555, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg6ic"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 740, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vtwk"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 925, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5yq2"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 1110, 129, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfq4x"]
+atlas = ExtResource("2_vghlg")
+region = Rect2(0, 1295, 129, 185)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pk45q"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2haed")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_033we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vghlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg3vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpyy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg6ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vtwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5yq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfq4x")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 24.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
 size = Vector2(64, 115)
 
-[node name="Player" type="Sprite2D" unique_id=520527748]
-texture = ExtResource("1_2haed")
+[node name="Player" type="AnimatedSprite2D" unique_id=792711730]
+sprite_frames = SubResource("SpriteFrames_pk45q")
+animation = &"death"
+autoplay = "default"
 flip_h = true
 script = ExtResource("2_033we")
 
@@ -25,3 +105,5 @@ debug_color = Color(0, 0.6, 0.19215687, 0.41960785)
 [node name="IFrames" type="Timer" parent="." unique_id=294759845]
 wait_time = 0.5
 one_shot = true
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

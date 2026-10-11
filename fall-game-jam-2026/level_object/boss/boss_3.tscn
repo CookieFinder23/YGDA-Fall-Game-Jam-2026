@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bcc8fl3p6k20b"]
+
+[ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="1_1gwyr"]
+[ext_resource type="Script" uid="uid://dpy6mhn0807ax" path="res://level_object/boss/boss_3.gd" id="2_1gwyr"]
+[ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/boss/base_boss.tscn" id="3_p683w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulowl"]
+size = Vector2(110, 110)
+
+[node name="Boss3" type="Sprite2D" unique_id=494127020]
+z_index = 1
+texture = ExtResource("1_1gwyr")
+script = ExtResource("2_1gwyr")
+
+[node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_p683w")]
+health = 15
+speed = 1.0
+hitbox = SubResource("RectangleShape2D_ulowl")
+random_rotate = true

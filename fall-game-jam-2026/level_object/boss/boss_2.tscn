@@ -1,16 +1,25 @@
 [gd_scene format=3 uid="uid://bvesx0w72475a"]
 
-[ext_resource type="Texture2D" uid="uid://exc8g4fsr5ho" path="res://assets/art/bosses/Boss 2.PNG" id="1_xj0hi"]
-[ext_resource type="Script" uid="uid://cclxu730dm2kp" path="res://level_object/boss/boss_2.gd" id="2_bm6ua"]
-[ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/base_boss.tscn" id="3_ppn55"]
+[ext_resource type="PackedScene" uid="uid://dunhpf0nmor2y" path="res://level_object/boss/laser.tscn" id="2_xj0hi"]
+[ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/boss/base_boss.tscn" id="3_bm6ua"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5i3i"]
-size = Vector2(120, 120)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ppn55"]
+load_path = "res://.godot/imported/Boss 2.PNG-29e5f35546d8607b776cdb4dce46d0b4.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj0hi"]
+size = Vector2(60, 60)
 
 [node name="Boss2" type="Sprite2D" unique_id=494127020]
-texture = ExtResource("1_xj0hi")
-script = ExtResource("2_bm6ua")
+texture = SubResource("CompressedTexture2D_ppn55")
 
-[node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_ppn55")]
+[node name="Laser" parent="." unique_id=1453316292 instance=ExtResource("2_xj0hi")]
+position = Vector2(0, 59)
+rotation = 1.5707964
+
+[node name="Laser2" parent="." unique_id=1806149200 instance=ExtResource("2_xj0hi")]
+position = Vector2(0, -59)
+rotation = -1.5707964
+
+[node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_bm6ua")]
 health = 15
-hitbox = SubResource("RectangleShape2D_m5i3i")
+hitbox = SubResource("RectangleShape2D_xj0hi")
