@@ -2,9 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://ca6cqrylyqesb" path="res://assets/art/gui/boss_kill_count_skull.png" id="1_lm5hx"]
 [ext_resource type="Script" uid="uid://c100ov0k8qb5r" path="res://ui/hud/bosses_killed.gd" id="1_tcgns"]
+[ext_resource type="Texture2D" uid="uid://75oj8fw8372e" path="res://assets/art/gui/boss_kill_count_x_smaller.png" id="3_umfkp"]
 
 [node name="BossesKilled" type="Node2D" unique_id=145743401]
 script = ExtResource("1_tcgns")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=148710935]
 texture = ExtResource("1_lm5hx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1685714683]
+position = Vector2(133, 8)
+texture = ExtResource("3_umfkp")

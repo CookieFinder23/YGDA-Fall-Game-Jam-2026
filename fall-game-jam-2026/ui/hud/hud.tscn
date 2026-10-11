@@ -55,4 +55,4 @@ sprite_frames = SubResource("SpriteFrames_0es7p")
 animation = &"Boss1"
 
 [node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
-position = Vector2(112, 525)
+position = Vector2(88, 501)
