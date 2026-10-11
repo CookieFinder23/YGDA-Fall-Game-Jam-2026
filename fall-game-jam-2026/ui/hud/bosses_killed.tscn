@@ -1,15 +1,26 @@
 [gd_scene format=3 uid="uid://fl47j4f64oki"]
 
-[ext_resource type="Texture2D" uid="uid://ca6cqrylyqesb" path="res://assets/art/gui/boss_kill_count_skull.png" id="1_lm5hx"]
-[ext_resource type="Script" uid="uid://c100ov0k8qb5r" path="res://ui/hud/bosses_killed.gd" id="1_tcgns"]
-[ext_resource type="Texture2D" uid="uid://75oj8fw8372e" path="res://assets/art/gui/boss_kill_count_x_smaller.png" id="3_umfkp"]
+[ext_resource type="Texture2D" uid="uid://ca6cqrylyqesb" path="res://assets/art/gui/boss_kill_count/boss_kill_count_skull.png" id="1_lm5hx"]
+[ext_resource type="Texture2D" uid="uid://75oj8fw8372e" path="res://assets/art/gui/boss_kill_count/boss_kill_count_x_smaller.png" id="3_umfkp"]
+[ext_resource type="Script" uid="uid://dahto6hactuwj" path="res://ui/hud/bosses_killed_label.gd" id="4_6lq1w"]
+[ext_resource type="FontFile" uid="uid://bqib78l8etqed" path="res://assets/art/gui/boss_kill_count/numbers/boss_kill_count_numbers.png" id="4_miol2"]
 
 [node name="BossesKilled" type="Node2D" unique_id=145743401]
-script = ExtResource("1_tcgns")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=148710935]
 texture = ExtResource("1_lm5hx")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1685714683]
-position = Vector2(133, 8)
+position = Vector2(134, 8)
 texture = ExtResource("3_umfkp")
+
+[node name="BossesKilledLabel" type="Label" parent="." unique_id=282874914]
+offset_left = 171.0
+offset_top = -83.0
+offset_right = 1001.0
+offset_bottom = 97.0
+theme_override_fonts/font = ExtResource("4_miol2")
+theme_override_font_sizes/font_size = 180
+text = "000
+"
+script = ExtResource("4_6lq1w")

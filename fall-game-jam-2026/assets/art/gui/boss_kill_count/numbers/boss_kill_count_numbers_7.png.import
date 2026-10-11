@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3h6ctorvwnwo"
-path="res://.godot/imported/boss_kill_count_x.png-5e0a79db3b23242b0d60062d3bcccae6.ctex"
+uid="uid://dj5b21slsjovy"
+path="res://.godot/imported/boss_kill_count_numbers_7.png-95ada20c75c7dcb799cca4585760e745.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/gui/boss_kill_count_x.png"
-dest_files=["res://.godot/imported/boss_kill_count_x.png-5e0a79db3b23242b0d60062d3bcccae6.ctex"]
+source_file="res://assets/art/gui/boss_kill_count/numbers/boss_kill_count_numbers_7.png"
+dest_files=["res://.godot/imported/boss_kill_count_numbers_7.png-95ada20c75c7dcb799cca4585760e745.ctex"]
 
 [params]
 

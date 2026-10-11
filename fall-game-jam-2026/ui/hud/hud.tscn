@@ -38,7 +38,7 @@ grow_vertical = 2
 script = ExtResource("1_xmswo")
 
 [node name="HealthBar" parent="." unique_id=436221617 instance=ExtResource("2_4d6w6")]
-position = Vector2(206, 244)
+position = Vector2(209, 353)
 
 [node name="BossHealth" type="Label" parent="." unique_id=1256404677]
 layout_mode = 0
@@ -64,4 +64,4 @@ sprite_frames = SubResource("SpriteFrames_0es7p")
 animation = &"Boss2"
 
 [node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
-position = Vector2(88, 501)
+position = Vector2(101, 101)
