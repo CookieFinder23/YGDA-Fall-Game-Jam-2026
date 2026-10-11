@@ -1,12 +1,51 @@
 [gd_scene format=3 uid="uid://c34kvcjryav0p"]
 
 [ext_resource type="Script" uid="uid://br2pu7wo3xmkg" path="res://level_object/enemy/bullet.gd" id="1_ern7g"]
+[ext_resource type="Texture2D" uid="uid://boprn8ido4iih" path="res://assets/art/blue_planet.png" id="1_sxr5g"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="2_ern7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(32, 32)
+size = Vector2(48, 48)
+
+[sub_resource type="Animation" id="Animation_dcjwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_sxr5g"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcjwx"]
+_data = {
+&"RESET": SubResource("Animation_dcjwx"),
+&"fade": SubResource("Animation_sxr5g")
+}
 
 [node name="Bullet" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_sxr5g")
 script = ExtResource("1_ern7g")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1163606613]
@@ -18,10 +57,9 @@ debug_color = Color(0.6, 0.6, 0.7019608, 0.41960785)
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("2_ern7g")]
 
-[node name="Lifespan" type="Timer" parent="." unique_id=960250251]
-wait_time = 2.0
-one_shot = true
-autostart = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1799610772]
+libraries/ = SubResource("AnimationLibrary_dcjwx")
+autoplay = &"fade"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="timeout" from="Lifespan" to="." method="_on_lifespan_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
