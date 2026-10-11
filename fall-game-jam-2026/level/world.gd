@@ -3,6 +3,8 @@ const ASTEROID = preload("uid://ocsoo5vljovt")
 const SATELLITE = preload("uid://dhxu81fp4yvqo")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
+const HEALER = preload("uid://bgjivfvi4ka43")
+
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
@@ -168,6 +170,9 @@ func summon() -> void:
 				viable.append(ring)
 		var spawn_ring = viable.pick_random()
 		var enemy = [ASTEROID, SATELLITE, SPITTER].pick_random()
+		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 0) == 0 and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
+			enemy = HEALER
+			$HealerCooldown.start()
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 		to_spawn_orb.ring_num = spawn_ring
