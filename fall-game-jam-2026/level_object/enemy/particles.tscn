@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b1suesqbkn8r0"]
+
+[ext_resource type="Script" uid="uid://bgy7y5te5sihf" path="res://level_object/enemy/particles.gd" id="1_ttdho"]
+
+[sub_resource type="Gradient" id="Gradient_ttdho"]
+offsets = PackedFloat32Array(0, 0.99382716, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.4509804, 0.4509804, 0.4509804, 0, 0, 0, 0, 1)
+
+[node name="particles" type="CPUParticles2D" unique_id=73125138]
+z_index = 1
+emitting = false
+lifetime = 1.1500000000000001
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angular_velocity_min = -2.0
+angular_velocity_max = 2.0
+damping_min = 10.891
+damping_max = 10.891
+scale_amount_min = 0.0
+scale_amount_max = 15.0
+color = Color(0.46520418, 0.4622438, 0.9999985, 1)
+color_ramp = SubResource("Gradient_ttdho")
+hue_variation_min = -0.22
+hue_variation_max = 0.22
+script = ExtResource("1_ttdho")
+
+[connection signal="ready" from="." to="." method="_on_ready"]

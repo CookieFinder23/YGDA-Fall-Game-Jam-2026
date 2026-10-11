@@ -34,3 +34,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	GameState.player.health -= 1
+	
+func _particles():
+	print('hi')
+	$particles.emitting = true
