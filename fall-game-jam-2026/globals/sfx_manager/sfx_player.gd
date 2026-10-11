@@ -31,6 +31,7 @@ enum Id {
 	ENEMY_BOUNCE,
 	TAKE_DAMAGE,
 	BOSS_DEFEAT,
+	HEAL
 }
 
 const PRINT_DEBUG_MESSAGES: bool = false
