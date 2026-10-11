@@ -9,6 +9,7 @@ size = Vector2(64, 115)
 
 [node name="Player" type="Sprite2D" unique_id=520527748]
 texture = ExtResource("1_2haed")
+flip_h = true
 script = ExtResource("2_033we")
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("3_vghlg")]

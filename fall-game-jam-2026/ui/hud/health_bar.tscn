@@ -21,7 +21,7 @@ texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarWave" type="Sprite2D" parent="HealthBarWaveAlpha" unique_id=1873009871]
 self_modulate = Color(0.80784315, 0.6509804, 0.36078432, 1)
-position = Vector2(-195, 80.00003)
+position = Vector2(50, 200)
 scale = Vector2(1, 0.8692889)
 texture = ExtResource("3_y8agl")
 script = ExtResource("3_6wigd")
