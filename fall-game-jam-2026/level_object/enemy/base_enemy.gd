@@ -1,5 +1,6 @@
 extends Node2D
 class_name Enemy
+const PARTICLES = preload("uid://b1suesqbkn8r0")
 var can_collide = true
 @export var speed: float = 0.5
 @export var direction: int = 1
@@ -29,6 +30,10 @@ signal damaged
 			if is_instance_of(to_kill, Healer):
 				GameState.player.health += 1
 				GameState.active_healer = false
+				SFX.play(SFX.Id.HEAL)
+			var particles = PARTICLES.instantiate()
+			particles.global_position = global_position
+			to_kill.get_parent().get_parent().add_child(particles)
 			to_kill.queue_free()
 @export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01
