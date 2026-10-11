@@ -5,8 +5,6 @@ var can_collide = true
 @export var direction: int = 1
 @export var hitbox: RectangleShape2D
 signal damaged
-
-
 @export var random_rotate: bool = false
 @export var health: int = 1:
 	set(new_value):
@@ -23,7 +21,7 @@ signal damaged
 				GameState.difficulty_ramp = 0
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 			to_kill.queue_free()
-
+@export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0
 
@@ -31,6 +29,12 @@ func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape = hitbox
 
 func _physics_process(delta: float) -> void:
+	if spawn_progress < 1:
+		spawn_progress += delta
+		$Hitbox/CollisionShape2D.disabled = true
+		return
+	$Hitbox/CollisionShape2D.disabled = false
+	spawn_progress = 1
 	var movement = speed * speed_mult * direction * delta
 	if not $Hitbox.has_overlapping_areas():
 		can_collide = true

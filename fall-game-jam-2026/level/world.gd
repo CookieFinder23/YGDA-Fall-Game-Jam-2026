@@ -35,7 +35,7 @@ func clean_recent_collisions() -> void:
 	for index in to_remove:
 		recent_collisions.pop_at(index)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var boss_found = false
 	clean_recent_collisions()
 	for child in $Orbiting.get_children():
@@ -102,7 +102,11 @@ func position_orbiting_object(obj: Node) -> void:
 	var orbiting_object: OrbitingObject
 	orbiting_object = obj.find_child("OrbitingObject")
 	if orbiting_object:
-		obj.global_position = GameState.CENTER + Vector2(get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*cos(orbiting_object.ring_pos), get_ring_radius(orbiting_object.ring_num + orbiting_object.between_ring_progress)*sin(orbiting_object.ring_pos))
+		var base_enemy = obj.find_child("BaseEnemy")
+		var ring_num_increase: float = 0.0
+		if base_enemy:
+			ring_num_increase += (10.0 / max(base_enemy.spawn_progress * 10, 0.1) )- 1
+		obj.global_position = ring_coords_to_pos(orbiting_object.ring_num + orbiting_object.between_ring_progress + ring_num_increase, orbiting_object.ring_pos)
 		if is_instance_of(obj, Projectile):
 			return
 		if is_instance_of(obj, Player):
@@ -110,11 +114,13 @@ func position_orbiting_object(obj: Node) -> void:
 			obj.look_at(GameState.CENTER)
 			obj.rotation += deg_to_rad(180)
 			return
-		var base_enemy = obj.find_child("BaseEnemy")
 		if not base_enemy.random_rotate:
 			obj.look_at(GameState.CENTER)
 			obj.rotation += deg_to_rad(90)
 			obj.flip_h = base_enemy.direction == -1
+
+func ring_coords_to_pos(ring_num: float, ring_pos: float):
+	return GameState.CENTER + Vector2(get_ring_radius(ring_num)*cos(ring_pos), get_ring_radius(ring_num)*sin(ring_pos))
 
 func summon() -> void:
 	if len($Orbiting.get_children()) > 10:
