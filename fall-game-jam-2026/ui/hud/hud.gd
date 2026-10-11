@@ -2,7 +2,6 @@ extends Control
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#$BossKilled.count = GameState.bosses_killed
 	if GameState.boss:
 		$BossHealth.visible = true
 		$AnimatedSprite2D.visible = true
