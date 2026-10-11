@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://chdm8ysjb6rtu" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="PackedScene" uid="uid://dvarorggar2ib" path="res://ui/hud/health_bar.tscn" id="2_4d6w6"]
 [ext_resource type="Texture2D" uid="uid://sck514dd2wtr" path="res://assets/art/red_planet.png" id="3_e0nub"]
+[ext_resource type="PackedScene" uid="uid://fl47j4f64oki" path="res://ui/hud/bosses_killed.tscn" id="4_w75iv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
 font_size = 32
@@ -39,14 +40,6 @@ offset_bottom = 48.0
 text = "Boss Health:"
 label_settings = SubResource("LabelSettings_0es7p")
 
-[node name="BossKilled" type="Label" parent="." unique_id=1819971160]
-layout_mode = 0
-offset_top = 481.0
-offset_right = 209.0
-offset_bottom = 526.0
-text = "Bosses killed:"
-label_settings = SubResource("LabelSettings_0es7p")
-
 [node name="CurrentBoss" type="Label" parent="." unique_id=173684482]
 layout_mode = 0
 offset_left = 1668.0
@@ -60,3 +53,6 @@ label_settings = SubResource("LabelSettings_0es7p")
 position = Vector2(1760, 576)
 sprite_frames = SubResource("SpriteFrames_0es7p")
 animation = &"Boss1"
+
+[node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
+position = Vector2(112, 525)
