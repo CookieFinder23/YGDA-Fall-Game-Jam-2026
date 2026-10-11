@@ -12,7 +12,7 @@
 script = ExtResource("1_drmcp")
 
 [node name="HealthBarInsides" type="Sprite2D" parent="." unique_id=340327277]
-modulate = Color(0.33164132, 0.35822138, 0.7935001, 1)
+modulate = Color(0.3318, 0.35470986, 0.79, 0.47843137)
 texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarWaveAlpha" type="Sprite2D" parent="." unique_id=1888545031]
