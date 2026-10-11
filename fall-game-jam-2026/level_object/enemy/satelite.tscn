@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dhxu81fp4yvqo"]
+
+[ext_resource type="Texture2D" uid="uid://civlmsf5rw7jw" path="res://assets/art/Satellite but transparent.png" id="1_4qqrf"]
+[ext_resource type="Script" uid="uid://dt43oslvo0c0h" path="res://level_object/enemy/satellite.gd" id="2_4qqrf"]
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="3_insnm"]
+[ext_resource type="PackedScene" uid="uid://dr2hi55fm05q0" path="res://level_object/enemy/satellite_beam.tscn" id="4_4qqrf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hac5"]
+size = Vector2(64, 74)
+
+[node name="Satellite" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_4qqrf")
+script = ExtResource("2_4qqrf")
+
+[node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("3_insnm")]
+speed = 1.0
+hitbox = SubResource("RectangleShape2D_6hac5")
+
+[node name="SatelliteBeam" parent="." unique_id=122777426 instance=ExtResource("4_4qqrf")]
