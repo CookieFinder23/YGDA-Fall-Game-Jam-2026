@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://ci3nxnk8kf0ss" path="res://ui/hud/health_bar_wave.gd" id="3_6wigd"]
 [ext_resource type="Texture2D" uid="uid://5hx063pto5up" path="res://assets/art/healthbar/rocket_healthbar_wave_white.png" id="3_y8agl"]
 [ext_resource type="Texture2D" uid="uid://g02q8uf2ro1r" path="res://assets/art/healthbar/rocket_healthbar_wave_outline_white.png" id="5_atn30"]
-[ext_resource type="Texture2D" uid="uid://0akiq2covsyd" path="res://assets/art/healthbar/rocket_healthbar_outline_white.png" id="5_drmcp"]
+[ext_resource type="Texture2D" uid="uid://b4evnifdr8i5i" path="res://assets/art/healthbar/rocket_healthbar_outline_white_thicker.png" id="6_jeyp6"]
+[ext_resource type="Texture2D" uid="uid://dxw3pbn3ncnop" path="res://assets/art/healthbar/rocket_healthbar_shadows_b.png" id="6_y8agl"]
 
 [node name="HealthBar" type="Node2D" unique_id=436221617]
 script = ExtResource("1_drmcp")
@@ -20,7 +21,7 @@ texture = ExtResource("2_jeyp6")
 
 [node name="HealthBarWave" type="Sprite2D" parent="HealthBarWaveAlpha" unique_id=1873009871]
 self_modulate = Color(0.80784315, 0.6509804, 0.36078432, 1)
-position = Vector2(-62, 281)
+position = Vector2(-195, 80.00003)
 scale = Vector2(1, 0.8692889)
 texture = ExtResource("3_y8agl")
 script = ExtResource("3_6wigd")
@@ -32,16 +33,24 @@ texture = ExtResource("5_atn30")
 
 [node name="HealthBarWave2" type="Sprite2D" parent="HealthBarWaveAlpha/HealthBarWave" unique_id=205673720]
 self_modulate = Color(0.9490196, 0.8156863, 0.38431373, 1)
-position = Vector2(149.99997, -8.052551)
+position = Vector2(148, -14.954744)
 scale = Vector2(0.99999976, 0.86928874)
 texture = ExtResource("3_y8agl")
 
 [node name="HealthBarWave3" type="Sprite2D" parent="HealthBarWaveAlpha/HealthBarWave" unique_id=170667032]
 self_modulate = Color(0.9764706, 0.9137255, 0.5568628, 1)
-position = Vector2(7, 27.608826)
+position = Vector2(-107, 9.202908)
 scale = Vector2(0.99999976, 0.86928874)
 texture = ExtResource("3_y8agl")
 
+[node name="HealthBarWaveAlpha2" type="Sprite2D" parent="." unique_id=716811361]
+clip_children = 1
+texture = ExtResource("2_jeyp6")
+
+[node name="HealthBarShading" type="Sprite2D" parent="HealthBarWaveAlpha2" unique_id=305378535]
+modulate = Color(0, 0, 0, 0.4)
+texture = ExtResource("6_y8agl")
+
 [node name="HealthBarOutline" type="Sprite2D" parent="." unique_id=737123128]
 modulate = Color(0.14117648, 0.11372549, 0.28235295, 1)
-texture = ExtResource("5_drmcp")
+texture = ExtResource("6_jeyp6")

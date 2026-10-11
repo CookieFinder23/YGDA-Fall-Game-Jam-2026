@@ -9,7 +9,7 @@ func set_health(health: int):
 	if health < 0:
 		health = 0
 	if health == 5:
-		$HealthBarWaveAlpha/HealthBarWave.target_y = 0
+		$HealthBarWaveAlpha/HealthBarWave.target_y = 80
 	elif health == 0:
 		$HealthBarWaveAlpha/HealthBarWave.target_y = 600
 	else:
