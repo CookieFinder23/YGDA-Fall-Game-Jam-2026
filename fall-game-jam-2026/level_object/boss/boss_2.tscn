@@ -7,7 +7,7 @@
 load_path = "res://.godot/imported/Boss 2.PNG-29e5f35546d8607b776cdb4dce46d0b4.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj0hi"]
-size = Vector2(60, 60)
+size = Vector2(120, 120)
 
 [node name="Boss2" type="Sprite2D" unique_id=494127020]
 texture = SubResource("CompressedTexture2D_ppn55")
