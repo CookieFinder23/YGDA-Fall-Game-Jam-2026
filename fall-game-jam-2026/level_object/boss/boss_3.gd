@@ -4,13 +4,7 @@ var spawned = false
 func _physics_process(_delta: float) -> void:
 	if not spawned and $BaseBoss/BaseEnemy.spawn_progress == 1.0:
 		spawned = true
-		var left_ball = ELECTRICITY_BALL.instantiate()
-		left_ball.boss = self
-		left_ball.rad_offset = -1.25
-		
-		var right_ball = ELECTRICITY_BALL.instantiate()
-		right_ball.boss = self
-		right_ball.rad_offset = 1.25
-		
-		add_sibling(left_ball)
-		add_sibling(right_ball)
+		var ball = ELECTRICITY_BALL.instantiate()
+		ball.boss = self
+		ball.rad_offset = -1 if randf_range(0, 1) else 1
+		add_sibling(ball)

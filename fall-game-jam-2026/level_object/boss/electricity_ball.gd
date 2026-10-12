@@ -11,6 +11,7 @@ func _physics_process(delta: float) -> void:
 		return
 	rotation += delta * boss.find_child("BaseEnemy").direction * 1.5
 	true_rad_offset = lerp(true_rad_offset, rad_offset, 1 - pow(0.1, delta))
+	rad_offset = sin(GameState.perm_difficulty_ramp)
 	var orb = boss.find_child("OrbitingObject")
 	var dist = true_rad_offset
 	$OrbitingObject.ring_num = orb.ring_num
