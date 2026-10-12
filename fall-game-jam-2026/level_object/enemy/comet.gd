@@ -1,9 +1,6 @@
 extends Sprite2D
 
 var points = []
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 var old_dir = 1
 
@@ -28,13 +25,9 @@ func _physics_process(_delta: float) -> void:
 	var bottom = global_position.direction_to(GameState.CENTER) * -25
 	var shape_points = [top, bottom, points[0] - global_position]
 	$Line2D.polygon = shape_points
-	
 	$Line2D.rotation = rotation * -1
-	$Area2D.global_position = $Line2D.global_position + $Line2D.polygon[2] * 0.8
-
-func _on_area_2d_area_entered(_area: Area2D) -> void:
+	$Out.global_position = $Line2D.global_position + $Line2D.polygon[2] * 0.8
+	$Top.global_position = $Line2D.global_position + $Line2D.polygon[0]
+	$Bottom.global_position = $Line2D.global_position + $Line2D.polygon[1]
+func _on_out_area_entered(_area: Area2D) -> void:
 	GameState.player.health -= 1
-	
-func _particles():
-	print('hi')
-	$particles.emitting = true

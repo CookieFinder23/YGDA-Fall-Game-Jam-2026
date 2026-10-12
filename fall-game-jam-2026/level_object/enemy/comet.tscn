@@ -22,10 +22,24 @@ show_behind_parent = true
 antialiased = true
 vertex_colors = PackedColorArray(0.92941177, 0.3372549, 0.34509805, 1, 0.92941177, 0.3372549, 0.34509805, 1, 0.94509804, 0.69803923, 0.4745098, 1)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=226735726]
+[node name="Out" type="Area2D" parent="." unique_id=226735726]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=875536601]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Out" unique_id=875536601]
 shape = SubResource("RectangleShape2D_emj4h")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="Top" type="Area2D" parent="." unique_id=455599134]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=543743171]
+shape = SubResource("RectangleShape2D_emj4h")
+
+[node name="Bottom" type="Area2D" parent="." unique_id=1452550281]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" unique_id=949292848]
+shape = SubResource("RectangleShape2D_emj4h")
+
+[connection signal="area_entered" from="Out" to="." method="_on_out_area_entered"]
+[connection signal="area_entered" from="Top" to="." method="_on_out_area_entered"]
+[connection signal="area_entered" from="Bottom" to="." method="_on_out_area_entered"]
