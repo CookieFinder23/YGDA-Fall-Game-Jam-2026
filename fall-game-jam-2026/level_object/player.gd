@@ -49,7 +49,7 @@ func _ready() -> void:
 	$OrbitingObject.ring_pos = PI
 	$OrbitingObject.ring_num = 1
 	if GameState.tutorial:
-		GameState.healer_storage = true
+		GameState.healer_storage += 1
 		health -= 2
 func _physics_process(delta: float) -> void:
 	modulate = modulate.lerp(Color(1, 1, 1), 1 - pow(0.1, delta))

@@ -30,7 +30,7 @@ signal damaged
 				GameState.difficulty_ramp = 0
 				GameState.bosses_killed += 1
 				GameState.tutorial = false
-				GameState.healer_storage = true
+				GameState.healer_storage += 1
 				GameState.player.health += 1
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 				GameState.boss = null
