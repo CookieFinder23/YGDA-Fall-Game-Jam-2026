@@ -9,6 +9,8 @@ const BOSS_2 = preload("uid://bvesx0w72475a")
 const BOSS_3 = preload("uid://bcc8fl3p6k20b")
 const BOSS_4 = preload("uid://co1vshum3px2d")
 
+var screenshake_inc: float = 0
+var target_offset: Vector2
 var mod_target: Color = Color(0, 0, 0, 0)
 var last_boss
 var last_enemy
@@ -58,6 +60,15 @@ func modulate_rings() -> void:
 		$Rings/LargeRing.modulate = SLOW_RING_COLOR
 
 func _physics_process(delta: float) -> void:
+	screenshake_inc -= delta
+	if screenshake_inc < 0:
+		screenshake_inc = 0.05
+		target_offset = Vector2(randf_range(screenshake * -1, screenshake), randf_range(screenshake * -1, screenshake))
+		screenshake -= 150 * delta
+		if screenshake < 0.1:
+			screenshake = 0
+			target_offset = Vector2.ZERO
+	$Camera2D.offset = $Camera2D.offset.move_toward(target_offset, delta * 1000)
 	var target_zoom = (1 + (1 - $Orbiting/Player.speed_mult) / 50)
 	var new_zoom = move_toward($Camera2D.zoom.x, target_zoom, delta)
 	$Camera2D.zoom = Vector2(new_zoom, new_zoom)
@@ -108,14 +119,14 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	obj1.can_collide = false
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
-		screenshake = 10
+		screenshake += 10
 		obj2.health -= 1
 		if obj2.get_parent() is Sprite2D or obj2.get_parent() is AnimatedSprite2D:
 			obj2.get_parent().self_modulate.v = 100000
 		if obj2.get_parent().get_parent() is Sprite2D or obj2.get_parent().get_parent() is AnimatedSprite2D:
 			obj2.get_parent().get_parent().self_modulate.v = 100000
 	elif is_instance_of(obj2, Player):
-		screenshake = 10
+		screenshake += 10
 		obj1.health -= 1
 		if obj1.get_parent() is Sprite2D or obj1.get_parent() is AnimatedSprite2D:
 			obj1.get_parent().self_modulate.v = 100000
@@ -256,9 +267,3 @@ func _on_summon_cooldown_timeout() -> void:
 			enemy = ASTEROID
 			last_enemy = ASTEROID
 	summon(enemy)
-
-func _on_screenshake_cooldown_timeout() -> void:
-	$Camera2D.offset = Vector2(randf_range(screenshake * -1, screenshake), randf_range(screenshake * -1, screenshake))
-	screenshake /= 1.2
-	if screenshake < 0.1:
-		screenshake = 0

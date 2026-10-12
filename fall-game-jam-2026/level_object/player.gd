@@ -11,7 +11,7 @@ var health: int = 5:
 		if dead or new_health == health or not $IFrames.is_stopped():
 			return
 		if new_health <= 0:
-			get_parent().get_parent().screenshake = 15
+			get_parent().get_parent().screenshake += 15
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.6)
 			modulate.r += 2
@@ -28,7 +28,7 @@ var health: int = 5:
 		if damaged and not (first_damage and GameState.tutorial):
 			Engine.time_scale = 0.5
 			speed_mult = 0.8
-			get_parent().get_parent().screenshake = 12
+			get_parent().get_parent().screenshake += 12
 			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.2)
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			modulate.r += 2
@@ -48,6 +48,8 @@ func _ready() -> void:
 	if GameState.tutorial:
 		health -= 1
 func _physics_process(delta: float) -> void:
+	if health >= MAX_HEALTH:
+		GameState.healer_cooldown = 6.0
 	modulate = modulate.lerp(Color(1, 1, 1), 1 - pow(0.1, delta))
 	if dead:
 		return
@@ -64,10 +66,18 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if dead or $OrbitingObject.between_ring_progress:
 		return
-	if (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
+	
+	var mobile_input = 0
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		var diff = GameState.CENTER.distance_to(event.position) - GameState.CENTER.distance_to(global_position)
+		if not abs(diff) < 100:
+			mobile_input = sign(diff)
+
+	
+	if (mobile_input == 1 or (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) ) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
 		$OrbitingObject.between_ring_progress += 0.01
 		can_collide = true
-	elif (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) and $OrbitingObject.ring_num > 0:
+	elif (mobile_input == -1 or (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) ) and $OrbitingObject.ring_num > 0:
 		$OrbitingObject.between_ring_progress -= 0.01
 		can_collide = true
 		
@@ -81,5 +91,5 @@ func _on_animation_finished() -> void:
 
 
 func _on_death_sound_timing_timeout() -> void:
-	get_parent().get_parent().screenshake = 15
+	get_parent().get_parent().screenshake += 15
 	SFX.play(SFX.Id.GAME_OVER)

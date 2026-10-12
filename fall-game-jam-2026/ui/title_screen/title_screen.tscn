@@ -102,6 +102,7 @@ label_settings = SubResource("LabelSettings_0es7p")
 
 [node name="MainMenuTeamSake" type="AudioStreamPlayer" parent="." unique_id=280477509]
 stream = ExtResource("4_rhiq2")
+volume_db = -20.0
 autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

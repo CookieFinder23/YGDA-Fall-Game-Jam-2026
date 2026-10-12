@@ -112,6 +112,7 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1201013288]
 position = Vector2(960, 540)
 position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 
 [node name="ScreenshakeCooldown" type="Timer" parent="." unique_id=1095858706]
 wait_time = 0.00999999999999999
