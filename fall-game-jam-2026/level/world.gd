@@ -58,6 +58,9 @@ func modulate_rings() -> void:
 		$Rings/LargeRing.modulate = SLOW_RING_COLOR
 
 func _physics_process(delta: float) -> void:
+	var target_zoom = (1 + (1 - $Orbiting/Player.speed_mult) / 50)
+	var new_zoom = move_toward($Camera2D.zoom.x, target_zoom, delta)
+	$Camera2D.zoom = Vector2(new_zoom, new_zoom)
 	$Color.modulate.a = move_toward($Color.modulate.a, mod_target.a, delta)
 	$Color.modulate = Color(mod_target.r, mod_target.g, mod_target.b, $Color.modulate.a)
 	if $Color.modulate.a == mod_target.a:

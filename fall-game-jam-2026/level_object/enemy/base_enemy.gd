@@ -34,7 +34,7 @@ signal damaged
 				GameState.boss = null
 			elif is_instance_of(to_kill, Healer):
 				GameState.player.health += 1
-				to_kill.get_parent().get_parent().mod_target = Color(0.1, 1.0, 0.1, 0.2)
+				to_kill.get_parent().get_parent().mod_target = Color(0.1, 1.0, 0.1, 0.25)
 				SFX.play(SFX.Id.HEAL)
 			else:
 				SFX.play(SFX.Id.ENEMY_KILL)
