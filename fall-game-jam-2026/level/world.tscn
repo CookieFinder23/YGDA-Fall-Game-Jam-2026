@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://clddrd1vt1me" path="res://ui/hud/hud.tscn" id="3_tjjer"]
 [ext_resource type="Texture2D" uid="uid://bw1gbn6pt4d06" path="res://assets/art/rings/Small ring 2.png" id="4_gsqr6"]
 [ext_resource type="Texture2D" uid="uid://cla58ylnpobkf" path="res://assets/art/rings/Big ring.PNG" id="5_gsqr6"]
-[ext_resource type="PackedScene" uid="uid://dty3cvux3qnjj" path="res://level/ring.tscn" id="6_njrq0"]
 [ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
 [ext_resource type="AudioStream" uid="uid://d180qeppyb835" path="res://assets/audio/Gameplay_Music__Team_Sake.mp3" id="9_drvcl"]
@@ -106,17 +105,6 @@ texture = ExtResource("3_riu67")
 [node name="LargeRing" type="Sprite2D" parent="Rings" unique_id=2110409841]
 position = Vector2(960, 540)
 texture = ExtResource("5_gsqr6")
-
-[node name="Center" type="Node2D" parent="Rings" unique_id=930401077]
-position = Vector2(960, 540)
-
-[node name="Small" parent="Rings/Center" unique_id=189248423 instance=ExtResource("6_njrq0")]
-
-[node name="Medium" parent="Rings/Center" unique_id=345499938 instance=ExtResource("6_njrq0")]
-scale = Vector2(1.75, 1.75)
-
-[node name="Large" parent="Rings/Center" unique_id=1293097975 instance=ExtResource("6_njrq0")]
-scale = Vector2(2.5, 2.5)
 
 [node name="Orbiting" type="Node" parent="." unique_id=1580261663]
 
