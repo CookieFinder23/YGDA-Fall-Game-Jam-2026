@@ -1,5 +1,5 @@
 extends AnimatedSprite2D
-
+class_name Shooter
 const BULLET = preload("uid://c34kvcjryav0p")
 
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _on_shoot_timeout() -> void:
 	bullet.flip_h = $BaseEnemy.direction == -1
 	var bullet_orb: OrbitingObject = bullet.find_child("OrbitingObject")
 	var my_orb: OrbitingObject = $BaseEnemy/OrbitingObject
-	bullet_orb.ring_pos = my_orb.ring_pos + 0.1
+	bullet_orb.ring_pos = my_orb.ring_pos + $BaseEnemy.direction * 0.2
 	bullet_orb.ring_num = my_orb.ring_num
 	get_parent().add_child(bullet)
 	reset_timer()

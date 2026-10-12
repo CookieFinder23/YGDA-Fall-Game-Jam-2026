@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c34kvcjryav0p"]
 
 [ext_resource type="Script" uid="uid://br2pu7wo3xmkg" path="res://level_object/enemy/bullet.gd" id="1_ern7g"]
-[ext_resource type="Texture2D" uid="uid://boprn8ido4iih" path="res://assets/art/enemies/blue_planet.png" id="1_sxr5g"]
+[ext_resource type="Texture2D" uid="uid://cfi1q4tsk0cvp" path="res://assets/art/projectile_enemy.png" id="1_sxr5g"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="2_ern7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(48, 48)
+size = Vector2(48, 33)
 
 [sub_resource type="Animation" id="Animation_dcjwx"]
 length = 0.001
@@ -46,12 +46,16 @@ _data = {
 
 [node name="Bullet" type="Sprite2D" unique_id=494127020]
 texture = ExtResource("1_sxr5g")
+hframes = 7
+vframes = 2
+frame = 7
 script = ExtResource("1_ern7g")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1163606613]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1075457775]
+position = Vector2(-5, -4.5)
 shape = SubResource("RectangleShape2D_0es7p")
 debug_color = Color(0.6, 0.6, 0.7019608, 0.41960785)
 

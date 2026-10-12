@@ -25,6 +25,7 @@ signal damaged
 			if is_instance_of(to_kill, BaseBoss):
 				to_kill = to_kill.get_parent()
 				GameState.fast_ring = -1
+				GameState.slow_ring = -1
 				GameState.difficulty_ramp = 0
 				GameState.bosses_killed += 1
 				SFX.play(SFX.Id.BOSS_DEFEAT)

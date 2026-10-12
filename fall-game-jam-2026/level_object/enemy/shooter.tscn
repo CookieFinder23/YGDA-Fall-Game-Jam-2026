@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://c6vs4d5loklld"]
+
+[ext_resource type="Texture2D" uid="uid://cfi1q4tsk0cvp" path="res://assets/art/projectile_enemy.png" id="1_ytsu7"]
+[ext_resource type="Script" uid="uid://dg0sjd71iaem" path="res://level_object/enemy/shooter.gd" id="3_t1wci"]
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="4_6krgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1wci"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(0, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc50w"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(107, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44gxb"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(214, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6krgg"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(321, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_560q3"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(428, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cpuh"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(535, 0, 107, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0dfc"]
+atlas = ExtResource("1_ytsu7")
+region = Rect2(642, 0, 107, 86)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0es7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1wci")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc50w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44gxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6krgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_560q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cpuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0dfc")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5i3i"]
+size = Vector2(90, 80)
+
+[node name="Shooter" type="AnimatedSprite2D" unique_id=766849437]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_0es7p")
+animation = &"shoot"
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("3_t1wci")
+
+[node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("4_6krgg")]
+speed = 1.0
+hitbox = SubResource("RectangleShape2D_m5i3i")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1497164728]
+one_shot = true
+
+[node name="Shoot" type="Timer" parent="." unique_id=725659342]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]

@@ -8,6 +8,7 @@ func _ready() -> void:
 	$BaseEnemy.health = health
 	$BaseEnemy.hitbox = hitbox
 	$BaseEnemy.random_rotate = random_rotate
+	$BaseEnemy.speed = speed
 	$BaseEnemy/Hitbox/CollisionShape2D.shape = hitbox
 	GameState.boss = get_parent()
 

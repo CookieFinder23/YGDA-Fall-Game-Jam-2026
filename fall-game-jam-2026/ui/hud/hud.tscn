@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fl47j4f64oki" path="res://ui/hud/bosses_killed.tscn" id="4_w75iv"]
 [ext_resource type="Texture2D" uid="uid://d2cckb5k3m04k" path="res://assets/art/gui/ui_boss_hp.png" id="5_aixkq"]
 [ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="5_kwc50"]
+[ext_resource type="Texture2D" uid="uid://bclkq4bauvv6g" path="res://assets/art/bosses/moon_boss.png" id="9_aixkq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
 font_size = 32
@@ -36,6 +37,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Boss3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_aixkq")
+}],
+"loop": 1,
+"name": &"Boss4",
 "speed": 5.0
 }]
 
@@ -77,7 +86,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(1724, 233.5)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0es7p")
-animation = &"Boss1"
+animation = &"Boss4"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1294267246]
 layout_mode = 0

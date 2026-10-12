@@ -5,6 +5,7 @@ const RING_BASE = 180
 const RING_SLOPE = 140
 const CENTER = Vector2(960, 540)
 var fast_ring: int
+var slow_ring: int
 var difficulty_ramp: float = 0.0
 var player: Player
 var boss: Node
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 func reset() -> void:
 	fast_ring = -1
+	slow_ring = -1
 	difficulty_ramp = 0.0
 	perm_difficulty_ramp = 0.0
 	bosses_killed = 0
@@ -26,6 +28,7 @@ func reset() -> void:
 func _process(delta: float) -> void:
 	if not boss:
 		fast_ring = -1
+		slow_ring = -1
 	difficulty_ramp += delta
 	perm_difficulty_ramp += delta
 	if Engine.time_scale != 1.0:

@@ -14,6 +14,5 @@ script = ExtResource("2_1gwyr")
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_p683w")]
 health = 5
-speed = 1.0
 hitbox = SubResource("RectangleShape2D_ulowl")
 random_rotate = true
