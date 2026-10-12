@@ -103,7 +103,7 @@ position = Vector2(960, 540)
 position_smoothing_enabled = true
 
 [node name="ScreenshakeCooldown" type="Timer" parent="." unique_id=1095858706]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 autostart = true
 
 [node name="HealerCooldown" type="Timer" parent="." unique_id=1720765178]
