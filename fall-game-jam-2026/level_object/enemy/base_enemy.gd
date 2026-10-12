@@ -28,11 +28,11 @@ signal damaged
 				GameState.slow_ring = -1
 				GameState.difficulty_ramp = 0
 				GameState.bosses_killed += 1
+				GameState.tutorial = false
 				SFX.play(SFX.Id.BOSS_DEFEAT)
 				GameState.boss = null
 			elif is_instance_of(to_kill, Healer):
 				GameState.player.health += 1
-				GameState.active_healer = false
 				SFX.play(SFX.Id.HEAL)
 			else:
 				SFX.play(SFX.Id.ENEMY_KILL)

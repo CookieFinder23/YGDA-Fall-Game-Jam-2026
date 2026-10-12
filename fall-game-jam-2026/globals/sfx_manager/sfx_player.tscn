@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bxsmle3enmlax" path="res://assets/audio/boss_kill.mp3" id="5_o2cuk"]
 [ext_resource type="AudioStream" uid="uid://dxgsmjxoaaov7" path="res://assets/audio/heal.mp3" id="7_u7dhd"]
 [ext_resource type="AudioStream" uid="uid://dytm6wgb818k7" path="res://assets/audio/enemy_damage.wav" id="8_fwjlu"]
+[ext_resource type="AudioStream" uid="uid://ppo6q7p5o6sk" path="res://assets/audio/game_over.wav" id="8_j5isx"]
 
 [sub_resource type="Resource" id="Resource_xmiic"]
 script = ExtResource("2_xmiic")
@@ -48,6 +49,12 @@ bus = "SFX"
 volume = -20.0
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
+[sub_resource type="Resource" id="Resource_vghlg"]
+script = ExtResource("2_xmiic")
+stream = ExtResource("8_j5isx")
+bus = "SFX"
+metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
+
 [node name="SfxPlayer" type="Node" unique_id=1790965844]
 process_mode = 3
 script = ExtResource("1_xnm38")
@@ -57,5 +64,6 @@ id_to_setting = Dictionary[int, ExtResource("2_xmiic")]({
 2: SubResource("Resource_aso10"),
 3: SubResource("Resource_b7itq"),
 4: SubResource("Resource_w0jwt"),
-5: SubResource("Resource_u7dhd")
+5: SubResource("Resource_u7dhd"),
+6: SubResource("Resource_vghlg")
 })
