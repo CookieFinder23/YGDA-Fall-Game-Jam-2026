@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d2cckb5k3m04k" path="res://assets/art/gui/ui_boss_hp.png" id="5_aixkq"]
 [ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="5_kwc50"]
 [ext_resource type="PackedScene" uid="uid://brpmxgnu6xnb5" path="res://ui/hud/boss_health_bar.tscn" id="6_cxhb7"]
-[ext_resource type="Texture2D" uid="uid://bclkq4bauvv6g" path="res://assets/art/bosses/moon_boss.png" id="9_aixkq"]
+[ext_resource type="Texture2D" uid="uid://drdemojtu1hwy" path="res://assets/art/bosses/Moon boss but transparent.png" id="10_cxhb7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
 font_size = 32
@@ -42,7 +42,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_aixkq")
+"texture": ExtResource("10_cxhb7")
 }],
 "loop": 1,
 "name": &"Boss4",
@@ -75,6 +75,7 @@ label_settings = SubResource("LabelSettings_0es7p")
 position = Vector2(101, 101)
 
 [node name="UiBg" type="Sprite2D" parent="." unique_id=147533510]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(1701, 317.5)
 texture = ExtResource("4_gfles")
 
