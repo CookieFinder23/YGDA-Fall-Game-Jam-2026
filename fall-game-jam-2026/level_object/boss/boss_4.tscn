@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://co1vshum3px2d"]
+
+[ext_resource type="Texture2D" uid="uid://d1j3bgxpschrt" path="res://assets/art/bosses/moon_boss2.png" id="1_tf6p2"]
+[ext_resource type="Script" uid="uid://cjn4e4tpu8d2v" path="res://level_object/boss/boss_4.gd" id="2_tf6p2"]
+[ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/boss/base_boss.tscn" id="3_u4up5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gwyr"]
+size = Vector2(80, 80)
+
+[node name="Boss4" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_tf6p2")
+script = ExtResource("2_tf6p2")
+
+[node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_u4up5")]
+speed = 1.0
+hitbox = SubResource("RectangleShape2D_1gwyr")
+random_rotate = true

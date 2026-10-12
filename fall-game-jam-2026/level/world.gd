@@ -7,8 +7,11 @@ const COMET = preload("uid://b6aygywfpi7pl")
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const BOSS_2 = preload("uid://bvesx0w72475a")
 const BOSS_3 = preload("uid://bcc8fl3p6k20b")
+const BOSS_4 = preload("uid://co1vshum3px2d")
+
 var last_boss
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
+const SLOW_RING_COLOR = Color(2.884, 1.169, 0.841, 1.0)
 var player_vars = 0
 var rotate_offset = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
@@ -32,9 +35,21 @@ func clean_recent_collisions() -> void:
 
 func modulate_rings() -> void:
 	var default = Color(1, 1, 1)
-	$Rings/SmallRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 0 else default
-	$Rings/MediumRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 1 else default
-	$Rings/LargeRing.modulate = FAST_RING_COLOR if GameState.fast_ring == 2 else default
+	$Rings/SmallRing.modulate = default 
+	$Rings/MediumRing.modulate = default
+	$Rings/LargeRing.modulate = default
+	if GameState.fast_ring == 0:
+		$Rings/SmallRing.modulate = FAST_RING_COLOR 
+	elif GameState.fast_ring == 1:
+		$Rings/MediumRing.modulate = FAST_RING_COLOR
+	elif GameState.fast_ring == 2:
+		$Rings/LargeRing.modulate = FAST_RING_COLOR
+	if GameState.slow_ring == 0:
+		$Rings/SmallRing.modulate = SLOW_RING_COLOR 
+	elif GameState.slow_ring == 1:
+		$Rings/MediumRing.modulate = SLOW_RING_COLOR
+	elif GameState.slow_ring == 2:
+		$Rings/LargeRing.modulate = SLOW_RING_COLOR
 	
 
 func _physics_process(_delta: float) -> void:
@@ -130,17 +145,24 @@ func position_orbiting_object(obj: Node) -> void:
 		if base_enemy:
 			ring_num_increase += (10.0 / max(base_enemy.spawn_progress * 10, 0.1) )- 1
 		obj.global_position = ring_coords_to_pos(orbiting_object.ring_num + orbiting_object.between_ring_progress + ring_num_increase, orbiting_object.ring_pos)
-		if is_instance_of(obj, Projectile) or is_instance_of(obj, ElectricityBall):
+		if is_instance_of(obj, ElectricityBall):
+			return
+		if obj is Projectile:
+			obj.flip_h = obj.direction == -1
+			obj.look_at(GameState.CENTER)
+			obj.rotation += deg_to_rad(270)
 			return
 		if is_instance_of(obj, Player):
-			obj.flip_v = obj.direction == 1
+			obj.flip_v = obj.direction == -1
 			obj.look_at(GameState.CENTER)
-			obj.rotation += deg_to_rad(180)
 			return
 		if not base_enemy.random_rotate:
 			obj.look_at(GameState.CENTER)
 			if is_instance_of(obj, Satellite):
 				obj.rotation += deg_to_rad(90)
+			elif obj is Shooter:
+				obj.rotation += deg_to_rad(270)
+				obj.flip_h = base_enemy.direction == -1
 			else:
 				obj.rotation += deg_to_rad(90)
 				obj.flip_h = base_enemy.direction == -1
@@ -190,6 +212,7 @@ func summon() -> void:
 			while enemy == last_boss:
 				enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
 			last_boss = enemy
+			enemy = BOSS_4
 			prep_cooldown = true
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")

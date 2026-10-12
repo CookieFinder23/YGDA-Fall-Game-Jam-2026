@@ -31,6 +31,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var movement = SPEED * speed_mult * direction * delta
+	if $OrbitingObject.ring_num == GameState.slow_ring:
+		movement *= 0.5
 	$OrbitingObject.move(movement)
 	if not $Hitbox.has_overlapping_areas():
 		can_collide = true

@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	var orb = boss.find_child("OrbitingObject")
 	var dist = true_rad_offset
 	$OrbitingObject.ring_num = orb.ring_num
-	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * (orb.ring_num + orb.between_ring_progress)) / GameState.RING_SLOPE)
+	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * (orb.ring_num + orb.between_ring_progress + 1)) / GameState.RING_SLOPE)
 	dist *= 2
 	$OrbitingObject.ring_pos = fmod(orb.ring_pos + dist, 2 * PI)
 	$OrbitingObject.between_ring_progress = orb.between_ring_progress
