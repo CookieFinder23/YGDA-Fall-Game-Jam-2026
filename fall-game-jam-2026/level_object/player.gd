@@ -75,44 +75,26 @@ func _input(event: InputEvent) -> void:
 		if not abs(diff) < 100:
 			mobile_input = sign(diff)
 
-	var raycast = false
-	if event.is_action_pressed("aright"):
-		raycast = true
-		$RingCheck.rotation = rotation * -1 
-	elif event.is_action_pressed("adown"):
-		raycast = true
-		$RingCheck.rotation = rotation * -1 + deg_to_rad(90)
-	elif event.is_action_pressed("aleft"):
-		raycast = true
-		$RingCheck.rotation = rotation * -1 + deg_to_rad(180)
-	elif event.is_action_pressed("aup"):
-		raycast = true
-		$RingCheck.rotation = rotation * -1 + deg_to_rad(270)
-	if raycast:
-		$RingCheck.position = Vector2.from_angle($RingCheck.rotation) * 120
-		$RingCheck.force_raycast_update()
-		if $RingCheck.is_colliding():
-			var hit_ring = -1
-			match $RingCheck.get_collider().name:
-				"Small":
-					hit_ring = 0
-				"Medium":
-					hit_ring = 1
-				"Large":
-					hit_ring = 2
-			print(hit_ring)
-			if hit_ring < $OrbitingObject.ring_num:
-				$OrbitingObject.between_ring_progress -= 0.01
-				can_collide = true
-				return
-			elif hit_ring > $OrbitingObject.ring_num:
-				$OrbitingObject.between_ring_progress += 0.01
-				can_collide = true
-				return
-	if (mobile_input == 1 or (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) ) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
+	if (mobile_input == 1\
+		or event.is_action_pressed("up")\
+		or event.is_action_pressed("left") and direction == 1\
+		or event.is_action_pressed("right") and direction == -1\
+		or event.is_action_pressed("aleft") and position.x < GameState.CENTER.x\
+		or event.is_action_pressed("aright") and position.x > GameState.CENTER.x\
+		or event.is_action_pressed("aup") and position.y < GameState.CENTER.y\
+		or event.is_action_pressed("adown") and position.y > GameState.CENTER.y)\
+		and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
 		$OrbitingObject.between_ring_progress += 0.01
 		can_collide = true
-	elif (mobile_input == -1 or (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) ) and $OrbitingObject.ring_num > 0:
+	elif (mobile_input == -1\
+		or event.is_action_pressed("down")\
+		or event.is_action_pressed("left") and direction == -1\
+		or event.is_action_pressed("right") and direction == 1\
+		or event.is_action_pressed("aleft") and position.x > GameState.CENTER.x\
+		or event.is_action_pressed("aright") and position.x < GameState.CENTER.x\
+		or event.is_action_pressed("aup") and position.y > GameState.CENTER.y\
+		or event.is_action_pressed("adown") and position.y < GameState.CENTER.y)\
+		and $OrbitingObject.ring_num > 0:
 		$OrbitingObject.between_ring_progress -= 0.01
 		can_collide = true
 		
