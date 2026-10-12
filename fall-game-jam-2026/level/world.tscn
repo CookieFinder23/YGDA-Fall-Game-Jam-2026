@@ -25,7 +25,7 @@ fill_to = Vector2(0.75, 0.75)
 size = Vector2(80, 80)
 
 [sub_resource type="Gradient" id="Gradient_drvcl"]
-colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0es7p"]
 gradient = SubResource("Gradient_drvcl")
@@ -152,7 +152,7 @@ stream = ExtResource("9_drvcl")
 volume_db = -10.0
 autoplay = true
 
-[node name="Red" type="Sprite2D" parent="." unique_id=1457345589]
+[node name="Color" type="Sprite2D" parent="." unique_id=1457345589]
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 position = Vector2(960, 540)

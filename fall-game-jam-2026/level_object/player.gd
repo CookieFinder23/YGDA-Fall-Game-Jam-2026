@@ -13,7 +13,7 @@ var health: int = 5:
 		if new_health <= 0:
 			get_parent().get_parent().screenshake = 15
 			SFX.play(SFX.Id.TAKE_DAMAGE)
-			get_parent().get_parent().red_target = 0.2
+			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.2)
 			modulate.r += 2
 			dead = true
 			health = 0
@@ -29,7 +29,7 @@ var health: int = 5:
 			Engine.time_scale = 0.5
 			speed_mult = 0.8
 			get_parent().get_parent().screenshake = 12
-			get_parent().get_parent().red_target = 0.2
+			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.2)
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			modulate.r += 2
 			play("hit")

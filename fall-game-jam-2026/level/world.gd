@@ -9,7 +9,7 @@ const BOSS_2 = preload("uid://bvesx0w72475a")
 const BOSS_3 = preload("uid://bcc8fl3p6k20b")
 const BOSS_4 = preload("uid://co1vshum3px2d")
 
-var red_target: float = 0.0
+var mod_target: Color = Color(0, 0, 0, 0)
 var last_boss
 var last_enemy
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
@@ -58,14 +58,11 @@ func modulate_rings() -> void:
 	elif GameState.slow_ring == 2:
 		$Rings/LargeRing.modulate = SLOW_RING_COLOR
 
-func red(delta) -> void:
-	$Red.modulate.a = lerp($Red.modulate.a, red_target, 1 - pow(0.1, delta))
-	if abs($Red.modulate.a - red_target) < 0.1:
-		red_target = 0.0
-	
-
 func _physics_process(delta: float) -> void:
-	red(delta)
+	$Color.modulate.a = move_toward($Color.modulate.a, mod_target.a, delta)
+	$Color.modulate = Color(mod_target.r, mod_target.g, mod_target.b, $Color.modulate.a)
+	if $Color.modulate.a == mod_target.a:
+		mod_target.a = 0
 	if prep_cooldown and not GameState.boss:
 		$BossCooldown.start()
 		prep_cooldown = false
