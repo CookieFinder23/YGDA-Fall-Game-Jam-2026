@@ -64,10 +64,18 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if dead or $OrbitingObject.between_ring_progress:
 		return
-	if (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
+	
+	var mobile_input = 0
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		var diff = GameState.CENTER.distance_to(event.position) - GameState.CENTER.distance_to(global_position)
+		if not abs(diff) < 100:
+			mobile_input = sign(diff)
+
+	
+	if (mobile_input == 1 or (event.is_action_pressed("up") or event.is_action_pressed("left") and direction == 1 or event.is_action_pressed("right") and direction == -1) ) and $OrbitingObject.ring_num < GameState.RING_AMOUNT - 1:
 		$OrbitingObject.between_ring_progress += 0.01
 		can_collide = true
-	elif (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) and $OrbitingObject.ring_num > 0:
+	elif (mobile_input == -1 or (event.is_action_pressed("down") or event.is_action_pressed("left") and direction == -1 or event.is_action_pressed("right") and direction == 1) ) and $OrbitingObject.ring_num > 0:
 		$OrbitingObject.between_ring_progress -= 0.01
 		can_collide = true
 		
