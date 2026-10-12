@@ -3,12 +3,13 @@ extends Control
 
 func _on_start_button_pressed() -> void:
 	SceneSwitcher.switch("res://level/world.tscn")
-
+	SFX.play(SFX.Id.CLICK)
 
 
 func _on_credits_button_pressed() -> void:
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property($Credits, "position", Vector2(0,0), 1.0)
+	SFX.play(SFX.Id.CLICK)
 
 
 func _on_credits_visibility_changed() -> void:
@@ -18,3 +19,4 @@ func _on_credits_visibility_changed() -> void:
 func _on_back_button_pressed() -> void:
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property($Credits, "position", Vector2(0,1080), 1.0)
+	SFX.play(SFX.Id.CLICK)

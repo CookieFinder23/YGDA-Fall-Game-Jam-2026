@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4aisoaiq4nav"
+path="res://.godot/imported/Computer Mouse Click.mp3-89b48987dc3d00c27caca9056331ec3c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Computer Mouse Click.mp3"
+dest_files=["res://.godot/imported/Computer Mouse Click.mp3-89b48987dc3d00c27caca9056331ec3c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

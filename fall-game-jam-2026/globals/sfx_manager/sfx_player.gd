@@ -33,7 +33,8 @@ enum Id {
 	BOSS_DEFEAT,
 	HEAL,
 	ENEMY_DAMAGE,
-	GAME_OVER
+	GAME_OVER,
+	CLICK
 }
 
 const PRINT_DEBUG_MESSAGES: bool = false
