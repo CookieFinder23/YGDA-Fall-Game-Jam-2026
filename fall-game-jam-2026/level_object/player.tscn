@@ -260,5 +260,12 @@ one_shot = true
 wait_time = 0.8
 one_shot = true
 
+[node name="RingCheck" type="RayCast2D" parent="." unique_id=252619912]
+target_position = Vector2(120, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
 [connection signal="timeout" from="DeathSoundTiming" to="." method="_on_death_sound_timing_timeout"]
