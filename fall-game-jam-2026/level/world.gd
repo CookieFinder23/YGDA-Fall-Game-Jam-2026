@@ -98,6 +98,8 @@ func _physics_process(_delta: float) -> void:
 func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	if [obj1, obj2] in recent_collisions or [obj2, obj1] in recent_collisions:
 		return
+	if obj1 is Player and obj1.dead or obj2 is Player and obj2.dead:
+		return
 	
 	recent_collisions.append([obj1, obj2])
 	obj1.can_collide = false

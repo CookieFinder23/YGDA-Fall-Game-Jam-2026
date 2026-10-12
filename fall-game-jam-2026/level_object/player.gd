@@ -13,6 +13,7 @@ var health: int = 5:
 		if new_health <= 0:
 			get_parent().get_parent().screenshake = 15
 			SFX.play(SFX.Id.TAKE_DAMAGE)
+			modulate.r += 2
 			dead = true
 			health = 0
 			play("death")
@@ -28,6 +29,7 @@ var health: int = 5:
 			speed_mult = 0.8
 			get_parent().get_parent().screenshake = 12
 			SFX.play(SFX.Id.TAKE_DAMAGE)
+			modulate.r += 2
 			play("hit")
 			$IFrames.start()
 		first_damage = false
@@ -44,6 +46,7 @@ func _ready() -> void:
 	if GameState.tutorial:
 		health -= 1
 func _physics_process(delta: float) -> void:
+	modulate = modulate.lerp(Color(1, 1, 1), 1 - pow(0.1, delta))
 	if dead:
 		return
 	var movement = SPEED * speed_mult * direction * delta
