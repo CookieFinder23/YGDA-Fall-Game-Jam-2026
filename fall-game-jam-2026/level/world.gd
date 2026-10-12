@@ -19,7 +19,6 @@ var rotate_offset = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
-var prep_cooldown: bool = false
 
 func _ready() -> void:
 	if GameState.tutorial:
@@ -63,9 +62,6 @@ func _physics_process(delta: float) -> void:
 	$Color.modulate = Color(mod_target.r, mod_target.g, mod_target.b, $Color.modulate.a)
 	if $Color.modulate.a == mod_target.a:
 		mod_target.a = 0
-	if prep_cooldown and not GameState.boss:
-		$BossCooldown.start()
-		prep_cooldown = false
 	modulate_rings()
 	clean_recent_collisions()
 	for child in $Orbiting.get_children():
@@ -224,12 +220,11 @@ func summon(force_enemy=null) -> void:
 			enemy = HEALER
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
-		if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
+		if GameState.boss_cooldown < 0:
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
 			while enemy == last_boss:
 				enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
 			last_boss = enemy
-			prep_cooldown = true
 	var to_spawn = enemy.instantiate()
 	var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 	to_spawn_orb.ring_num = spawn_ring

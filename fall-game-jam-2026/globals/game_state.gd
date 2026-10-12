@@ -14,6 +14,7 @@ var engine_time_scale_vel: float = 0.0
 var perm_difficulty_ramp = 0.0
 var healer_cooldown: float = 10.0
 var tutorial: bool = true
+var boss_cooldown: float
 func _ready() -> void:
 	reset()
 
@@ -24,6 +25,7 @@ func reset() -> void:
 	perm_difficulty_ramp = 0.0
 	bosses_killed = 0
 	healer_cooldown = 10.0
+	boss_cooldown = 5.0
 	Engine.time_scale = 1.0
 	
 func _process(delta: float) -> void:
@@ -33,6 +35,7 @@ func _process(delta: float) -> void:
 	if not tutorial:
 		difficulty_ramp += delta
 		perm_difficulty_ramp += delta
+	boss_cooldown -= delta
 	healer_cooldown -= delta
 	if Engine.time_scale != 1.0:
 		engine_time_scale_vel *= pow(2.0, delta)

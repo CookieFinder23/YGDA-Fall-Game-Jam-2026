@@ -16,6 +16,7 @@ signal damaged
 			health = new_value
 			took_damage = true
 			damaged.emit()
+			$IFrames.start()
 		else:
 			health = new_value
 		
@@ -51,6 +52,7 @@ func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape = hitbox
 
 func _physics_process(delta: float) -> void:
+	$Hitbox/CollisionShape2D.set_deferred("disabled", not $IFrames.is_stopped())
 	if spawn_progress < 1:
 		spawn_progress += delta * 8
 		$Hitbox/CollisionShape2D.disabled = true

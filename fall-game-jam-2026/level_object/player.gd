@@ -8,7 +8,7 @@ var dead = false
 const MAX_HEALTH = 5
 var health: int = 5:
 	set(new_health):
-		if new_health == health or not $IFrames.is_stopped():
+		if dead or new_health == health or not $IFrames.is_stopped():
 			return
 		if new_health <= 0:
 			get_parent().get_parent().screenshake = 15

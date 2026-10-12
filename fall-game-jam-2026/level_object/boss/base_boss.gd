@@ -12,6 +12,9 @@ func _ready() -> void:
 	$BaseEnemy/Hitbox/CollisionShape2D.shape = hitbox
 	GameState.boss = get_parent()
 
+func _physics_process(_delta: float) -> void:
+	GameState.boss_cooldown = max(7.0 - GameState.bosses_killed, 2.0)
+
 func _on_base_enemy_damaged() -> void:
 	if $BaseEnemy/OrbitingObject.ring_num == 0:
 		$BaseEnemy/OrbitingObject.between_ring_progress += 0.01

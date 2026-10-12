@@ -17,3 +17,7 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_0es7p")
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("2_6hac5")]
+
+[node name="IFrames" type="Timer" parent="." unique_id=419740132]
+wait_time = 0.25
+one_shot = true
