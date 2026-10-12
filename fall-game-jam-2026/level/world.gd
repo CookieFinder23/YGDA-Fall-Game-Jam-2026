@@ -4,11 +4,13 @@ const SATELLITE = preload("uid://dhxu81fp4yvqo")
 const SPITTER = preload("uid://c6vs4d5loklld")
 const HEALER = preload("uid://bgjivfvi4ka43")
 const COMET = preload("uid://b6aygywfpi7pl")
+const BURNER = preload("uid://cyjhjkhs17g6l")
+
 const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const BOSS_2 = preload("uid://bvesx0w72475a")
 const BOSS_3 = preload("uid://bcc8fl3p6k20b")
 const BOSS_4 = preload("uid://co1vshum3px2d")
-
+const HIT_PARTICLES = preload("uid://dfe8icwbp8nwk")
 var screenshake_inc: float = 0
 var target_offset: Vector2
 var mod_target: Color = Color(0, 0, 0, 0)
@@ -111,18 +113,19 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	if obj1 is Player and obj1.dead or obj2 is Player and obj2.dead:
 		return
 	
+	var hit = false
 	recent_collisions.append([obj1, obj2])
 	obj1.can_collide = false
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
-		screenshake += 10
+		hit = true
 		obj2.health -= 1
 		if obj2.get_parent() is Sprite2D or obj2.get_parent() is AnimatedSprite2D:
 			obj2.get_parent().self_modulate.v = 100000
 		if obj2.get_parent().get_parent() is Sprite2D or obj2.get_parent().get_parent() is AnimatedSprite2D:
 			obj2.get_parent().get_parent().self_modulate.v = 100000
 	elif is_instance_of(obj2, Player):
-		screenshake += 10
+		hit = true
 		obj1.health -= 1
 		if obj1.get_parent() is Sprite2D or obj1.get_parent() is AnimatedSprite2D:
 			obj1.get_parent().self_modulate.v = 100000
@@ -130,6 +133,10 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 			obj1.get_parent().get_parent().self_modulate.v = 100000
 	else:
 		SFX.play(SFX.Id.ENEMY_BOUNCE)
+	if hit:
+		var particles = HIT_PARTICLES.instantiate()
+		particles.global_position = (obj1.global_position + obj2.global_position) / 2
+		add_child(particles)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
 	var obj1_speed = obj1_base_speed * obj1.speed_mult
 	var obj2_base_speed = obj2.SPEED if "SPEED" in obj2 else obj2.speed
@@ -226,13 +233,13 @@ func summon(force_enemy=null) -> void:
 	if force_enemy:
 		enemy = force_enemy
 	else:
-		if GameState.healer_storage:
-			GameState.healer_storage = false
-			enemy = HEALER
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
 		
-		if GameState.boss_cooldown < 0:
+		if GameState.healer_storage:
+			GameState.healer_storage = false
+			enemy = HEALER
+		elif GameState.boss_cooldown < 0:
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
 			while enemy == last_boss:
 				enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
@@ -250,7 +257,7 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 2.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.5, 1.0)
+	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 2.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.75, 1.25)
 	var enemy = null
 	if GameState.tutorial:
 		if GameState.healer_storage:

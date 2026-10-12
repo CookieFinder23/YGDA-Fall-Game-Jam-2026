@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cyjhjkhs17g6l"]
+
+[ext_resource type="Texture2D" uid="uid://cluh2nk8vdqpd" path="res://assets/art/enemies/Asteroid.png" id="1_7i8y3"]
+[ext_resource type="Script" uid="uid://cc6aumory2yqg" path="res://level_object/enemy/burner.gd" id="2_8pm76"]
+[ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_gqymk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
+size = Vector2(64, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
+size = Vector2(20, 140)
+
+[node name="Burner" type="Sprite2D" unique_id=494127020]
+texture = ExtResource("1_7i8y3")
+script = ExtResource("2_8pm76")
+
+[node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_gqymk")]
+speed = 1.0
+hitbox = SubResource("RectangleShape2D_8pm76")
+random_rotate = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1778016966]
+position = Vector2(0, -100)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221117206]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_0es7p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=69536631]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
