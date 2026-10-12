@@ -134,6 +134,7 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	else:
 		SFX.play(SFX.Id.ENEMY_BOUNCE)
 	if hit:
+		screenshake += 10
 		var particles = HIT_PARTICLES.instantiate()
 		particles.global_position = (obj1.global_position + obj2.global_position) / 2
 		add_child(particles)
