@@ -195,6 +195,8 @@ func summon(force_enemy=null) -> void:
 			min_ring_diffs[orb.ring_num] = diff
 	min_ring_diffs[0] -= 1
 	min_ring_diffs[1] -= 0.5
+	if force_enemy == HEALER:
+		min_ring_diffs[2] = 0
 	if $Orbiting/Player/OrbitingObject.ring_num != 2:
 		min_ring_diffs[$Orbiting/Player/OrbitingObject.ring_num] = 0
 	var max_ring_diff = 0
