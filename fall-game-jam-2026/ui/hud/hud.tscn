@@ -80,6 +80,7 @@ sprite_frames = SubResource("SpriteFrames_0es7p")
 animation = &"Boss1"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1294267246]
+visible = false
 layout_mode = 0
 offset_right = 1011.0
 offset_bottom = 27.0

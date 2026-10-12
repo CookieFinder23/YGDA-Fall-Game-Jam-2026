@@ -135,10 +135,6 @@ shape = SubResource("RectangleShape2D_gsqr6")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
-offset_left = 9.0
-offset_top = -44.0
-offset_right = 9.0
-offset_bottom = -44.0
 
 [node name="BossCooldown" type="Timer" parent="." unique_id=825319407]
 wait_time = 5.0
