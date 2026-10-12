@@ -11,7 +11,7 @@ var health: int = 5:
 		if dead or new_health == health or not $IFrames.is_stopped():
 			return
 		if new_health <= 0:
-			get_parent().get_parent().screenshake = 15
+			get_parent().get_parent().screenshake += 15
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.6)
 			modulate.r += 2
@@ -28,7 +28,7 @@ var health: int = 5:
 		if damaged and not (first_damage and GameState.tutorial):
 			Engine.time_scale = 0.5
 			speed_mult = 0.8
-			get_parent().get_parent().screenshake = 12
+			get_parent().get_parent().screenshake += 12
 			get_parent().get_parent().mod_target = Color(1, 0.1, 0.1, 0.2)
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			modulate.r += 2
@@ -48,6 +48,8 @@ func _ready() -> void:
 	if GameState.tutorial:
 		health -= 1
 func _physics_process(delta: float) -> void:
+	if health >= MAX_HEALTH:
+		GameState.healer_cooldown = 6.0
 	modulate = modulate.lerp(Color(1, 1, 1), 1 - pow(0.1, delta))
 	if dead:
 		return
@@ -89,5 +91,5 @@ func _on_animation_finished() -> void:
 
 
 func _on_death_sound_timing_timeout() -> void:
-	get_parent().get_parent().screenshake = 15
+	get_parent().get_parent().screenshake += 15
 	SFX.play(SFX.Id.GAME_OVER)

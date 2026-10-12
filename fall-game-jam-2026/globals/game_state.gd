@@ -24,7 +24,7 @@ func reset() -> void:
 	difficulty_ramp = 0.0
 	perm_difficulty_ramp = 0.0
 	bosses_killed = 0
-	healer_cooldown = 10.0
+	healer_cooldown = 6.0
 	boss_cooldown = 5.0
 	Engine.time_scale = 1.0
 	
