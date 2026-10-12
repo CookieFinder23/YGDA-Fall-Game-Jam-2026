@@ -258,7 +258,7 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 2.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.75, 1.25)
+	$SummonCooldown.wait_time = max(0, 3.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.0, 0.5)
 	var enemy = null
 	if GameState.tutorial:
 		if GameState.healer_storage:
@@ -272,6 +272,4 @@ func _on_summon_cooldown_timeout() -> void:
 		elif GameState.boss.find_child("BaseEnemy").health > 2:
 			enemy = ASTEROID
 			last_enemy = ASTEROID
-		else:
-			$SummonCooldown.wait_time += 1
 	summon(enemy)
