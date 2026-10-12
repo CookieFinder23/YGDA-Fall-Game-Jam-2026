@@ -21,6 +21,6 @@ show_behind_parent = true
 rotation = -1.5707964
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_bm6ua")]
-health = 5
+health = 3
 speed = 1.0
 hitbox = SubResource("RectangleShape2D_xj0hi")

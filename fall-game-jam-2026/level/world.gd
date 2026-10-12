@@ -105,12 +105,14 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	obj1.can_collide = false
 	obj2.can_collide = false
 	if is_instance_of(obj1, Player):
+		screenshake = 10
 		obj2.health -= 1
 		if obj2.get_parent() is Sprite2D or obj2.get_parent() is AnimatedSprite2D:
 			obj2.get_parent().modulate.v = 100000
 		if obj2.get_parent().get_parent() is Sprite2D or obj2.get_parent().get_parent() is AnimatedSprite2D:
 			obj2.get_parent().get_parent().modulate.v = 100000
 	elif is_instance_of(obj2, Player):
+		screenshake = 10
 		obj1.health -= 1
 		if obj1.get_parent() is Sprite2D or obj1.get_parent() is AnimatedSprite2D:
 			obj1.get_parent().modulate.v = 100000
@@ -139,10 +141,8 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 	obj2.speed_mult = new_speed / obj2_base_speed
 	if is_instance_of(obj1, Player):
 		obj1.speed_mult *= 1.5
-		screenshake = obj1.speed_mult * 3
 	elif is_instance_of(obj2, Player):
 		obj2.speed_mult *= 1.5
-		screenshake = obj2.speed_mult * 3
 	
 func position_orbiting_object(obj: Node) -> void:
 	var orbiting_object: OrbitingObject
@@ -220,11 +220,14 @@ func summon(force_enemy=null) -> void:
 			enemy = HEALER
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+		
 		if GameState.boss_cooldown < 0:
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
 			while enemy == last_boss:
 				enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
 			last_boss = enemy
+		else:
+			last_enemy = enemy
 	var to_spawn = enemy.instantiate()
 	var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 	to_spawn_orb.ring_num = spawn_ring
@@ -246,7 +249,7 @@ func _on_summon_cooldown_timeout() -> void:
 		elif not GameState.boss:
 			enemy = BOSS_1
 			last_boss = BOSS_1
-		elif GameState.boss.find_child("BaseEnemy").health > 7:
+		elif GameState.boss.find_child("BaseEnemy").health > 3:
 			enemy = ASTEROID
 			last_enemy = ASTEROID
 	summon(enemy)

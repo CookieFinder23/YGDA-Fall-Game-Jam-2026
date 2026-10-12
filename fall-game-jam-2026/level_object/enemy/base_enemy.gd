@@ -52,12 +52,11 @@ func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape = hitbox
 
 func _physics_process(delta: float) -> void:
-	$Hitbox/CollisionShape2D.set_deferred("disabled", not $IFrames.is_stopped())
 	if spawn_progress < 1:
 		spawn_progress += delta * 8
 		$Hitbox/CollisionShape2D.disabled = true
 		return
-	$Hitbox/CollisionShape2D.disabled = false
+	$Hitbox/CollisionShape2D.disabled = not $IFrames.is_stopped()
 	spawn_progress = 1
 	var movement = speed * speed_mult * direction * delta
 	if not $Hitbox.has_overlapping_areas():

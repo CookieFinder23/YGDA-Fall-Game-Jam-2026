@@ -15,6 +15,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=868771195]
 shape = SubResource("RectangleShape2D_0es7p")
+disabled = true
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("2_6hac5")]
 

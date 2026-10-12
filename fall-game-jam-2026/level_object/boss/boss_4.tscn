@@ -12,6 +12,7 @@ texture = ExtResource("1_tf6p2")
 script = ExtResource("2_tf6p2")
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_u4up5")]
+health = 5
 speed = 1.0
 hitbox = SubResource("RectangleShape2D_1gwyr")
 random_rotate = true
