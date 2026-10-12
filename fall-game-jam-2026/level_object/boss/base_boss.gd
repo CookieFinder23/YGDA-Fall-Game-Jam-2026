@@ -5,7 +5,8 @@ class_name BaseBoss
 @export var hitbox: RectangleShape2D
 @export var random_rotate: bool
 func _ready() -> void:
-	$BaseEnemy.health = health + GameState.bosses_killed
+	@warning_ignore("integer_division")
+	$BaseEnemy.health = health + GameState.bosses_killed / 2
 	$BaseEnemy.hitbox = hitbox
 	$BaseEnemy.random_rotate = random_rotate
 	$BaseEnemy.speed = speed
