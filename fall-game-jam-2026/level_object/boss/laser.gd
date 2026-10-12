@@ -4,7 +4,7 @@ var max_out = 0
 
 func _ready() -> void:
 	$Area2D/CollisionShape2D.shape = RectangleShape2D.new()
-	$Area2D/CollisionShape2D.shape.size.y = 32
+	$Area2D/CollisionShape2D.shape.size.y = 20
 
 func _physics_process(delta: float) -> void:
 	max_out += delta * 500

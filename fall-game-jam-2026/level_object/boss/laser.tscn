@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dunhpf0nmor2y"]
 
 [ext_resource type="Script" uid="uid://cj2se7a8h3oax" path="res://level_object/boss/laser.gd" id="1_blcow"]
-[ext_resource type="Texture2D" uid="uid://cqdtb6ubvqbl0" path="res://icon.svg" id="2_uhsnc"]
+[ext_resource type="Texture2D" uid="uid://dg8f64lh0j8k4" path="res://assets/art/bosses/laser but bggone.png" id="2_uhsnc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n8yl0"]
 diffuse_texture = ExtResource("2_uhsnc")

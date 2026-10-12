@@ -171,61 +171,58 @@ func ring_coords_to_pos(ring_num: float, ring_pos: float):
 	return GameState.CENTER + Vector2(get_ring_radius(ring_num)*cos(ring_pos), get_ring_radius(ring_num)*sin(ring_pos))
 
 func summon() -> void:
-	for i in range(50):
-		var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(randf_range(170, 190))), (2.0 * PI))
-		var min_ring_diffs = {
-			0: 9,
-			1: 9,
-			2: 9
-		}
-		
-		for child in $Orbiting.get_children():
-			var orb = child.find_child("OrbitingObject")
-			var child_rad = orb.ring_pos
-			var diff = abs(spawn_rad - child_rad)
-			if diff > PI:
-				diff -= 2 * PI
-			diff = abs(diff)
-			if diff < min_ring_diffs[orb.ring_num]:
-				min_ring_diffs[orb.ring_num] = diff
-		min_ring_diffs[0] -= 1
-		min_ring_diffs[1] -= 0.5
-		if $Orbiting/Player/OrbitingObject.ring_num != 2:
-			min_ring_diffs[$Orbiting/Player/OrbitingObject.ring_num] = 0
-		var max_ring_diff = 0
-		for ring in min_ring_diffs:
-			if min_ring_diffs[ring] > max_ring_diff:
-				max_ring_diff = min_ring_diffs[ring]
-		if max_ring_diff < 0.75:
-			continue
-		var viable = []
-		for ring in min_ring_diffs:
-			if min_ring_diffs[ring] == max_ring_diff:
-				viable.append(ring)
-		var spawn_ring = viable.pick_random()
-		var enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
-		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
-			enemy = HEALER
-			$HealerCooldown.start()
-		if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
-			enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
-			while enemy == last_boss:
-				enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
-			last_boss = enemy
-			enemy = BOSS_4
-			prep_cooldown = true
-		var to_spawn = enemy.instantiate()
-		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
-		to_spawn_orb.ring_num = spawn_ring
-		to_spawn_orb.ring_pos = spawn_rad
-		if randi_range(0, 1):
-			to_spawn.find_child("BaseEnemy").direction *= -1
-		to_spawn.find_child("BaseEnemy").speed *= randf_range(0.8, 1.2)
-		$Orbiting.add_child(to_spawn)
+	var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(180)), 2.0 * PI)
+	var min_ring_diffs = {
+		0: 9,
+		1: 9,
+		2: 9
+	}
+	
+	for child in $Orbiting.get_children():
+		var orb = child.find_child("OrbitingObject")
+		var child_rad = orb.ring_pos
+		var diff = abs(spawn_rad - child_rad)
+		if diff > PI:
+			diff -= 2 * PI
+		diff = abs(diff)
+		if diff < min_ring_diffs[orb.ring_num]:
+			min_ring_diffs[orb.ring_num] = diff
+	min_ring_diffs[0] -= 1
+	min_ring_diffs[1] -= 0.5
+	if $Orbiting/Player/OrbitingObject.ring_num != 2:
+		min_ring_diffs[$Orbiting/Player/OrbitingObject.ring_num] = 0
+	var max_ring_diff = 0
+	for ring in min_ring_diffs:
+		if min_ring_diffs[ring] > max_ring_diff:
+			max_ring_diff = min_ring_diffs[ring]
+	if max_ring_diff < 0.75:
 		return
+	var viable = []
+	for ring in min_ring_diffs:
+		if min_ring_diffs[ring] == max_ring_diff:
+			viable.append(ring)
+	var spawn_ring = viable.pick_random()
+	var enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+	if not GameState.active_healer and GameState.healer_cooldown < 0 and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
+		enemy = HEALER
+	if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
+		enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
+		while enemy == last_boss:
+			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
+		last_boss = enemy
+		prep_cooldown = true
+	var to_spawn = enemy.instantiate()
+	var to_spawn_orb = to_spawn.find_child("OrbitingObject")
+	to_spawn_orb.ring_num = spawn_ring
+	to_spawn_orb.ring_pos = spawn_rad
+	if randi_range(0, 1):
+		to_spawn.find_child("BaseEnemy").direction *= -1
+	to_spawn.find_child("BaseEnemy").speed *= randf_range(0.8, 1.2)
+	$Orbiting.add_child(to_spawn)
+	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max((len($Orbiting.get_children())) - max(GameState.difficulty_ramp / 15.0, 1), 0.5) + randf_range(0.25, 0.75)
+	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 1.5 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.25, 0.75)
 	summon()
 
 func _on_screenshake_cooldown_timeout() -> void:

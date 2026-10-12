@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen/title_screen.gd" id="1_4kwlo"]
 [ext_resource type="Texture2D" uid="uid://d1q0ix1anu2na" path="res://assets/art/titlescreen.png" id="2_72buf"]
 [ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="3_72buf"]
+[ext_resource type="AudioStream" uid="uid://c7ens4swols1t" path="res://assets/audio/Main_Menu__Team_Sake.mp3" id="4_rhiq2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0es7p"]
 size = Vector2(600, 200)
@@ -83,6 +84,10 @@ Music: Sara
 Assets:
 SFX Manager: Theophylaktos"
 label_settings = SubResource("LabelSettings_0es7p")
+
+[node name="MainMenuTeamSake" type="AudioStreamPlayer" parent="." unique_id=280477509]
+stream = ExtResource("4_rhiq2")
+autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]

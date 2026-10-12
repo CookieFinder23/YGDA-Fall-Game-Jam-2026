@@ -9,6 +9,7 @@ func _physics_process(delta: float) -> void:
 	if not boss:
 		queue_free()
 		return
+	rotation += delta * boss.find_child("BaseEnemy").direction * 1.5
 	true_rad_offset = lerp(true_rad_offset, rad_offset, 1 - pow(0.1, delta))
 	var orb = boss.find_child("OrbitingObject")
 	var dist = true_rad_offset

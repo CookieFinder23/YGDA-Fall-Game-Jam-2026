@@ -24,3 +24,7 @@ func _process(_delta: float) -> void:
 	$CollisionShape2D.position.y = (160 - $CollisionShape2D.shape.size.y) / 2.0
 	if $AnimatedSprite2D.flip_v:
 		$CollisionShape2D.position.y *= -1
+
+
+func _on_ready_timeout() -> void:
+	$AnimatedSprite2D.play("default")
