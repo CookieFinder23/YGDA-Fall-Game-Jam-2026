@@ -83,6 +83,7 @@ position = Vector2(1720, 436.5)
 texture = ExtResource("5_aixkq")
 
 [node name="BossHealthBar" parent="." unique_id=1212011910 instance=ExtResource("6_cxhb7")]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(978, 504)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1394958830]

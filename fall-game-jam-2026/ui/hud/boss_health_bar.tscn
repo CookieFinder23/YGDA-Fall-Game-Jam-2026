@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ki6fckmoucwc" path="res://assets/art/gui/healthbar/rocket_healthbar_wave_outline_white_thick.png" id="5_dielp"]
 
 [node name="BossHealthBar" type="Node2D" unique_id=1212011910]
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_ygicf")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=615861047]
@@ -18,11 +19,11 @@ texture = ExtResource("1_tmk7q")
 [node name="Node2D" type="Node2D" parent="Sprite2D2" unique_id=576870684]
 position = Vector2(315, 0)
 rotation = 1.2217305
-scale = Vector2(0.5, 0.4)
+scale = Vector2(0.5, 0.5)
 
 [node name="BossHealthBarWave" type="Sprite2D" parent="Sprite2D2/Node2D" unique_id=259396078]
 self_modulate = Color(0.9764706, 0.9137255, 0.5568628, 1)
-position = Vector2(79.58353, -543.7693)
+position = Vector2(79.584, -290)
 texture = ExtResource("3_dielp")
 script = ExtResource("4_sr1a3")
 
@@ -32,7 +33,3 @@ texture = ExtResource("5_dielp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1652820254]
 texture = ExtResource("2_3vg63")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=876688900]
-position = Vector2(752, -57)
-zoom = Vector2(5, 5)

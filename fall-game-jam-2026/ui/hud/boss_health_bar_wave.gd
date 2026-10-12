@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 	position.x += 2
 	if(position.x > 360):
 		position.x = -360
-	position.y = lerp(position.y, target_y, 1 - pow(0.01, delta))
+	position.y = lerp(position.y, target_y, 1 - pow(0.005, delta))
