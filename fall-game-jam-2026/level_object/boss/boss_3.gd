@@ -6,11 +6,11 @@ func _physics_process(_delta: float) -> void:
 		spawned = true
 		var left_ball = ELECTRICITY_BALL.instantiate()
 		left_ball.boss = self
-		left_ball.rad_offset = -1.0
+		left_ball.rad_offset = -1.25
 		
 		var right_ball = ELECTRICITY_BALL.instantiate()
 		right_ball.boss = self
-		right_ball.rad_offset = 1.0
+		right_ball.rad_offset = 1.25
 		
 		add_sibling(left_ball)
 		add_sibling(right_ball)

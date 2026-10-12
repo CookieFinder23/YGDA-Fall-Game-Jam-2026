@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cd5gt2p478i7c" path="res://globals/sfx_manager/sfx_player.gd" id="1_xnm38"]
 [ext_resource type="Script" uid="uid://ct3oa8u2xvesl" path="res://globals/sfx_manager/id_settings.gd" id="2_xmiic"]
-[ext_resource type="AudioStream" uid="uid://du5om25tdn5gv" path="res://assets/audio/enemy_kill.mp3" id="3_4xqb4"]
 [ext_resource type="AudioStream" uid="uid://bxsoqmwqavv3j" path="res://assets/audio/take_damage.wav" id="4_4xqb4"]
 [ext_resource type="AudioStream" uid="uid://bbmddk4cjspq5" path="res://assets/audio/enemy_bounce.mp3" id="4_o2cuk"]
 [ext_resource type="AudioStream" uid="uid://bxsmle3enmlax" path="res://assets/audio/boss_kill.mp3" id="5_o2cuk"]
@@ -39,11 +38,12 @@ metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 script = ExtResource("2_xmiic")
 stream = ExtResource("7_u7dhd")
 bus = "SFX"
+pitch = 1.5
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"
 
 [sub_resource type="Resource" id="Resource_u7dhd"]
 script = ExtResource("2_xmiic")
-stream = ExtResource("3_4xqb4")
+stream = ExtResource("4_o2cuk")
 bus = "SFX"
 volume = -20.0
 metadata/_custom_type_script = "uid://ct3oa8u2xvesl"

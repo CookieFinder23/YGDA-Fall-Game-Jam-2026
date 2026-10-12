@@ -1,30 +1,22 @@
 extends Node2D
 const ASTEROID = preload("uid://ocsoo5vljovt")
 const SATELLITE = preload("uid://dhxu81fp4yvqo")
-const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const SPITTER = preload("uid://c6vs4d5loklld")
 const HEALER = preload("uid://bgjivfvi4ka43")
 const COMET = preload("uid://b6aygywfpi7pl")
+const BOSS_1 = preload("uid://3tbia1bfkjgc")
 const BOSS_2 = preload("uid://bvesx0w72475a")
 const BOSS_3 = preload("uid://bcc8fl3p6k20b")
-
+var last_boss
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 var player_vars = 0
 var rotate_offset = 0
 # an array of all objects which are currently colliding with eachother, and have already bounced off eachother
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
+var prep_cooldown: bool = false
 func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
-
-func _ready() -> void:
-	var boss = BOSS_3.instantiate()
-	var orb = boss.find_child("OrbitingObject")
-	orb.ring_num = randi_range(0, 2)
-	orb.ring_pos = randf_range(0, 2 * PI)
-	if randi_range(0, 1):
-		boss.find_child("BaseEnemy").direction *= -1
-	$Orbiting.add_child(boss)
 
 func clean_recent_collisions() -> void:
 	var to_remove: Array[int] = []
@@ -46,20 +38,17 @@ func modulate_rings() -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	
-	var boss_found = false
+	if prep_cooldown and not GameState.boss:
+		$BossCooldown.start()
+		prep_cooldown = false
 	modulate_rings()
 	clean_recent_collisions()
 	for child in $Orbiting.get_children():
-		if not boss_found and child.find_child("BaseBoss"):
-			boss_found = true
 		position_orbiting_object(child)
 		if child is Sprite2D or child is AnimatedSprite2D:
 			child.modulate.v = 1
 		if child.get_parent() is Sprite2D or child.get_parent() is AnimatedSprite2D:
 			child.get_parent().modulate.v = 1
-	if not boss_found:
-		GameState.fast_ring = -1
 	if $Orbiting/Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Orbiting/Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		bounce($Orbiting/Player, base_enemy, 2)
@@ -188,6 +177,12 @@ func summon() -> void:
 		if not GameState.active_healer and $HealerCooldown.is_stopped() and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
 			enemy = HEALER
 			$HealerCooldown.start()
+		if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
+			enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
+			while enemy == last_boss:
+				enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
+			last_boss = enemy
+			prep_cooldown = true
 		var to_spawn = enemy.instantiate()
 		var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 		to_spawn_orb.ring_num = spawn_ring

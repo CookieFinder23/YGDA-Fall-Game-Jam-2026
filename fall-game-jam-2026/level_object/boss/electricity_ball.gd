@@ -6,6 +6,9 @@ class_name ElectricityBall
 var true_rad_offset: float = 0.0
 
 func _physics_process(delta: float) -> void:
+	if not boss:
+		queue_free()
+		return
 	true_rad_offset = lerp(true_rad_offset, rad_offset, 1 - pow(0.1, delta))
 	var orb = boss.find_child("OrbitingObject")
 	var dist = true_rad_offset

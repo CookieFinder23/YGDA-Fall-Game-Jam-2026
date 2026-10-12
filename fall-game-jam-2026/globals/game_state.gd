@@ -22,6 +22,8 @@ func reset() -> void:
 	active_healer = false
 	
 func _process(delta: float) -> void:
+	if not boss:
+		fast_ring = -1
 	difficulty_ramp += delta
 	if Engine.time_scale != 1.0:
 		engine_time_scale_vel *= pow(2.0, delta)
