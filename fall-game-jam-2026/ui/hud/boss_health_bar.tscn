@@ -12,7 +12,7 @@ modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_ygicf")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=615861047]
-self_modulate = Color(0.80784315, 0.6509804, 0.36078432, 1)
+self_modulate = Color(0.33333334, 0.3529412, 0.7882353, 1)
 clip_children = 2
 texture = ExtResource("1_tmk7q")
 
