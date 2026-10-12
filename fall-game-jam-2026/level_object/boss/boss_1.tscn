@@ -1,17 +1,16 @@
 [gd_scene format=3 uid="uid://3tbia1bfkjgc"]
 
-[ext_resource type="Texture2D" uid="uid://sck514dd2wtr" path="res://assets/art/bosses/red_planet.png" id="1_nv17a"]
+[ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="1_nv17a"]
 [ext_resource type="Script" uid="uid://dvtpjefhsd4gt" path="res://level_object/boss/boss_1.gd" id="2_k0smk"]
 [ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/boss/base_boss.tscn" id="3_nv17a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gwyr"]
-size = Vector2(68, 68)
+size = Vector2(110, 110)
 
 [node name="Boss1" type="Sprite2D" unique_id=494127020]
 texture = ExtResource("1_nv17a")
 script = ExtResource("2_k0smk")
 
 [node name="BaseBoss" parent="." unique_id=1699236756 instance=ExtResource("3_nv17a")]
-health = 5
 hitbox = SubResource("RectangleShape2D_1gwyr")
 random_rotate = true

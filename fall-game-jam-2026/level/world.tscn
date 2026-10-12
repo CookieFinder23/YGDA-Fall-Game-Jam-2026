@@ -9,6 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
 
+[sub_resource type="Gradient" id="Gradient_gsqr6"]
+colors = PackedColorArray(0.9764706, 0.9137255, 0.5568628, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g6h8k"]
+gradient = SubResource("Gradient_gsqr6")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsqr6"]
 size = Vector2(80, 80)
 
@@ -96,11 +107,18 @@ wait_time = 0.00999999999999999
 autostart = true
 
 [node name="HealerCooldown" type="Timer" parent="." unique_id=1720765178]
-wait_time = 20.0
+wait_time = 15.0
 one_shot = true
 autostart = true
 
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=838917068]
+position = Vector2(960, 540)
+scale = Vector2(6.1250005, 5.7187505)
+energy = 0.9
+texture = SubResource("GradientTexture2D_g6h8k")
+
 [node name="Sun" type="Sprite2D" parent="." unique_id=1756660856]
+light_mask = 0
 z_index = 99
 position = Vector2(960, 540)
 texture = ExtResource("7_drvcl")
@@ -111,11 +129,16 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sun/Area2D" unique_id=1597586684]
+visible = false
 shape = SubResource("RectangleShape2D_gsqr6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
+offset_left = 9.0
+offset_top = -44.0
+offset_right = 9.0
+offset_bottom = -44.0
 
 [node name="BossCooldown" type="Timer" parent="." unique_id=825319407]
 wait_time = 5.0

@@ -168,6 +168,8 @@ func summon() -> void:
 				min_ring_diffs[orb.ring_num] = diff
 		min_ring_diffs[0] -= 1
 		min_ring_diffs[1] -= 0.5
+		if $Orbiting/Player/OrbitingObject.ring_num != 2:
+			min_ring_diffs[$Orbiting/Player/OrbitingObject.ring_num] = 0
 		var max_ring_diff = 0
 		for ring in min_ring_diffs:
 			if min_ring_diffs[ring] > max_ring_diff:
@@ -200,7 +202,7 @@ func summon() -> void:
 		return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max((len($Orbiting.get_children()) / 2.0) - max(GameState.difficulty_ramp / 15.0, 1), 0.25) + randf_range(0.25, 0.75)
+	$SummonCooldown.wait_time = max((len($Orbiting.get_children())) - max(GameState.difficulty_ramp / 15.0, 1), 0.5) + randf_range(0.25, 0.75)
 	summon()
 
 func _on_screenshake_cooldown_timeout() -> void:
