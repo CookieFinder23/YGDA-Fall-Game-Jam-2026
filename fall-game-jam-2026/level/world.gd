@@ -241,8 +241,8 @@ func summon(force_enemy=null) -> void:
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
 		
-		if GameState.healer_storage:
-			GameState.healer_storage = false
+		if GameState.healer_storage > 0:
+			GameState.healer_storage -= 1
 			enemy = HEALER
 		elif GameState.boss_cooldown < 0:
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
@@ -262,11 +262,11 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, 4.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.0, 0.5)
+	$SummonCooldown.wait_time = max(0, 5.0 - max(GameState.difficulty_ramp / 20.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.5, 1.0)
 	var enemy = null
 	if GameState.tutorial:
-		if GameState.healer_storage:
-			GameState.healer_storage = false
+		if GameState.healer_storage > 0:
+			GameState.healer_storage -= 1
 			enemy = HEALER
 		elif len($Orbiting.get_children()) == 1:
 			enemy = BOSS_1

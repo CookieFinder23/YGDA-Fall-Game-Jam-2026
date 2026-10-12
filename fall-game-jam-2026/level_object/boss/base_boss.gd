@@ -6,7 +6,7 @@ class_name BaseBoss
 @export var random_rotate: bool
 func _ready() -> void:
 	@warning_ignore("integer_division")
-	$BaseEnemy.health = health + GameState.bosses_killed / 3.0
+	$BaseEnemy.health = health + GameState.bosses_killed / 3
 	$BaseEnemy.hitbox = hitbox
 	$BaseEnemy.random_rotate = random_rotate
 	$BaseEnemy.speed = speed
@@ -14,11 +14,11 @@ func _ready() -> void:
 	GameState.boss = get_parent()
 
 func _physics_process(_delta: float) -> void:
-	GameState.boss_cooldown = max(7.0 - GameState.bosses_killed / 2.0, 2.0)
+	GameState.boss_cooldown = max(7.0 - GameState.bosses_killed / 3.0, 3.0)
 
 func _on_base_enemy_damaged() -> void:
-	if $BaseEnemy.health == health:
-		GameState.healer_storage = true
+	if $BaseEnemy.health % health == 0:
+		GameState.healer_storage += 1
 	if $BaseEnemy/OrbitingObject.ring_num == 0:
 		$BaseEnemy/OrbitingObject.between_ring_progress += 0.01
 	elif $BaseEnemy/OrbitingObject.ring_num == GameState.RING_AMOUNT - 1:

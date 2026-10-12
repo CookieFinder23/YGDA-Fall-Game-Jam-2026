@@ -253,7 +253,6 @@ shape = SubResource("RectangleShape2D_0es7p")
 debug_color = Color(0, 0.6, 0.19215687, 0.41960785)
 
 [node name="IFrames" type="Timer" parent="." unique_id=294759845]
-wait_time = 0.5
 one_shot = true
 
 [node name="DeathSoundTiming" type="Timer" parent="." unique_id=561757040]
