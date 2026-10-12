@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cla58ylnpobkf" path="res://assets/art/rings/Big ring.PNG" id="5_gsqr6"]
 [ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
+[ext_resource type="Script" uid="uid://b62le00txywv6" path="res://level/sun.gd" id="8_njrq0"]
 [ext_resource type="AudioStream" uid="uid://d180qeppyb835" path="res://assets/audio/Gameplay_Music__Team_Sake.mp3" id="9_drvcl"]
 [ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="10_xd8br"]
 
@@ -133,7 +134,9 @@ texture = SubResource("GradientTexture2D_g6h8k")
 light_mask = 0
 z_index = 99
 position = Vector2(960, 540)
+scale = Vector2(1.05, 1.05)
 texture = ExtResource("7_drvcl")
+script = ExtResource("8_njrq0")
 
 [node name="Area2D" type="Area2D" parent="Sun" unique_id=256540708]
 collision_layer = 4

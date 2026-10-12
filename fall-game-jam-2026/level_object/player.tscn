@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cnxxuul21b7f2" path="res://level_object/player.gd" id="2_033we"]
 [ext_resource type="Texture2D" uid="uid://cmv5g03oy50kt" path="res://assets/art/Rocket gettinghit animation .png" id="2_vghlg"]
 [ext_resource type="PackedScene" uid="uid://bbtwd501taadk" path="res://level_object/orbiting_object.tscn" id="3_vghlg"]
+[ext_resource type="Texture2D" uid="uid://rklvjbd0wrti" path="res://assets/art/rocket_particle.png" id="6_cg3vv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_own1c"]
 atlas = ExtResource("1_vghlg")
@@ -230,6 +231,9 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_cg3vv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
 size = Vector2(64, 115)
 
@@ -241,6 +245,44 @@ frame = 17
 frame_progress = 0.6856508
 flip_h = true
 script = ExtResource("2_033we")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=288920128]
+visible = false
+position = Vector2(0, 50)
+amount = 40
+texture = ExtResource("6_cg3vv")
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+linear_accel_min = -0.1
+scale_amount_max = 2.0
+color = Color(0.36862746, 0.6313726, 0.5529412, 1)
+color_ramp = SubResource("Gradient_cg3vv")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=275899254]
+visible = false
+position = Vector2(0, 50)
+amount = 40
+texture = ExtResource("6_cg3vv")
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+linear_accel_min = -0.1
+scale_amount_max = 2.0
+color = Color(0.5254902, 0.22352941, 0.3372549, 1)
+color_ramp = SubResource("Gradient_cg3vv")
 
 [node name="OrbitingObject" parent="." unique_id=1257513429 instance=ExtResource("3_vghlg")]
 

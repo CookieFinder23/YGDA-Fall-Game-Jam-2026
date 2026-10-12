@@ -58,12 +58,24 @@ func _physics_process(delta: float) -> void:
 	var movement = SPEED * speed_mult * direction * delta
 	if $OrbitingObject.ring_num == GameState.slow_ring:
 		movement *= 0.5
+		$CPUParticles2D2.visible = true
+		$CPUParticles2D2.emitting = true
+	else:
+		$CPUParticles2D2.emitting = false
+
+	if $OrbitingObject.ring_num == GameState.fast_ring:
+		$CPUParticles2D.visible = true
+		$CPUParticles2D.emitting = true
+	else:
+		$CPUParticles2D.emitting = false
 	$OrbitingObject.move(movement)
 	if not $Hitbox.has_overlapping_areas():
 		can_collide = true
 	
 	# if confused about this line read https://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
 	speed_mult = lerp(speed_mult, 1.0, 1 - pow(BOUNCE_SMOOTH, delta))
+	$CPUParticles2D.direction.y = direction
+	$CPUParticles2D.position.y = direction * 50
 
 func _input(event: InputEvent) -> void:
 	if dead or $OrbitingObject.between_ring_progress:
