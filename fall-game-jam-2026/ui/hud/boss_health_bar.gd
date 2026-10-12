@@ -2,7 +2,8 @@ extends Node2D
 
 func _process(delta: float) -> void:
 	if GameState.boss:
-		set_health(GameState.boss.find_child("BaseEnemy").health, GameState.boss.find_child("BaseBoss").health + GameState.bosses_killed)
+		@warning_ignore("integer_division")
+		set_health(GameState.boss.find_child("BaseEnemy").health, GameState.boss.find_child("BaseBoss").health + GameState.bosses_killed / 2)
 	else:
 		set_health(0, 100)
 

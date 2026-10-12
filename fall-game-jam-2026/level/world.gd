@@ -22,10 +22,6 @@ var rotate_offset = 0
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
 
-func _ready() -> void:
-	if GameState.tutorial:
-		GameState.healer_cooldown = 0
-
 func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
@@ -230,7 +226,8 @@ func summon(force_enemy=null) -> void:
 	if force_enemy:
 		enemy = force_enemy
 	else:
-		if GameState.healer_cooldown < 0 and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
+		if GameState.healer_storage:
+			GameState.healer_storage = false
 			enemy = HEALER
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
@@ -253,17 +250,20 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 1.5 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.25, 0.75)
+	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 2.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.5, 1.0)
 	var enemy = null
 	if GameState.tutorial:
-		if GameState.healer_cooldown < 0 and $Orbiting/Player.health < 5:
+		if GameState.healer_storage:
+			GameState.healer_storage = false
 			enemy = HEALER
-		elif $Orbiting/Player.health < 5:
-			return
-		elif not GameState.boss:
+		elif len($Orbiting.get_children()) == 1:
 			enemy = BOSS_1
 			last_boss = BOSS_1
-		elif GameState.boss.find_child("BaseEnemy").health > 3:
+		elif not GameState.boss:
+			return
+		elif GameState.boss.find_child("BaseEnemy").health > 2:
 			enemy = ASTEROID
 			last_enemy = ASTEROID
+		else:
+			$SummonCooldown.wait_time += 1
 	summon(enemy)

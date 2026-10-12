@@ -12,7 +12,7 @@ var boss: Node
 var bosses_killed: int
 var engine_time_scale_vel: float = 0.0
 var perm_difficulty_ramp = 0.0
-var healer_cooldown: float = 10.0
+var healer_storage: bool = false
 var tutorial: bool = true
 var boss_cooldown: float
 func _ready() -> void:
@@ -24,7 +24,6 @@ func reset() -> void:
 	difficulty_ramp = 0.0
 	perm_difficulty_ramp = 0.0
 	bosses_killed = 0
-	healer_cooldown = 6.0
 	boss_cooldown = 5.0
 	Engine.time_scale = 1.0
 	
@@ -36,7 +35,6 @@ func _process(delta: float) -> void:
 		difficulty_ramp += delta
 		perm_difficulty_ramp += delta
 	boss_cooldown -= delta
-	healer_cooldown -= delta
 	if Engine.time_scale != 1.0:
 		engine_time_scale_vel *= pow(2.0, delta)
 		Engine.time_scale = move_toward(Engine.time_scale, 1.0, engine_time_scale_vel * 0.01)

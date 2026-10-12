@@ -8,8 +8,11 @@ var dead = false
 const MAX_HEALTH = 5
 var health: int = 5:
 	set(new_health):
+		new_health = clamp(new_health, 0, MAX_HEALTH)
 		if dead or new_health == health or not $IFrames.is_stopped():
 			return
+		if new_health > health:
+			get_parent().get_parent().mod_target = Color(0.1, 1.0, 0.1, 0.25)
 		if new_health <= 0:
 			get_parent().get_parent().screenshake += 15
 			SFX.play(SFX.Id.TAKE_DAMAGE)
@@ -46,10 +49,9 @@ func _ready() -> void:
 	$OrbitingObject.ring_pos = PI
 	$OrbitingObject.ring_num = 1
 	if GameState.tutorial:
-		health -= 1
+		GameState.healer_storage = true
+		health -= 2
 func _physics_process(delta: float) -> void:
-	if health >= MAX_HEALTH:
-		GameState.healer_cooldown = 6.0
 	modulate = modulate.lerp(Color(1, 1, 1), 1 - pow(0.1, delta))
 	if dead:
 		return
