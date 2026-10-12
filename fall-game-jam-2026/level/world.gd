@@ -67,15 +67,15 @@ func _physics_process(delta: float) -> void:
 	for child in $Orbiting.get_children():
 		position_orbiting_object(child)
 		if child is Sprite2D or child is AnimatedSprite2D:
-			child.modulate.v = 1
-			child.modulate.v /= 10
-			if child.modulate.v < 1:
-				child.modulate.v = 1
+			child.self_modulate.v = 1
+			child.self_modulate.v /= 10
+			if child.self_modulate.v < 1:
+				child.self_modulate.v = 1
 		if child.get_parent() is Sprite2D or child.get_parent() is AnimatedSprite2D:
-			child.get_parent().modulate.v = 1
-			child.get_parent().modulate.v /= 10
-			if child.get_parent().modulate.v < 1:
-				child.get_parent().modulate.v = 1
+			child.get_parent().self_modulate.v = 1
+			child.get_parent().self_modulate.v /= 10
+			if child.get_parent().self_modulate.v < 1:
+				child.get_parent().self_modulate.v = 1
 	if $Orbiting/Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Orbiting/Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		bounce($Orbiting/Player, base_enemy, 2)
@@ -108,16 +108,16 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 		screenshake = 10
 		obj2.health -= 1
 		if obj2.get_parent() is Sprite2D or obj2.get_parent() is AnimatedSprite2D:
-			obj2.get_parent().modulate.v = 100000
+			obj2.get_parent().self_modulate.v = 100000
 		if obj2.get_parent().get_parent() is Sprite2D or obj2.get_parent().get_parent() is AnimatedSprite2D:
-			obj2.get_parent().get_parent().modulate.v = 100000
+			obj2.get_parent().get_parent().self_modulate.v = 100000
 	elif is_instance_of(obj2, Player):
 		screenshake = 10
 		obj1.health -= 1
 		if obj1.get_parent() is Sprite2D or obj1.get_parent() is AnimatedSprite2D:
-			obj1.get_parent().modulate.v = 100000
+			obj1.get_parent().self_modulate.v = 100000
 		if obj1.get_parent().get_parent() is Sprite2D or obj1.get_parent().get_parent() is AnimatedSprite2D:
-			obj1.get_parent().get_parent().modulate.v = 100000
+			obj1.get_parent().get_parent().self_modulate.v = 100000
 	else:
 		SFX.play(SFX.Id.ENEMY_BOUNCE)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed

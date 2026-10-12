@@ -28,18 +28,4 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Out" unique_id=875536601]
 shape = SubResource("RectangleShape2D_emj4h")
 
-[node name="Top" type="Area2D" parent="." unique_id=455599134]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=543743171]
-shape = SubResource("RectangleShape2D_emj4h")
-
-[node name="Bottom" type="Area2D" parent="." unique_id=1452550281]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" unique_id=949292848]
-shape = SubResource("RectangleShape2D_emj4h")
-
 [connection signal="area_entered" from="Out" to="." method="_on_out_area_entered"]
-[connection signal="area_entered" from="Top" to="." method="_on_out_area_entered"]
-[connection signal="area_entered" from="Bottom" to="." method="_on_out_area_entered"]

@@ -27,7 +27,5 @@ func _physics_process(_delta: float) -> void:
 	$Line2D.polygon = shape_points
 	$Line2D.rotation = rotation * -1
 	$Out.global_position = $Line2D.global_position + $Line2D.polygon[2] * 0.8
-	$Top.global_position = $Line2D.global_position + $Line2D.polygon[0] * 0.8
-	$Bottom.global_position = $Line2D.global_position + $Line2D.polygon[1] * 0.8
 func _on_out_area_entered(_area: Area2D) -> void:
 	GameState.player.health -= 1
