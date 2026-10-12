@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://co1vshum3px2d"]
 
-[ext_resource type="Texture2D" uid="uid://d1j3bgxpschrt" path="res://assets/art/bosses/moon_boss2.png" id="1_tf6p2"]
+[ext_resource type="Texture2D" uid="uid://drdemojtu1hwy" path="res://assets/art/bosses/Moon boss but transparent.png" id="1_tf6p2"]
 [ext_resource type="Script" uid="uid://cjn4e4tpu8d2v" path="res://level_object/boss/boss_4.gd" id="2_tf6p2"]
 [ext_resource type="PackedScene" uid="uid://t3hntmvrnwyg" path="res://level_object/boss/base_boss.tscn" id="3_u4up5"]
 
