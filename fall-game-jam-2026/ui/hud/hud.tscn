@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://chdm8ysjb6rtu" path="res://ui/hud/hud.gd" id="1_xmswo"]
 [ext_resource type="PackedScene" uid="uid://dvarorggar2ib" path="res://ui/hud/health_bar.tscn" id="2_4d6w6"]
 [ext_resource type="Texture2D" uid="uid://sck514dd2wtr" path="res://assets/art/bosses/red_planet.png" id="3_e0nub"]
+[ext_resource type="Texture2D" uid="uid://b8y3uhxlj4txr" path="res://assets/art/gui/ui_bg.png" id="4_gfles"]
 [ext_resource type="Texture2D" uid="uid://exc8g4fsr5ho" path="res://assets/art/bosses/Boss 2.PNG" id="4_imuuq"]
 [ext_resource type="PackedScene" uid="uid://fl47j4f64oki" path="res://ui/hud/bosses_killed.tscn" id="4_w75iv"]
+[ext_resource type="Texture2D" uid="uid://d2cckb5k3m04k" path="res://assets/art/gui/ui_boss_hp.png" id="5_aixkq"]
 [ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="5_kwc50"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
@@ -49,28 +51,35 @@ script = ExtResource("1_xmswo")
 [node name="HealthBar" parent="." unique_id=436221617 instance=ExtResource("2_4d6w6")]
 position = Vector2(170, 359)
 
-[node name="BossHealth" type="Label" parent="." unique_id=1256404677]
-layout_mode = 0
-offset_left = 1704.0
-offset_top = 3.0
-offset_right = 1913.0
-offset_bottom = 48.0
-text = "Boss Health:"
-label_settings = SubResource("LabelSettings_0es7p")
-
 [node name="CurrentBoss" type="Label" parent="." unique_id=173684482]
 layout_mode = 0
-offset_left = 1668.0
-offset_top = 471.0
-offset_right = 1877.0
-offset_bottom = 516.0
+offset_left = 1660.0
+offset_top = 502.5
+offset_right = 1869.0
+offset_bottom = 547.5
 text = "Current boss:"
 label_settings = SubResource("LabelSettings_0es7p")
 
+[node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
+position = Vector2(101, 101)
+
+[node name="UiBg" type="Sprite2D" parent="." unique_id=147533510]
+position = Vector2(1701, 317.5)
+texture = ExtResource("4_gfles")
+
+[node name="UiBossHp" type="Sprite2D" parent="." unique_id=1337454324]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1720, 436.5)
+texture = ExtResource("5_aixkq")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1394958830]
-position = Vector2(1760, 576)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1724, 233.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0es7p")
 animation = &"Boss3"
 
-[node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
-position = Vector2(101, 101)
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1294267246]
+layout_mode = 0
+offset_right = 1011.0
+offset_bottom = 27.0

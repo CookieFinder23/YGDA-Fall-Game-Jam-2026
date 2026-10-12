@@ -96,7 +96,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="HealerCooldown" type="Timer" parent="." unique_id=1720765178]
-wait_time = 10.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 
@@ -116,6 +116,11 @@ shape = SubResource("RectangleShape2D_gsqr6")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
+
+[node name="BossCooldown" type="Timer" parent="." unique_id=825319407]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]
 [connection signal="timeout" from="ScreenshakeCooldown" to="." method="_on_screenshake_cooldown_timeout"]

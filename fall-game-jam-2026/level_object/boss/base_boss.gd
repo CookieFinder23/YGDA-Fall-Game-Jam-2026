@@ -1,6 +1,6 @@
 extends Node2D
 class_name BaseBoss
-@export var health: int = 3
+@export var health: int = 10
 @export var speed: float = 0.5
 @export var hitbox: RectangleShape2D
 @export var random_rotate: bool
