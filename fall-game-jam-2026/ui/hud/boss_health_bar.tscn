@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://brpmxgnu6xnb5"]
+
+[ext_resource type="Texture2D" uid="uid://buv8osdn7um2h" path="res://assets/art/gui/ui_boss_hp_alpha.png" id="1_tmk7q"]
+[ext_resource type="Script" uid="uid://c06klxhkjw7ja" path="res://ui/hud/boss_health_bar.gd" id="1_ygicf"]
+[ext_resource type="Texture2D" uid="uid://bquw7jiryj6w1" path="res://assets/art/gui/ui_boss_hp_outsides.png" id="2_3vg63"]
+[ext_resource type="Texture2D" uid="uid://5hx063pto5up" path="res://assets/art/gui/healthbar/rocket_healthbar_wave_white.png" id="3_dielp"]
+[ext_resource type="Script" uid="uid://c0rioo4vdniv8" path="res://ui/hud/boss_health_bar_wave.gd" id="4_sr1a3"]
+[ext_resource type="Texture2D" uid="uid://ki6fckmoucwc" path="res://assets/art/gui/healthbar/rocket_healthbar_wave_outline_white_thick.png" id="5_dielp"]
+
+[node name="BossHealthBar" type="Node2D" unique_id=1212011910]
+script = ExtResource("1_ygicf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=615861047]
+self_modulate = Color(0.80784315, 0.6509804, 0.36078432, 1)
+clip_children = 2
+texture = ExtResource("1_tmk7q")
+
+[node name="Node2D" type="Node2D" parent="Sprite2D2" unique_id=576870684]
+position = Vector2(315, 0)
+rotation = 1.2217305
+scale = Vector2(0.5, 0.4)
+
+[node name="BossHealthBarWave" type="Sprite2D" parent="Sprite2D2/Node2D" unique_id=259396078]
+self_modulate = Color(0.9764706, 0.9137255, 0.5568628, 1)
+position = Vector2(79.58353, -543.7693)
+texture = ExtResource("3_dielp")
+script = ExtResource("4_sr1a3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D2/Node2D/BossHealthBarWave" unique_id=440735398]
+modulate = Color(0.9490196, 0.8156863, 0.38431373, 1)
+texture = ExtResource("5_dielp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1652820254]
+texture = ExtResource("2_3vg63")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=876688900]
+position = Vector2(752, -57)
+zoom = Vector2(5, 5)

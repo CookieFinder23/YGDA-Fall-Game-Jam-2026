@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fl47j4f64oki" path="res://ui/hud/bosses_killed.tscn" id="4_w75iv"]
 [ext_resource type="Texture2D" uid="uid://d2cckb5k3m04k" path="res://assets/art/gui/ui_boss_hp.png" id="5_aixkq"]
 [ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="5_kwc50"]
+[ext_resource type="PackedScene" uid="uid://brpmxgnu6xnb5" path="res://ui/hud/boss_health_bar.tscn" id="6_cxhb7"]
 [ext_resource type="Texture2D" uid="uid://bclkq4bauvv6g" path="res://assets/art/bosses/moon_boss.png" id="9_aixkq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
@@ -77,9 +78,12 @@ position = Vector2(1701, 317.5)
 texture = ExtResource("4_gfles")
 
 [node name="UiBossHp" type="Sprite2D" parent="." unique_id=1337454324]
-modulate = Color(1, 1, 1, 0)
+visible = false
 position = Vector2(1720, 436.5)
 texture = ExtResource("5_aixkq")
+
+[node name="BossHealthBar" parent="." unique_id=1212011910 instance=ExtResource("6_cxhb7")]
+position = Vector2(978, 504)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1394958830]
 modulate = Color(1, 1, 1, 0)
