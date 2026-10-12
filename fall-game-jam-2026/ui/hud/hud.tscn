@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b8y3uhxlj4txr" path="res://assets/art/gui/ui_bg.png" id="4_gfles"]
 [ext_resource type="Texture2D" uid="uid://exc8g4fsr5ho" path="res://assets/art/bosses/Boss 2.PNG" id="4_imuuq"]
 [ext_resource type="PackedScene" uid="uid://fl47j4f64oki" path="res://ui/hud/bosses_killed.tscn" id="4_w75iv"]
+[ext_resource type="Texture2D" uid="uid://knyptm67gd8l" path="res://assets/art/gui/ui_bg_new.png" id="5_5uuaq"]
 [ext_resource type="Texture2D" uid="uid://d2cckb5k3m04k" path="res://assets/art/gui/ui_boss_hp.png" id="5_aixkq"]
 [ext_resource type="Texture2D" uid="uid://bgfqq5mjqnflg" path="res://assets/art/bosses/Green planet .PNG" id="5_kwc50"]
 [ext_resource type="PackedScene" uid="uid://brpmxgnu6xnb5" path="res://ui/hud/boss_health_bar.tscn" id="6_cxhb7"]
@@ -74,10 +75,15 @@ label_settings = SubResource("LabelSettings_0es7p")
 [node name="BossesKilled" parent="." unique_id=145743401 instance=ExtResource("4_w75iv")]
 position = Vector2(101, 101)
 
-[node name="UiBg" type="Sprite2D" parent="." unique_id=147533510]
-modulate = Color(1, 1, 1, 0)
+[node name="UiBg2" type="Sprite2D" parent="." unique_id=1646998247]
+visible = false
 position = Vector2(1701, 317.5)
 texture = ExtResource("4_gfles")
+
+[node name="UiBg" type="Sprite2D" parent="." unique_id=147533510]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(980, 307.5)
+texture = ExtResource("5_5uuaq")
 
 [node name="UiBossHp" type="Sprite2D" parent="." unique_id=1337454324]
 visible = false

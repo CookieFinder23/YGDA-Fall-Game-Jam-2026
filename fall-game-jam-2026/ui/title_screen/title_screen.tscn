@@ -75,22 +75,23 @@ script = ExtResource("7_gwpbi")
 layout_mode = 0
 offset_top = 1080.0
 offset_right = 1920.0
-offset_bottom = 2120.0
+offset_bottom = 2160.0
 
 [node name="BackButton" type="Button" parent="Credits" unique_id=137102216]
 layout_mode = 0
-offset_left = 250.0
-offset_top = 490.0
-offset_right = 416.0
-offset_bottom = 558.0
+offset_left = 74.0
+offset_top = 500.0
+offset_right = 240.0
+offset_bottom = 568.0
 theme_override_fonts/font = ExtResource("3_72buf")
 text = "Back"
 
 [node name="Label" type="Label" parent="Credits" unique_id=474658897]
 layout_mode = 0
-offset_top = 164.0
-offset_right = 960.0
-offset_bottom = 328.0
+offset_left = 75.0
+offset_top = 91.0
+offset_right = 1215.0
+offset_bottom = 396.0
 text = "Team Sake
 Programming: CookieFinder23, drinkmelonwater, Kyle, Eva
 Art: InfinitePrograms, Eva, drinkmelonwater, S
@@ -108,5 +109,5 @@ autoplay = true
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
