@@ -16,7 +16,7 @@ font_size = 32
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_e0nub")
+"texture": ExtResource("5_kwc50")
 }],
 "loop": 1,
 "name": &"Boss1",
@@ -32,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_kwc50")
+"texture": ExtResource("3_e0nub")
 }],
 "loop": 1,
 "name": &"Boss3",
@@ -77,7 +77,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(1724, 233.5)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0es7p")
-animation = &"Boss3"
+animation = &"Boss1"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1294267246]
 layout_mode = 0
