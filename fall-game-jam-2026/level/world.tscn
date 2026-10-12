@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
 [ext_resource type="AudioStream" uid="uid://d180qeppyb835" path="res://assets/audio/Gameplay_Music__Team_Sake.mp3" id="9_drvcl"]
+[ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="10_xd8br"]
 
 [sub_resource type="Gradient" id="Gradient_gsqr6"]
 colors = PackedColorArray(0.9764706, 0.9137255, 0.5568628, 1, 0, 0, 0, 1)
@@ -33,6 +34,10 @@ width = 1920
 height = 1080
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
+font = ExtResource("10_xd8br")
+font_size = 32
 
 [node name="World" type="Node2D" unique_id=267205359]
 script = ExtResource("1_sw3g3")
@@ -154,6 +159,14 @@ z_index = 1
 position = Vector2(960, 540)
 scale = Vector2(1.5, 1.5)
 texture = SubResource("GradientTexture2D_0es7p")
+
+[node name="Label" type="Label" parent="." unique_id=1107212802]
+z_index = 1
+offset_left = 1090.0
+offset_top = 1015.0
+offset_right = 1738.0
+offset_bottom = 1048.0
+label_settings = SubResource("LabelSettings_0es7p")
 
 [connection signal="timeout" from="SummonCooldown" to="." method="_on_summon_cooldown_timeout"]
 [connection signal="timeout" from="ScreenshakeCooldown" to="." method="_on_screenshake_cooldown_timeout"]

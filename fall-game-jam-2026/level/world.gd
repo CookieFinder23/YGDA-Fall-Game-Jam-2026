@@ -24,6 +24,10 @@ var rotate_offset = 0
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
 
+func _ready() -> void:
+	if GameState.tutorial:
+		$Label.text = "Move into objects to attack them."
+
 func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
@@ -258,18 +262,21 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, 3.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.0, 0.5)
+	$SummonCooldown.wait_time = max(0, 4.0 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.0, 0.5)
 	var enemy = null
 	if GameState.tutorial:
 		if GameState.healer_storage:
 			GameState.healer_storage = false
-			enemy = HEALER
+			enemy = COMET
 		elif len($Orbiting.get_children()) == 1:
 			enemy = BOSS_1
 			last_boss = BOSS_1
+			$Label.text = "Destroy as many planets as you can."
 		elif not GameState.boss:
 			return
 		elif GameState.boss.find_child("BaseEnemy").health > 2:
 			enemy = ASTEROID
 			last_enemy = ASTEROID
+	else:
+		$Label.text = ""
 	summon(enemy)
