@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dambywt8fqa8d" path="res://ui/title_screen/title_screen.gd" id="1_4kwlo"]
 [ext_resource type="Texture2D" uid="uid://d1q0ix1anu2na" path="res://assets/art/titlescreen.png" id="2_72buf"]
+[ext_resource type="Script" uid="uid://d1ku1q4hej5fc" path="res://ui/title_screen/background.gd" id="3_1djn3"]
 [ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="3_72buf"]
+[ext_resource type="Texture2D" uid="uid://droxv6x77ueql" path="res://assets/art/titlescreen_bg_front.png" id="4_gwpbi"]
 [ext_resource type="AudioStream" uid="uid://c7ens4swols1t" path="res://assets/audio/Main_Menu__Team_Sake.mp3" id="4_rhiq2"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0es7p"]
-size = Vector2(600, 200)
+[ext_resource type="Texture2D" uid="uid://b0ucg76pv08b" path="res://assets/art/titlescreen_bg_back.png" id="5_dk1uc"]
+[ext_resource type="Texture2D" uid="uid://qg5ped7s6x73" path="res://assets/art/gui/titlescreen_start.png" id="6_c8lgs"]
+[ext_resource type="Texture2D" uid="uid://dfuk1rskm2pov" path="res://assets/art/gui/titlescreen_credits.png" id="7_533ah"]
+[ext_resource type="Script" uid="uid://bypua2wq10cbk" path="res://ui/title_screen/start_button.gd" id="7_gwpbi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
 line_spacing = 10.0
@@ -23,8 +26,18 @@ grow_vertical = 2
 script = ExtResource("1_4kwlo")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1056960102]
+clip_children = 1
 position = Vector2(960, 540)
 texture = ExtResource("2_72buf")
+script = ExtResource("3_1djn3")
+
+[node name="BackLayer" type="Sprite2D" parent="Background" unique_id=1388374814]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("5_dk1uc")
+
+[node name="FrontLayer" type="Sprite2D" parent="Background" unique_id=1931264554]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_gwpbi")
 
 [node name="StartButton" type="TextureButton" parent="." unique_id=1294178730]
 layout_mode = 1
@@ -33,13 +46,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -672.0
-offset_top = -133.0
-offset_right = -72.0
-offset_bottom = 67.0
+offset_left = -639.0
+offset_top = -167.0
+offset_right = -19.0
+offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("PlaceholderTexture2D_0es7p")
+texture_normal = ExtResource("6_c8lgs")
+script = ExtResource("7_gwpbi")
 
 [node name="CreditsButton" type="TextureButton" parent="." unique_id=1976799067]
 layout_mode = 1
@@ -48,13 +62,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -672.0
-offset_top = 166.0
-offset_right = -72.0
-offset_bottom = 366.0
+offset_left = -660.0
+offset_top = 116.0
+offset_right = -40.0
+offset_bottom = 416.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("PlaceholderTexture2D_0es7p")
+texture_normal = ExtResource("7_533ah")
+script = ExtResource("7_gwpbi")
 
 [node name="Credits" type="Panel" parent="." unique_id=1283357619]
 layout_mode = 0
@@ -92,5 +107,5 @@ autoplay = true
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
