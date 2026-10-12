@@ -47,8 +47,14 @@ func _physics_process(_delta: float) -> void:
 		position_orbiting_object(child)
 		if child is Sprite2D or child is AnimatedSprite2D:
 			child.modulate.v = 1
+			child.modulate.v /= 10
+			if child.modulate.v < 1:
+				child.modulate.v = 1
 		if child.get_parent() is Sprite2D or child.get_parent() is AnimatedSprite2D:
 			child.get_parent().modulate.v = 1
+			child.get_parent().modulate.v /= 10
+			if child.get_parent().modulate.v < 1:
+				child.get_parent().modulate.v = 1
 	if $Orbiting/Player/Hitbox.has_overlapping_areas():
 		var base_enemy: Node = $Orbiting/Player/Hitbox.get_overlapping_areas()[0].get_parent()
 		bounce($Orbiting/Player, base_enemy, 2)
@@ -199,6 +205,6 @@ func _on_summon_cooldown_timeout() -> void:
 
 func _on_screenshake_cooldown_timeout() -> void:
 	$Camera2D.offset = Vector2(randf_range(screenshake * -1, screenshake), randf_range(screenshake * -1, screenshake))
-	screenshake /= 2.0
+	screenshake /= 1.2
 	if screenshake < 0.1:
 		screenshake = 0
