@@ -188,7 +188,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ojp32")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 16.0
 }, {
@@ -256,4 +256,9 @@ debug_color = Color(0, 0.6, 0.19215687, 0.41960785)
 wait_time = 0.5
 one_shot = true
 
+[node name="DeathSoundTiming" type="Timer" parent="." unique_id=561757040]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="timeout" from="DeathSoundTiming" to="." method="_on_death_sound_timing_timeout"]

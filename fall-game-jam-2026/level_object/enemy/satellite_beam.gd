@@ -25,6 +25,6 @@ func _process(_delta: float) -> void:
 	if $AnimatedSprite2D.flip_v:
 		$CollisionShape2D.position.y *= -1
 
-
-func _on_ready_timeout() -> void:
+func _on_cooldown_timeout() -> void:
+	$Cooldown.wait_time = randf_range(2.3, 2.7)
 	$AnimatedSprite2D.play("default")

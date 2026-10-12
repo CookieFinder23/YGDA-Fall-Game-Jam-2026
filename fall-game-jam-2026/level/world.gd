@@ -10,6 +10,7 @@ const BOSS_3 = preload("uid://bcc8fl3p6k20b")
 const BOSS_4 = preload("uid://co1vshum3px2d")
 
 var last_boss
+var last_enemy
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 const SLOW_RING_COLOR = Color(2.884, 1.169, 0.841, 1.0)
 var player_vars = 0
@@ -18,6 +19,11 @@ var rotate_offset = 0
 var recent_collisions = [] # [[obj1, obj2], [obj1, obj2]]
 var screenshake = 0
 var prep_cooldown: bool = false
+
+func _ready() -> void:
+	if GameState.tutorial:
+		GameState.healer_cooldown = 0
+
 func get_ring_radius(ring_num: float) -> float:
 	return GameState.RING_BASE + GameState.RING_SLOPE * ring_num
 
@@ -170,7 +176,7 @@ func position_orbiting_object(obj: Node) -> void:
 func ring_coords_to_pos(ring_num: float, ring_pos: float):
 	return GameState.CENTER + Vector2(get_ring_radius(ring_num)*cos(ring_pos), get_ring_radius(ring_num)*sin(ring_pos))
 
-func summon() -> void:
+func summon(force_enemy=null) -> void:
 	var spawn_rad = fmod(($Orbiting/Player/OrbitingObject.ring_pos + deg_to_rad(180)), 2.0 * PI)
 	var min_ring_diffs = {
 		0: 9,
@@ -203,14 +209,19 @@ func summon() -> void:
 			viable.append(ring)
 	var spawn_ring = viable.pick_random()
 	var enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
-	if not GameState.active_healer and GameState.healer_cooldown < 0 and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
-		enemy = HEALER
-	if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
-		enemy = [BOSS_1, BOSS_2, BOSS_3].pick_random()
-		while enemy == last_boss:
+	if force_enemy:
+		enemy = force_enemy
+	else:
+		if GameState.healer_cooldown < 0 and randi_range(0, 1) and $Orbiting/Player.health < $Orbiting/Player.MAX_HEALTH:
+			enemy = HEALER
+		while enemy == last_enemy:
+			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+		if not prep_cooldown and not GameState.boss and $BossCooldown.is_stopped():
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
-		last_boss = enemy
-		prep_cooldown = true
+			while enemy == last_boss:
+				enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
+			last_boss = enemy
+			prep_cooldown = true
 	var to_spawn = enemy.instantiate()
 	var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 	to_spawn_orb.ring_num = spawn_ring
@@ -223,7 +234,19 @@ func summon() -> void:
 
 func _on_summon_cooldown_timeout() -> void:
 	$SummonCooldown.wait_time = max(0, len($Orbiting.get_children()) / 1.5 - max(GameState.difficulty_ramp / 10.0, 2) - GameState.bosses_killed / 2.0) + randf_range(0.25, 0.75)
-	summon()
+	var enemy = null
+	if GameState.tutorial:
+		if GameState.healer_cooldown < 0 and $Orbiting/Player.health < 5:
+			enemy = HEALER
+		elif $Orbiting/Player.health < 5:
+			return
+		elif not GameState.boss:
+			enemy = BOSS_1
+			last_boss = BOSS_1
+		elif GameState.boss.find_child("BaseEnemy").health > 7:
+			enemy = ASTEROID
+			last_enemy = ASTEROID
+	summon(enemy)
 
 func _on_screenshake_cooldown_timeout() -> void:
 	$Camera2D.offset = Vector2(randf_range(screenshake * -1, screenshake), randf_range(screenshake * -1, screenshake))

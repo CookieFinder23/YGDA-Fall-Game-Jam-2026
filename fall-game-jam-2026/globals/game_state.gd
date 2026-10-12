@@ -11,9 +11,9 @@ var player: Player
 var boss: Node
 var bosses_killed: int
 var engine_time_scale_vel: float = 0.0
-var active_healer: bool = false
 var perm_difficulty_ramp = 0.0
 var healer_cooldown: float = 10.0
+var tutorial: bool = true
 func _ready() -> void:
 	reset()
 
@@ -25,7 +25,6 @@ func reset() -> void:
 	bosses_killed = 0
 	healer_cooldown = 10.0
 	Engine.time_scale = 1.0
-	active_healer = false
 	
 func _process(delta: float) -> void:
 	if not boss:
