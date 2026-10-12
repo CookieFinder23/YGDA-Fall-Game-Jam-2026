@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 class_name Player
 
+var first_damage = true
 const BOUNCE_SMOOTH = 0.1
 var can_collide = true
 var dead = false
@@ -20,15 +21,16 @@ var health: int = 5:
 			$DeathSoundTiming.start()
 			return
 		var damaged = new_health < health
+		
 		health = new_health
-		if damaged and not GameState.tutorial:
+		if damaged and not (first_damage and GameState.tutorial):
 			Engine.time_scale = 0.5
 			speed_mult = 0.8
 			get_parent().get_parent().screenshake = 12
 			SFX.play(SFX.Id.TAKE_DAMAGE)
 			play("hit")
 			$IFrames.start()
-		
+		first_damage = false
 ## radian change per second
 const SPEED: float = 2.0
 ## 1 = radians increasing, -1 = radians decreasing
@@ -37,6 +39,8 @@ var speed_mult: float = 1
 
 func _ready() -> void:
 	GameState.player = self
+	$OrbitingObject.ring_pos = PI
+	$OrbitingObject.ring_num = 1
 	if GameState.tutorial:
 		health -= 1
 func _physics_process(delta: float) -> void:

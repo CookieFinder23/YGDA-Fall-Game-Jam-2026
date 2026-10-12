@@ -12,7 +12,7 @@ const MOVE_BETWEEN_RING_SPEED = 10
 
 func move(dist: float):
 	dist = dist / ((GameState.RING_BASE + GameState.RING_SLOPE * (ring_num + 1)) / GameState.RING_SLOPE)
-	dist *= 1.25 + min((GameState.perm_difficulty_ramp / 60.0), 1)
+	dist *= 1.25 + min((GameState.perm_difficulty_ramp / 120.0), 1)
 	if ring_num == GameState.fast_ring:
 		dist *= FAST_RING_MULT
 	ring_pos += dist
