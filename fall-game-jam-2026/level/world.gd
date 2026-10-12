@@ -267,7 +267,7 @@ func _on_summon_cooldown_timeout() -> void:
 	if GameState.tutorial:
 		if GameState.healer_storage:
 			GameState.healer_storage = false
-			enemy = COMET
+			enemy = HEALER
 		elif len($Orbiting.get_children()) == 1:
 			enemy = BOSS_1
 			last_boss = BOSS_1

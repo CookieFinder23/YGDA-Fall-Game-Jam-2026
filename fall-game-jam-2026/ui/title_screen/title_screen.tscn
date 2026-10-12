@@ -46,10 +46,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -639.0
-offset_top = -167.0
-offset_right = -19.0
-offset_bottom = 133.0
+offset_left = -907.0
+offset_top = -41.0
+offset_right = -287.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_c8lgs")
@@ -62,10 +62,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -660.0
-offset_top = 116.0
-offset_right = -40.0
-offset_bottom = 416.0
+offset_left = -928.0
+offset_top = 242.0
+offset_right = -308.0
+offset_bottom = 542.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("7_533ah")
@@ -73,33 +73,26 @@ script = ExtResource("7_gwpbi")
 
 [node name="Credits" type="Panel" parent="." unique_id=1283357619]
 layout_mode = 0
+offset_left = 768.0
 offset_top = 1080.0
 offset_right = 1920.0
 offset_bottom = 2160.0
-
-[node name="BackButton" type="Button" parent="Credits" unique_id=137102216]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 500.0
-offset_right = 240.0
-offset_bottom = 568.0
-theme_override_fonts/font = ExtResource("3_72buf")
-text = "Back"
 
 [node name="Label" type="Label" parent="Credits" unique_id=474658897]
 layout_mode = 0
 offset_left = 75.0
 offset_top = 91.0
-offset_right = 1215.0
-offset_bottom = 396.0
+offset_right = 1157.0
+offset_bottom = 486.0
 text = "Team Sake
-Programming: CookieFinder23, drinkmelonwater, orange, Duckyduck246_
-Art: InfinitePrograms, Duckyduck246_, drinkmelonwater, sssoiree
+Programming: CookieFinder23, drinkmelonwater, orange, Duckyduck246
+Art: InfinitePrograms, Duckyduck246, drinkmelonwater, soireepeche, orange
 Music: JordanIsAnAbsoluteRose
 
 Assets:
 SFX Manager: Theophylaktos"
 label_settings = SubResource("LabelSettings_0es7p")
+autowrap_mode = 3
 
 [node name="MainMenuTeamSake" type="AudioStreamPlayer" parent="." unique_id=280477509]
 stream = ExtResource("4_rhiq2")
@@ -108,6 +101,3 @@ autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="visibility_changed" from="Credits" to="." method="_on_credits_visibility_changed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
