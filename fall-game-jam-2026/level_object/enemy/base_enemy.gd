@@ -48,9 +48,12 @@ signal damaged
 @export var spawn_progress: float = 0.0
 const BOUNCE_SMOOTH = 0.01
 var speed_mult: float = 1.0
+var rotate_dir = 1
 
 func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape = hitbox
+	if randi_range(0, 1):
+		rotate_dir *= -1
 
 func _physics_process(delta: float) -> void:
 	if spawn_progress < 1:
@@ -70,5 +73,5 @@ func _physics_process(delta: float) -> void:
 		var parent = get_parent()
 		if is_instance_of(parent, BaseBoss):
 			parent = parent.get_parent()
-		parent.rotation += delta * direction
+		parent.rotation += delta * direction * rotate_dir
 	
