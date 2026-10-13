@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b1suesqbkn8r0"]
 
+[ext_resource type="Texture2D" uid="uid://rklvjbd0wrti" path="res://assets/art/rocket_particle.png" id="1_cn6gp"]
 [ext_resource type="Script" uid="uid://bgy7y5te5sihf" path="res://level/death_particles.gd" id="1_op3t0"]
 
 [sub_resource type="Gradient" id="Gradient_ttdho"]
@@ -9,6 +10,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.4509804, 0.4509804, 0.4509804, 0, 0, 0, 
 [node name="DeathParticles" type="CPUParticles2D" unique_id=73125138]
 z_index = 1
 emitting = false
+texture = ExtResource("1_cn6gp")
 lifetime = 1.15
 one_shot = true
 explosiveness = 1.0
@@ -24,8 +26,7 @@ angular_velocity_min = -2.0
 angular_velocity_max = 2.0
 damping_min = 10.891
 damping_max = 10.891
-scale_amount_min = 0.0
-scale_amount_max = 15.0
+scale_amount_max = 7.0
 color = Color(0.46520418, 0.4622438, 0.9999985, 1)
 color_ramp = SubResource("Gradient_ttdho")
 hue_variation_min = -0.22
