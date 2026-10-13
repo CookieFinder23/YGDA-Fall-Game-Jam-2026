@@ -10,7 +10,7 @@ load_path = "res://.godot/imported/Boss 2.PNG-29e5f35546d8607b776cdb4dce46d0b4.c
 size = Vector2(120, 120)
 
 [node name="Boss2" type="Sprite2D" unique_id=494127020]
-z_index = 99
+z_index = 2
 texture = SubResource("CompressedTexture2D_ppn55")
 
 [node name="Laser" parent="." unique_id=1453316292 instance=ExtResource("2_xj0hi")]
