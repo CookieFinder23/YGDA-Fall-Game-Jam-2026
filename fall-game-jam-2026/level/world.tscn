@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://0boclyqu84aw" path="res://assets/art/Sun.png" id="7_drvcl"]
 [ext_resource type="Texture2D" uid="uid://ceg7lrlo6yt7d" path="res://assets/art/bg.png" id="7_gsqr6"]
 [ext_resource type="Script" uid="uid://b62le00txywv6" path="res://level/sun.gd" id="8_njrq0"]
-[ext_resource type="AudioStream" uid="uid://d180qeppyb835" path="res://assets/audio/Gameplay_Music__Team_Sake.mp3" id="9_drvcl"]
+[ext_resource type="AudioStream" uid="uid://771rbdp13k3r" path="res://assets/audio/Gameplay_Music__Team_Sake(2).mp3" id="10_njrq0"]
 [ext_resource type="FontFile" uid="uid://c0gksjdjfopks" path="res://assets/orbital_bounce_custom_font.ttf" id="10_xd8br"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsqr6"]
+size = Vector2(80, 80)
 
 [sub_resource type="Gradient" id="Gradient_gsqr6"]
 colors = PackedColorArray(0.9764706, 0.9137255, 0.5568628, 1, 0, 0, 0, 1)
@@ -22,9 +25,6 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsqr6"]
-size = Vector2(80, 80)
 
 [sub_resource type="Gradient" id="Gradient_drvcl"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
@@ -124,12 +124,6 @@ position_smoothing_speed = 1.0
 wait_time = 0.00999999999999999
 autostart = true
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=838917068]
-position = Vector2(960, 540)
-scale = Vector2(6.1250005, 5.7187505)
-energy = 0.9
-texture = SubResource("GradientTexture2D_g6h8k")
-
 [node name="Sun" type="Sprite2D" parent="." unique_id=1756660856]
 light_mask = 0
 z_index = 99
@@ -147,12 +141,17 @@ monitoring = false
 visible = false
 shape = SubResource("RectangleShape2D_gsqr6")
 
+[node name="PointLight2D" type="PointLight2D" parent="Sun" unique_id=838917068]
+scale = Vector2(5.8333344, 5.4464297)
+energy = 0.9
+texture = SubResource("GradientTexture2D_g6h8k")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=903771283]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1303472108 instance=ExtResource("3_tjjer")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=455789285]
-stream = ExtResource("9_drvcl")
+stream = ExtResource("10_njrq0")
 volume_db = -20.0
 autoplay = true
 

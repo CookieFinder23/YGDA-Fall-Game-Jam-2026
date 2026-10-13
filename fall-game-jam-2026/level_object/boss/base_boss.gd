@@ -14,7 +14,7 @@ func _ready() -> void:
 	GameState.boss = get_parent()
 
 func _physics_process(_delta: float) -> void:
-	GameState.boss_cooldown = 5.0
+	GameState.boss_cooldown = min(GameState.bosses_killed * 0.5 + 2, 5)
 
 func _on_base_enemy_damaged() -> void:
 	if $BaseEnemy.health % health == 0:
