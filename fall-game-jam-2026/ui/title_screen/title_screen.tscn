@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://qg5ped7s6x73" path="res://assets/art/gui/titlescreen_start.png" id="6_c8lgs"]
 [ext_resource type="Texture2D" uid="uid://dfuk1rskm2pov" path="res://assets/art/gui/titlescreen_credits.png" id="7_533ah"]
 [ext_resource type="Script" uid="uid://bypua2wq10cbk" path="res://ui/title_screen/start_button.gd" id="7_gwpbi"]
+[ext_resource type="Texture2D" uid="uid://55uwxmncgj6x" path="res://assets/art/titlescreen_letters.png" id="9_dk1uc"]
+[ext_resource type="Texture2D" uid="uid://bwsir52l6fjeg" path="res://assets/art/titlescreen_credits_alpha.png" id="11_qua4x"]
+[ext_resource type="Texture2D" uid="uid://br1karokpgm1c" path="res://assets/art/titlescreen_credits_shadows.png" id="12_hhwne"]
+[ext_resource type="Texture2D" uid="uid://c02vpokwdyup5" path="res://assets/art/titlescreen_credits_outline.png" id="13_objlv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0es7p"]
 line_spacing = 10.0
@@ -46,9 +50,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -907.0
+offset_left = -808.0
 offset_top = -87.0
-offset_right = -287.0
+offset_right = -188.0
 offset_bottom = 213.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -62,37 +66,67 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -928.0
+offset_left = -829.0
 offset_top = 196.0
-offset_right = -308.0
+offset_right = -209.0
 offset_bottom = 496.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("7_533ah")
 script = ExtResource("7_gwpbi")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=516287135]
+position = Vector2(984.25006, 468)
+scale = Vector2(1.0632812, 1)
+texture = ExtResource("9_dk1uc")
+
 [node name="Credits" type="Panel" parent="." unique_id=1283357619]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 768.0
 offset_top = 1080.0
 offset_right = 1920.0
 offset_bottom = 2160.0
 
-[node name="Label" type="Label" parent="Credits" unique_id=474658897]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 91.0
-offset_right = 1157.0
-offset_bottom = 486.0
+[node name="Node2D" type="Node2D" parent="Credits" unique_id=453097463]
+position = Vector2(198, 524)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Credits/Node2D" unique_id=2054139368]
+self_modulate = Color(0.40809998, 0.46841657, 0.77, 0.9411765)
+clip_children = 2
+texture = ExtResource("11_qua4x")
+
+[node name="Label" type="Label" parent="Credits/Node2D" unique_id=474658897]
+modulate = Color(0.93333334, 0.9019608, 0.8862745, 1)
+offset_left = 131.0
+offset_top = -364.0
+offset_right = 772.0
+offset_bottom = 301.0
 text = "Team Sake
+
 Programming: CookieFinder23, drinkmelonwater, orange, Duckyduck246
+
 Art: InfinitePrograms, Duckyduck246, drinkmelonwater, soireepeche, orange
+
 Music: JordanIsAnAbsoluteRose
 
 Assets:
 SFX Manager: Theophylaktos"
 label_settings = SubResource("LabelSettings_0es7p")
 autowrap_mode = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="Credits/Node2D" unique_id=1069469912]
+self_modulate = Color(0, 0, 0, 0.78431374)
+clip_children = 1
+texture = ExtResource("11_qua4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits/Node2D/Sprite2D3" unique_id=1888552389]
+modulate = Color(0, 0, 0, 0.27450982)
+texture = ExtResource("12_hhwne")
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits/Node2D" unique_id=1505561911]
+modulate = Color(0.938, 0.88, 1, 1)
+texture = ExtResource("13_objlv")
 
 [node name="MainMenuTeamSake" type="AudioStreamPlayer" parent="." unique_id=280477509]
 stream = ExtResource("4_rhiq2")
