@@ -1,18 +1,37 @@
 [gd_scene format=3 uid="uid://cyjhjkhs17g6l"]
 
-[ext_resource type="Texture2D" uid="uid://cluh2nk8vdqpd" path="res://assets/art/enemies/Asteroid.png" id="1_7i8y3"]
+[ext_resource type="Texture2D" uid="uid://ck7kikagnijin" path="res://assets/art/enemies/thruster.png" id="1_gqymk"]
 [ext_resource type="Script" uid="uid://cc6aumory2yqg" path="res://level_object/enemy/burner.gd" id="2_8pm76"]
 [ext_resource type="PackedScene" uid="uid://kn6oepseaj3g" path="res://level_object/enemy/base_enemy.tscn" id="2_gqymk"]
 
+[sub_resource type="Gradient" id="Gradient_gqymk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
-size = Vector2(64, 90)
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(20, 140)
+size = Vector2(49, 144)
 
 [node name="Burner" type="Sprite2D" unique_id=494127020]
-texture = ExtResource("1_7i8y3")
+texture = ExtResource("1_gqymk")
 script = ExtResource("2_8pm76")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=51322439]
+show_behind_parent = true
+position = Vector2(0, 20)
+amount = 200
+lifetime = 0.5
+direction = Vector2(0, 1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+linear_accel_max = 20.0
+scale_amount_min = 9.0
+scale_amount_max = 11.0
+color = Color(0.9647059, 0.34901962, 0.35686275, 1)
+color_ramp = SubResource("Gradient_gqymk")
 
 [node name="BaseEnemy" parent="." unique_id=737591388 instance=ExtResource("2_gqymk")]
 speed = 1.0
@@ -24,7 +43,7 @@ position = Vector2(0, -100)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221117206]
-position = Vector2(0, -2)
+position = Vector2(0, 204)
 shape = SubResource("RectangleShape2D_0es7p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=69536631]
