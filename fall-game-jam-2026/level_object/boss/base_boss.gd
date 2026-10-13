@@ -14,10 +14,10 @@ func _ready() -> void:
 	GameState.boss = get_parent()
 
 func _physics_process(_delta: float) -> void:
-	GameState.boss_cooldown = 5.0
+	GameState.boss_cooldown = min(GameState.bosses_killed * 0.5 + 2, 5)
 
 func _on_base_enemy_damaged() -> void:
-	if $BaseEnemy.health % health == 0:
+	if $BaseEnemy.health % (health * 2) == 0 and $BaseEnemy.health != 0:
 		GameState.healer_storage += 1
 	if $BaseEnemy/OrbitingObject.ring_num == 0:
 		$BaseEnemy/OrbitingObject.between_ring_progress += 0.01

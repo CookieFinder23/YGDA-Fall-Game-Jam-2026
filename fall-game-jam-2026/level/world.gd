@@ -143,11 +143,16 @@ func bounce(obj1: Node, obj2: Node, speed_mult: float):
 		particles.global_position = (obj1.global_position + obj2.global_position) / 2
 		add_child(particles)
 	var obj1_base_speed = obj1.SPEED if "SPEED" in obj1 else obj1.speed
+	if obj1 is Player and $Orbiting/Player/OrbitingObject.ring_num == GameState.slow_ring:
+		obj1_base_speed *= 0.5
 	var obj1_speed = obj1_base_speed * obj1.speed_mult
 	var obj2_base_speed = obj2.SPEED if "SPEED" in obj2 else obj2.speed
+	if obj2 is Player and $Orbiting/Player/OrbitingObject.ring_num == GameState.slow_ring:
+		obj2_base_speed *= 0.5
 	var obj2_speed = obj2_base_speed * obj2.speed_mult
 	
 	# the slower object takes the direction of the faster object, then invert the direction of the faster object
+	
 	if obj1_speed > obj2_speed:
 		obj2.direction = obj1.direction
 		obj1.direction *= -1
@@ -241,7 +246,7 @@ func summon(force_enemy=null) -> void:
 		while enemy == last_enemy:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET, BURNER].pick_random()
 		
-		if GameState.healer_storage > 0:
+		if GameState.healer_storage > 0 and GameState.boss_cooldown > 0:
 			GameState.healer_storage -= 1
 			enemy = HEALER
 		elif GameState.boss_cooldown < 0:
@@ -262,7 +267,7 @@ func summon(force_enemy=null) -> void:
 	return
 
 func _on_summon_cooldown_timeout() -> void:
-	$SummonCooldown.wait_time = max(0, 5.0 - max(GameState.difficulty_ramp / 20.0, 2) - GameState.bosses_killed / 3.0) + randf_range(0.5, 1.0)
+	$SummonCooldown.wait_time = max(0, 5.0 - max(GameState.difficulty_ramp / 20.0, 2) - GameState.bosses_killed / 3.0 - GameState.healer_storage) + randf_range(0.5, 1.0)
 	var enemy = null
 	if GameState.tutorial:
 		if GameState.healer_storage > 0:
