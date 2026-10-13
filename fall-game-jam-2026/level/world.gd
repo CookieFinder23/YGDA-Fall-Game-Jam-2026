@@ -234,12 +234,12 @@ func summon(force_enemy=null) -> void:
 		if min_ring_diffs[ring] == max_ring_diff:
 			viable.append(ring)
 	var spawn_ring = viable.pick_random()
-	var enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+	var enemy = [ASTEROID, SATELLITE, SPITTER, COMET, BURNER].pick_random()
 	if force_enemy:
 		enemy = force_enemy
 	else:
 		while enemy == last_enemy:
-			enemy = [ASTEROID, SATELLITE, SPITTER, COMET].pick_random()
+			enemy = [ASTEROID, SATELLITE, SPITTER, COMET, BURNER].pick_random()
 		
 		if GameState.healer_storage > 0:
 			GameState.healer_storage -= 1
