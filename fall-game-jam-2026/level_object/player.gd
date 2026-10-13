@@ -76,6 +76,8 @@ func _physics_process(delta: float) -> void:
 	speed_mult = lerp(speed_mult, 1.0, 1 - pow(BOUNCE_SMOOTH, delta))
 	$CPUParticles2D.direction.y = direction
 	$CPUParticles2D.position.y = direction * 50
+	$CPUParticles2D2.direction.y = direction
+	$CPUParticles2D2.position.y = direction * 50
 
 func _input(event: InputEvent) -> void:
 	if dead or $OrbitingObject.between_ring_progress:
