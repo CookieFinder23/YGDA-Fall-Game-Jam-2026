@@ -9,7 +9,8 @@ const MAX_HEALTH = 5
 var health: int = 5:
 	set(new_health):
 		new_health = clamp(new_health, 0, MAX_HEALTH)
-		if dead or new_health == health or not $IFrames.is_stopped():
+		var damaged = new_health < health
+		if dead or new_health == health or damaged and not $IFrames.is_stopped():
 			return
 		if new_health > health:
 			get_parent().get_parent().mod_target = Color(0.1, 1.0, 0.1, 0.25)
@@ -25,7 +26,7 @@ var health: int = 5:
 			can_collide = false
 			$DeathSoundTiming.start()
 			return
-		var damaged = new_health < health
+		
 		
 		health = new_health
 		if damaged and not (first_damage and GameState.tutorial):

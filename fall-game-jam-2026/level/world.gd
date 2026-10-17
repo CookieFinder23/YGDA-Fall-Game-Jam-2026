@@ -14,8 +14,8 @@ const HIT_PARTICLES = preload("uid://dfe8icwbp8nwk")
 var screenshake_inc: float = 0
 var target_offset: Vector2
 var mod_target: Color = Color(0, 0, 0, 0)
-var last_boss
-var last_enemy
+var last_bosses = []
+var last_enemies = []
 const FAST_RING_COLOR = Color(1.987, 3.294, 1.365)
 const SLOW_RING_COLOR = Color(2.884, 1.169, 0.841, 1.0)
 var player_vars = 0
@@ -243,7 +243,7 @@ func summon(force_enemy=null) -> void:
 	if force_enemy:
 		enemy = force_enemy
 	else:
-		while enemy == last_enemy:
+		while enemy in last_enemies:
 			enemy = [ASTEROID, SATELLITE, SPITTER, COMET, BURNER].pick_random()
 		
 		if GameState.healer_storage > 0 and GameState.boss_cooldown > 0:
@@ -251,11 +251,15 @@ func summon(force_enemy=null) -> void:
 			enemy = HEALER
 		elif GameState.boss_cooldown < 0:
 			enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
-			while enemy == last_boss:
+			while enemy in last_bosses:
 				enemy = [BOSS_1, BOSS_2, BOSS_3, BOSS_4].pick_random()
-			last_boss = enemy
+			last_bosses.append(enemy)
+			if len(last_bosses) > 2:
+				last_bosses.remove_at(0)
 		else:
-			last_enemy = enemy
+			last_enemies.append(enemy)
+			if len(last_enemies) > 2:
+				last_enemies.remove_at(0)
 	var to_spawn = enemy.instantiate()
 	var to_spawn_orb = to_spawn.find_child("OrbitingObject")
 	to_spawn_orb.ring_num = spawn_ring
@@ -275,13 +279,13 @@ func _on_summon_cooldown_timeout() -> void:
 			enemy = HEALER
 		elif len($Orbiting.get_children()) == 1:
 			enemy = BOSS_1
-			last_boss = BOSS_1
+			last_bosses = [BOSS_1]
 			$Label.text = "Destroy as many planets as you can."
 		elif not GameState.boss:
 			return
 		elif GameState.boss.find_child("BaseEnemy").health > 2:
 			enemy = ASTEROID
-			last_enemy = ASTEROID
+			last_enemies = [ASTEROID]
 	else:
 		$Label.text = ""
 	summon(enemy)

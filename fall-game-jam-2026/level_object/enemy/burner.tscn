@@ -14,9 +14,6 @@ colors = PackedColorArray(1, 0.844, 0.64, 1, 1, 1, 1, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pm76"]
 size = Vector2(64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
-size = Vector2(49, 144)
-
 [node name="Burner" type="Sprite2D" unique_id=494127020]
 texture = ExtResource("1_gqymk")
 script = ExtResource("2_8pm76")
@@ -26,7 +23,7 @@ show_behind_parent = true
 position = Vector2(0, 20)
 amount = 50
 texture = ExtResource("3_8pm76")
-lifetime = 0.5
+lifetime = 0.3
 direction = Vector2(0, 1)
 spread = 15.0
 gravity = Vector2(0, 0)
@@ -44,14 +41,11 @@ speed = 1.0
 hitbox = SubResource("RectangleShape2D_8pm76")
 random_rotate = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1778016966]
-position = Vector2(0, -100)
-collision_layer = 0
+[node name="FlamePoint" type="Node2D" parent="." unique_id=2077736761]
+position = Vector2(0, 85)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221117206]
-position = Vector2(0, 204)
-shape = SubResource("RectangleShape2D_0es7p")
+[node name="FlameTick" type="Timer" parent="." unique_id=273606104]
+wait_time = 0.1
+autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=69536631]
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="FlameTick" to="." method="_on_flame_tick_timeout"]

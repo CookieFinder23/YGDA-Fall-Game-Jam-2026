@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dau2agkl5nykq"]
+
+[ext_resource type="Script" uid="uid://c4yoqnv6nwo0l" path="res://level_object/enemy/flame_hitbox.gd" id="1_uvvrq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0es7p"]
+size = Vector2(50, 50)
+
+[node name="FlameHitbox" type="Area2D" unique_id=1748235303]
+z_index = 999
+collision_layer = 0
+script = ExtResource("1_uvvrq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=20048248]
+shape = SubResource("RectangleShape2D_0es7p")
+disabled = true
+
+[node name="Death" type="Timer" parent="." unique_id=831807773]
+wait_time = 0.1
+one_shot = true
+
+[node name="Activate" type="Timer" parent="." unique_id=687489657]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Death" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Activate" to="." method="_on_activate_timeout"]
